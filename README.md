@@ -1,8 +1,8 @@
-# RECOEVO · Presentación de la gran final
+# RECOEVO · Presentación
 
 **Transformación de residuos orgánicos sin electricidad.** Menos relleno, más vida.
 
-Presentación en estilo keynote para la final del concurso (Proceso Administrativo, Politécnico Grancolombiano, 2026-2).
+Presentación en estilo keynote. Politécnico Grancolombiano · 2026-2.
 
 - **Verla:** https://whafonsecav.github.io/Recoevo2/
 - **Web del proyecto (QR del póster):** https://whafonsecav.github.io/Prototipo-Recoevo/
@@ -47,4 +47,4 @@ HTML, CSS y JavaScript sin librerías, salvo three.js (r149) para el modelo 3D (
 - `?captura=N&paso=M` dibuja la pantalla N en su paso M sin animaciones (lo usa el PDF de respaldo).
 - `?presentador` es la vista del presentador; se sincroniza con la pantalla principal en el mismo navegador.
 
-Equipo: Ricardo Beltrán · William Fonseca · Samuel Medina · Faber Ortiz · Camila Riaño. Docente: Ingrid Zoraida Sandoval Pérez.
+Equipo: Ricardo Beltrán · William Fonseca · Samuel Medina · Faber Ortiz · Camila Riaño.

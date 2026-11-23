@@ -327,7 +327,7 @@ window.MODALES = {
 
   equipo: {
     k: "Equipo y siguiente paso", t: "Quiénes somos y qué sigue",
-    p: "Ricardo Beltrán · William Fonseca · Samuel Medina · Faber Ortiz · Camila Riaño. Docente: Ingrid Zoraida Sandoval Pérez. Proceso Administrativo, Politécnico Grancolombiano.",
+    p: "Ricardo Beltrán · William Fonseca · Samuel Medina · Faber Ortiz · Camila Riaño. Politécnico Grancolombiano · 2026-2.",
     b: [
       { tipo: "cifras", titulo: "Lo que ya hicimos", items: [
         { v: "6", t: "metodologías: Design Thinking, investigación de campo, Customer Journey Map, Value Proposition Canvas, Business Model Canvas y Lean Startup.", f: "" },
