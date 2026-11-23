@@ -52,7 +52,7 @@
   // ---------------------------------------------------------------- estudio oscuro con cajas de luz (reflejos del plástico)
   (function entorno() {
     const e = new T.Scene();
-    const caja = new T.Mesh(new T.BoxGeometry(12, 8, 12), new T.MeshBasicMaterial({ color: 0x0c110e, side: T.BackSide }));
+    const caja = new T.Mesh(new T.BoxGeometry(12, 8, 12), new T.MeshBasicMaterial({ color: 0x6f6a5c, side: T.BackSide }));
     caja.position.y = 3; e.add(caja);
     const panel = (w, h, pos, k, color = 0xffffff) => {
       const m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshBasicMaterial({ color: new T.Color(color).multiplyScalar(k), side: T.DoubleSide }));
@@ -81,22 +81,22 @@
   const cielo = new T.HemisphereLight(0xffffff, 0x0e140f, 0.3);
   escena.add(clave, contraA, contraB, cielo);
 
-  const piso = new T.Mesh(new T.PlaneGeometry(6, 6), new T.ShadowMaterial({ opacity: 0.5 }));
+  const piso = new T.Mesh(new T.PlaneGeometry(6, 6), new T.ShadowMaterial({ opacity: 0.26, color: 0x2a3a22 }));
   piso.rotation.x = -Math.PI / 2; piso.receiveShadow = true; escena.add(piso);
   function texturaBrillo() {
     const c = document.createElement("canvas"); c.width = c.height = 256;
     const g = c.getContext("2d"), gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
-    gr.addColorStop(0, "rgba(130,255,180,.55)"); gr.addColorStop(.32, "rgba(60,210,120,.18)"); gr.addColorStop(1, "rgba(0,0,0,0)");
+    gr.addColorStop(0, "rgba(120,200,90,.42)"); gr.addColorStop(.38, "rgba(150,210,110,.16)"); gr.addColorStop(1, "rgba(150,210,110,0)");
     g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
     const t = new T.CanvasTexture(c); t.encoding = T.sRGBEncoding; return t;
   }
-  const brillo = new T.Mesh(new T.PlaneGeometry(1.7, 1.7), new T.MeshBasicMaterial({ map: texturaBrillo(), transparent: true, depthWrite: false, blending: T.AdditiveBlending }));
+  const brillo = new T.Mesh(new T.PlaneGeometry(1.7, 1.7), new T.MeshBasicMaterial({ map: texturaBrillo(), transparent: true, depthWrite: false }));
   brillo.rotation.x = -Math.PI / 2; brillo.position.y = 0.002; escena.add(brillo);
   const anillo = (r1, r2, op) => {
-    const m = new T.Mesh(new T.RingGeometry(r1, r2, 160), new T.MeshBasicMaterial({ color: 0x5dffa0, transparent: true, opacity: op, depthWrite: false, blending: T.AdditiveBlending, side: T.DoubleSide }));
+    const m = new T.Mesh(new T.RingGeometry(r1, r2, 160), new T.MeshBasicMaterial({ color: 0x0E9A48, transparent: true, opacity: op, depthWrite: false, side: T.DoubleSide }));
     m.rotation.x = -Math.PI / 2; m.position.y = 0.003; escena.add(m); return m;
   };
-  const anillos = [anillo(0.40, 0.404, 0.55), anillo(0.52, 0.522, 0.25), anillo(0.66, 0.6615, 0.12)];
+  const anillos = [anillo(0.40, 0.405, 0.5), anillo(0.52, 0.523, 0.26), anillo(0.66, 0.662, 0.14)];
 
   // ---------------------------------------------------------------- modelo
   const raiz = new T.Group(); escena.add(raiz);
@@ -137,7 +137,7 @@
       const base = { op: o.material.opacity, tr: o.material.transparent, em: o.material.emissive.clone(), dw: o.material.depthWrite };
       mallas.push({ m: o, g, base });
       if (CON_ARISTAS.includes(o.name)) {
-        const l = new T.LineSegments(new T.EdgesGeometry(o.geometry, 32), new T.LineBasicMaterial({ color: 0x6dffb0, transparent: true, opacity: 0, depthWrite: false }));
+        const l = new T.LineSegments(new T.EdgesGeometry(o.geometry, 32), new T.LineBasicMaterial({ color: 0x0E9A48, transparent: true, opacity: 0, depthWrite: false }));
         l.visible = false; o.add(l); aristas.push(l);
       }
     });
@@ -359,7 +359,7 @@
     cam.setViewOffset(1920, 1080, -P.desp * 1920, 0, 1920, 1080);
     render.toneMappingExposure = 1.1 * (0.06 + 0.94 * P.luz);
     brillo.material.opacity = P.luz * (1 - 0.6 * suave(P.sep));
-    anillos.forEach((a, i) => { a.material.opacity = [0.55, 0.25, 0.12][i] * P.luz * (1 - suave(P.sep)); a.rotation.z += 0.0015 * (i + 1); });
+    anillos.forEach((a, i) => { a.material.opacity = [0.5, 0.26, 0.14][i] * P.luz * (1 - suave(P.sep)); a.rotation.z += 0.0015 * (i + 1); });
   }
 
   function tamano() {

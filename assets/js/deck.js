@@ -138,6 +138,27 @@
     if (actual >= 0) contadores(diapos[actual]);
   }
 
+  // ---------------------------------------------------------------- tema: oscuro (problema y campo) y claro (desde la solución)
+  const CLAROS = ["solucion", "impacto", "ods", "negocio", "cifras", "cierre"];
+
+  // ---------------------------------------------------------------- curvas de nivel del fondo (líneas orgánicas, como un terreno)
+  (function contornos() {
+    const svg = $(".contornos"); if (!svg) return;
+    const azar = (s => () => (s = (s * 16807) % 2147483647) / 2147483647)(20261125);
+    const ondas = Array.from({ length: 4 }, () => ({ f: .0011 + azar() * .0022, a: 18 + azar() * 46, p: azar() * 6.28 }));
+    let html = "";
+    for (let k = 0; k < 22; k++) {
+      const base = -60 + k * 56, pts = [];
+      for (let x = -40; x <= 1960; x += 40) {
+        let y = base;
+        ondas.forEach((o, j) => { y += o.a * Math.sin(x * o.f * (1 + j * .35) + o.p + k * (.16 + j * .05)); });
+        pts.push(`${x},${y.toFixed(1)}`);
+      }
+      html += `<path d="M${pts.join(" L")}"/>`;
+    }
+    svg.innerHTML = html;
+  })();
+
   // ---------------------------------------------------------------- transición de capítulo
   const capa = $("#capitulo");
   function capitulo(d) {
@@ -225,6 +246,14 @@
     }
     paso = pasoIni != null ? Math.min(pasoIni, nuevo._pasos) : (dir < 0 ? nuevo._pasos : 0);
     mundo.dataset.acto = nuevo.dataset.acto;
+    // tema: la pantalla que sale conserva sus colores mientras se desvanece; el cambio de fondo ocurre bajo el capítulo
+    const claro = CLAROS.includes(nuevo.dataset.acto), eraClaro = mundo.classList.contains("claro");
+    if (claro !== eraClaro) {
+      if (viejo && viejo !== nuevo) { viejo.classList.add(eraClaro ? "fija-claro" : "fija-oscuro"); setTimeout(() => viejo.classList.remove("fija-claro", "fija-oscuro"), 760); }
+      clearTimeout(ir._tema);
+      if (CAPTURA || !viejo) mundo.classList.toggle("claro", claro);
+      else ir._tema = setTimeout(() => mundo.classList.toggle("claro", claro), 220);
+    }
     const v = VIZ[nuevo.dataset.viz];
     if (v && v.entrar) v.entrar(nuevo, paso);
     aplicarPaso(nuevo, paso);

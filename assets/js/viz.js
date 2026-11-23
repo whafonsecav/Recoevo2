@@ -153,16 +153,56 @@
       const svg = d.querySelector(".dona svg");
       if (!svg || svg.children.length) return;
       const C = 2 * Math.PI * 220;
-      const segs = [[35, "#2FD07A"], [35, "#A4D65E"], [15, "#F2B227"], [15, "#7FC8F8"]];
-      let ini = 0, html = `<circle cx="310" cy="310" r="220" stroke="rgba(255,255,255,.06)"/>`;
-      segs.forEach(([p, c], i) => {
+      const segs = [35, 35, 15, 15];
+      let ini = 0, html = `<circle class="fondo-d" cx="310" cy="310" r="220"/>`;
+      segs.forEach((p, i) => {
         const largo = p / 100 * C - 8;
-        html += `<circle class="seg-d" cx="310" cy="310" r="220" stroke="${c}" style="--len:${largo.toFixed(1)};--d:${(0.25 + i * 0.3).toFixed(2)}s;stroke-dashoffset:${(-ini).toFixed(1)}"/>`;
+        html += `<circle class="seg-d s${i + 1}" cx="310" cy="310" r="220" style="--len:${largo.toFixed(1)};--d:${(0.25 + i * 0.3).toFixed(2)}s;stroke-dashoffset:${(-ini).toFixed(1)}"/>`;
         ini += p / 100 * C;
       });
       svg.innerHTML = html;
     },
     entrar(d) { this.iniciar(d); }
+  };
+
+  // ======================================================================== 3b · galería del trabajo de campo (una foto grande que cambia sola)
+  const G = { fotos: [], pies: [], prog: [], borde: null, i: -1, t: 0, corre: false, DUR: 4600 };
+  function mostrarFoto(n, primera) {
+    const prev = G.i;
+    G.i = n;
+    G.fotos.forEach((f, k) => { if (k !== n && k !== prev) f.classList.remove("ve", "entra"); });
+    const f = G.fotos[n];
+    f.classList.remove("ve", "entra"); void f.offsetWidth;
+    f.classList.add("ve");
+    if (!primera) {
+      f.classList.add("entra");
+      G.borde.classList.remove("corre"); void G.borde.offsetWidth; G.borde.classList.add("corre");
+      setTimeout(() => { if (G.i === n) { f.classList.remove("entra"); if (prev >= 0 && prev !== n) G.fotos[prev].classList.remove("ve"); } }, 1350);
+    }
+    G.pies.forEach((p, k) => p.classList.toggle("ve", k === n));
+    G.prog.forEach((p, k) => { p.classList.remove("corre"); p.classList.toggle("hecho", k < n); });
+    const b = G.prog[n]; void b.offsetWidth; b.style.setProperty("--t", G.DUR + "ms"); b.classList.add("corre");
+  }
+  function siguienteFoto() { if (!G.corre) return; mostrarFoto((G.i + 1) % G.fotos.length); G.t = setTimeout(siguienteFoto, G.DUR); }
+  VIZ.campo = {
+    entrar(d, paso) {
+      if (!G.fotos.length) {
+        G.fotos = Array.from(d.querySelectorAll(".g-foto"));
+        G.pies = Array.from(d.querySelectorAll(".g-pie"));
+        G.prog = Array.from(d.querySelectorAll(".g-prog i"));
+        G.borde = d.querySelector(".g-borde");
+      }
+      this.parar();
+      G.i = -1;
+      mostrarFoto(0, true);
+      this.paso(d, paso);
+    },
+    paso(d, paso) {
+      if (paso === 0 && !CAPTURA) { if (!G.corre) { G.corre = true; clearTimeout(G.t); G.t = setTimeout(siguienteFoto, G.DUR); } }
+      else this.parar();
+    },
+    parar() { G.corre = false; clearTimeout(G.t); },
+    salir() { this.parar(); }
   };
 
   // ======================================================================== 4 · curva de caja acumulada (mes 0 a 120)
