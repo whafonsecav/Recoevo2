@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RECOEVO · Gran final</title>
+<meta name="description" content="RECOEVO: transformación de residuos orgánicos sin electricidad. Presentación de la gran final, Politécnico Grancolombiano 2026-2.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#030604">
+<link rel="icon" href="assets/img/RECOEVO_isotipo_color.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/keynote.css?v=1">
+<link rel="stylesheet" href="assets/css/componentes.css?v=1">
+</head>
+<body>
+
+<div id="mundo" data-acto="inicio">
+  <div class="ambiente"></div>
+  <div class="reticula"></div>
+  <div class="grano"></div>
+  <div class="vineta"></div>
+
+  <div id="escenario">
+    <canvas id="lienzo3d" width="1920" height="1080"></canvas>
+    <img id="respaldo3d" src="assets/img/prototipo_frente.webp" alt="">
+    <svg id="lineas3d" viewBox="0 0 1920 1080"></svg>
+    <div id="etiquetas3d"></div>
+
+    <main class="diapos">
+
+<!-- ======================================================================= 1 · PORTADA -->
+<section class="diapo portada" data-acto="inicio" data-titulo="Portada">
+  <div class="orbita a solo" style="--d:.1s"></div>
+  <div class="orbita o2 a solo" style="--d:.3s"></div>
+  <div class="orbita o3 a solo" style="--d:.5s"></div>
+  <img class="poli a solo" style="--d:1.6s" src="assets/img/logo-politecnico-grancolombiano-white.svg" alt="Politécnico Grancolombiano">
+  <div class="logo"><div class="logo-mask"><img src="assets/img/RECOEVO_logo_horizontal_negativo.svg" alt="RECOEVO"></div></div>
+  <p class="titulo-p palabras" style="--d:1.3s">Transformación de residuos orgánicos sin electricidad</p>
+  <p class="eslogan a" style="--d:2.1s">Menos relleno, más vida.</p>
+  <p class="pie a" style="--d:2.5s"><b>Ricardo Beltrán · William Fonseca · Samuel Medina · Faber Ortiz · Camila Riaño</b><br>Proceso Administrativo · Politécnico Grancolombiano · Gran final 2026-2</p>
+  <p class="pista">Flecha derecha, espacio o clic para avanzar</p>
+  <aside class="notas">
+    <p data-p="0">Buenas tardes. Somos RECOEVO, y queremos contarles cómo una cáscara puede dejar de ser basura.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 2 · LA BASURA -->
+<section class="diapo basura" data-acto="problema" data-titulo="La comida que enterramos" data-viz="basura" data-modal="basura">
+  <canvas class="lienzo" data-lienzo="basura" width="1920" height="1080"></canvas>
+  <div class="ojo a"><b>01</b>El problema</div>
+  <div class="leyenda a" style="--d:.8s"><span><i></i>Cada cuadro: 10 toneladas</span><span class="org-l" data-b="1"><i class="org a solo"></i><em class="a solo">Comida</em></span></div>
+
+  <div class="col" data-hasta="1">
+    <p class="rotulo palabras" style="--d:.2s">Cada día, Colombia entierra</p>
+    <div class="mega metal a" style="--d:.35s"><span class="cuenta" data-n="33300" data-dur="3.4">0</span></div>
+    <p class="unidad a" style="--d:.6s">toneladas de basura</p>
+    <p class="sub a" style="--d:1.4s">Solo 1 de cada 5 se aprovecha.</p>
+    <div class="comida" data-b="1">
+      <div class="mega m brillo-organico a"><span class="cuenta" data-n="60" data-dur="1.6">0</span><small>%</small></div>
+      <p class="titular s palabras" style="--d:.25s">es comida.</p>
+    </div>
+  </div>
+
+  <div class="col" data-b="2" data-hasta="2">
+    <p class="rotulo palabras">Solo a Doña Juana, en Bogotá, llegan</p>
+    <div class="mega metal a" style="--d:.2s"><span class="cuenta" data-n="6800" data-dur="2">0</span><small>t/día</small></div>
+    <div class="reloj-juana a" style="--d:.7s">
+      <div class="rj-linea"><i></i></div>
+      <div class="rj-hito"><b>2026</b>hoy</div>
+      <div class="rj-hito fin"><b>2029</b>vence la licencia</div>
+    </div>
+    <p class="sub a" style="--d:1.2s">Y hay 135 puntos críticos de ratas en la ciudad.</p>
+  </div>
+
+  <div class="col" data-b="3">
+    <p class="rotulo a">Decreto 0772 de 2026</p>
+    <p class="titular m palabras" style="--d:.15s">Separar los orgánicos ya es obligatorio.</p>
+    <p class="bajada a" style="--d:1.1s">Pero en la cocina no hay una forma fácil y limpia de hacerlo.</p>
+  </div>
+  <div class="bolsas" data-b="3">
+    <figure class="a" style="--d:.3s"><svg viewBox="0 0 120 150"><path d="M30 34h60l12 104a8 8 0 0 1-8 9H26a8 8 0 0 1-8-9z" fill="#e9ece9"/><path d="M42 34c0-14 8-22 18-22s18 8 18 22" fill="none" stroke="#e9ece9" stroke-width="6"/></svg><figcaption>Blanca<br><small>aprovechables</small></figcaption></figure>
+    <figure class="a" style="--d:.45s"><svg viewBox="0 0 120 150"><path d="M30 34h60l12 104a8 8 0 0 1-8 9H26a8 8 0 0 1-8-9z" fill="#2a2f2c" stroke="#5c645f" stroke-width="2"/><path d="M42 34c0-14 8-22 18-22s18 8 18 22" fill="none" stroke="#5c645f" stroke-width="6"/></svg><figcaption>Negra<br><small>no aprovechables</small></figcaption></figure>
+    <figure class="on-verde a zoom" style="--d:.7s"><svg viewBox="0 0 120 150"><path d="M30 34h60l12 104a8 8 0 0 1-8 9H26a8 8 0 0 1-8-9z" fill="#2FD07A"/><path d="M42 34c0-14 8-22 18-22s18 8 18 22" fill="none" stroke="#2FD07A" stroke-width="6"/><path d="M60 70c-14 8-18 30-6 44 14-6 20-26 6-44z" fill="#0b3d22"/></svg><figcaption>Verde<br><small>orgánicos</small></figcaption></figure>
+  </div>
+
+  <p class="fuente a" style="--d:1.6s" data-hasta="1">Superservicios, Informe Nacional de Disposición Final 2024 · Secretaría del Hábitat de Bogotá.</p>
+  <p class="fuente" data-b="2" data-hasta="2"><span class="a solo">UAESP y Alcaldía de Bogotá, 1.er trimestre de 2026 · El Tiempo, 16-oct-2026 (licencia prorrogada por la CAR) · Semana, 17-mar-2026.</span></p>
+  <p class="fuente" data-b="3"><span class="a solo">Decreto 0772 de 2026, Ministerio de Vivienda (16-jul-2026) · Resolución 2184 de 2019 (código de colores).</span></p>
+  <button class="mas" type="button" data-abrir="basura">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">¿Quién no ha visto una bolsa de basura rota en la calle? Cada día, Colombia entierra 33.300 toneladas de basura.</p>
+    <p data-p="1">Y cerca del 60 % no es plástico: es comida.</p>
+    <p data-p="2">Solo a Doña Juana llegan 6.800 toneladas al día, y su licencia vence en 2029.</p>
+    <p data-p="3">Desde julio, el Decreto 0772 obliga a separar los orgánicos. Pero en la cocina no hay una forma fácil de hacerlo.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 3 · EL CAMPO Y LA UREA -->
+<section class="diapo campo-p" data-acto="problema" data-titulo="El campo paga caro el abono" data-modal="abono">
+  <div class="ojo a"><b>02</b>El otro problema</div>
+  <div class="col" data-hasta="1">
+    <p class="titular m palabras" style="--d:.15s">A pocos kilómetros, el campo paga caro el abono.</p>
+    <p class="bajada s a" style="--d:1s">Bulto de urea de 50 kg, el abono químico más usado.</p>
+  </div>
+  <div class="col dos-cifras" data-b="2" data-hasta="2">
+    <div class="a"><div class="mega m metal">&gt;94<small>%</small></div><p>del fertilizante del país es importado.</p></div>
+    <div class="a" style="--d:.35s"><div class="mega m metal">40<small>%</small></div><p>de la tierra agrícola está degradada.</p></div>
+  </div>
+
+  <div class="urea" data-hasta="2">
+    <div class="eje-0"></div>
+    <div class="col-u" style="left:0">
+      <div class="barra a solo" style="--h:139px;--d:.5s;background:linear-gradient(180deg,#8d9a93,#4d5852)"></div>
+      <div class="valor a" style="--d:1s;--vb:157px">$80.000</div>
+      <div class="pie-u">Enero 2021</div>
+    </div>
+    <div class="col-u" style="left:270px">
+      <div class="barra a solo" style="--h:400px;--d:.9s;background:linear-gradient(180deg,#FF8A60,#c23a14)"></div>
+      <div class="valor a" style="--d:1.6s;--vb:418px">$230.000</div>
+      <div class="pie-u">Enero 2022</div>
+    </div>
+    <div class="salto a zoom" style="--d:2s"><span class="cuenta" data-n="187" data-pre="+" data-dur="1.4">0</span> %</div>
+    <div class="col-u" style="left:540px" data-b="1">
+      <div class="rango a solo" style="--h1:267px;--h2:387px"></div>
+      <div class="valor v-rango a" style="--d:.5s;--vb:405px">$153.300 –<br>$222.400</div>
+      <div class="pie-u">Agosto 2026<small>guerra en Irán y cierre de Ormuz</small></div>
+    </div>
+  </div>
+
+  <div class="ironia" data-b="3">
+    <div class="velo-i a solo"></div>
+    <p class="titular palabras" style="--d:.2s">La ciudad entierra la comida que el campo necesita.</p>
+    <svg class="flujo" viewBox="0 0 1500 300" aria-hidden="true">
+      <g class="nodo a" style="--d:.9s"><rect x="60" y="120" width="44" height="120" rx="4"/><rect x="112" y="80" width="56" height="160" rx="4"/><rect x="176" y="140" width="40" height="100" rx="4"/><text x="138" y="290">La cocina</text></g>
+      <g class="nodo malo a" style="--d:1.2s"><path d="M650 240 l60-80 60 80z"/><path d="M630 240h160"/><text x="710" y="290">Relleno</text></g>
+      <g class="nodo bueno a" style="--d:1.5s"><path d="M1290 240c40-60 120-60 160 0"/><path d="M1300 200v40M1340 175v65M1380 168v72M1420 178v62"/><circle cx="1440" cy="90" r="24"/><text x="1370" y="290">El campo</text></g>
+      <path class="ruta-hoy" d="M230 200 C 400 200 520 200 620 210"/>
+      <text class="et-hoy" x="420" y="180">hoy</text>
+      <path class="ruta-ideal" d="M230 150 C 520 -40 1000 -40 1280 150"/>
+      <text class="et-ideal" x="755" y="40">abono (compost)</text>
+    </svg>
+  </div>
+  <p class="fuente a" style="--d:1.4s" data-hasta="1">DANE-SIPSA vía U.S. Trade.gov (2021-2022) · DANE vía El Tiempo (agosto de 2026, según el municipio) · El Colombiano, 7-abr-2026.</p>
+  <p class="fuente" data-b="2" data-hasta="2"><span class="a solo">El Colombiano (7-abr-2026) · Agronegocios y CONtexto Ganadero (Asocompost): 2,8 millones de hectáreas.</span></p>
+  <button class="mas" type="button" data-abrir="abono">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Y aquí viene lo irónico: a pocos kilómetros, el campo paga caro el abono. El bulto de urea, el abono más usado, pasó de 80.000 a 230.000 pesos: subió 187 %.</p>
+    <p data-p="1">Y este año, con la guerra en Irán, volvió a subir: hasta 222.000 pesos.</p>
+    <p data-p="2">Más del 94 % del fertilizante es importado, y el 40 % de la tierra agrícola está degradada.</p>
+    <p data-p="3">O sea: la ciudad entierra la comida que el campo necesita.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 4 · TRABAJO DE CAMPO -->
+<section class="diapo trabajo" data-acto="campo" data-titulo="Trabajo de campo en Villa Rosita" data-modal="campo">
+  <div class="ojo a"><b>03</b>Trabajo de campo</div>
+
+  <div class="col" data-hasta="0">
+    <p class="titular m palabras" style="--d:.15s">Fuimos al barrio de nuestro compañero Samuel.</p>
+    <div class="lugar">
+      <span class="a" style="--d:.9s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Villa Rosita, Usme · Bogotá</span>
+      <span class="a" style="--d:1.05s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>19 de septiembre de 2026</span>
+      <span class="a" style="--d:1.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18v-1a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5v1"/><circle cx="9" cy="7" r="3"/><path d="M16 11a3 3 0 1 0 0-6M17 13a5 5 0 0 1 4 5"/></svg>Conversaciones con vecinos y observación en la calle</span>
+    </div>
+  </div>
+  <div class="collage" data-hasta="0">
+    <figure class="foto a zoom" style="--d:.2s;left:0;top:0;width:560px;height:420px"><img src="assets/img/campo/shut_prohibido.jpg" alt=""><figcaption>El shut, desbordado pese al aviso de multa</figcaption></figure>
+    <figure class="foto a zoom" style="--d:.45s;left:590px;top:60px;width:410px;height:300px"><img src="assets/img/campo/perro_icopor.jpg" alt=""><figcaption>Un perro come de un icopor tirado</figcaption></figure>
+    <figure class="foto a zoom" style="--d:.7s;left:80px;top:450px;width:440px;height:330px"><img src="assets/img/campo/llanta_cascaras.jpg" alt=""><figcaption>Cáscaras botadas en la ladera</figcaption></figure>
+    <figure class="foto a zoom" style="--d:.95s;left:550px;top:390px;width:450px;height:460px"><img src="assets/img/campo/perro_frente_shut.jpg" alt=""><figcaption>Perros y recicladores rompen las bolsas</figcaption></figure>
+  </div>
+
+  <div class="hallazgos" data-b="1" data-hasta="1">
+    <p class="titular s palabras centrado">Lo que nos dijeron los vecinos</p>
+    <div class="anillos">
+      <div class="anillo a" style="--d:.2s;--p:1"><svg viewBox="0 0 300 300"><circle class="fondo-a" cx="150" cy="150" r="140"/><circle class="v" cx="150" cy="150" r="140"/></svg><div class="pct"><span class="cuenta" data-n="100" data-dur="1.8">0</span><small>%</small></div><p>señala el shut de la esquina como el foco del problema</p></div>
+      <div class="anillo a" style="--d:.4s;--p:.75"><svg viewBox="0 0 300 300"><circle class="fondo-a" cx="150" cy="150" r="140"/><circle class="v" cx="150" cy="150" r="140"/></svg><div class="pct"><span class="cuenta" data-n="75" data-dur="1.8">0</span><small>%</small></div><p>habla de perros, ratas o plagas</p></div>
+      <div class="anillo a" style="--d:.6s;--p:.625"><svg viewBox="0 0 300 300"><circle class="fondo-a" cx="150" cy="150" r="140"/><circle class="v" cx="150" cy="150" r="140"/></svg><div class="pct"><span class="cuenta" data-n="63" data-dur="1.8">0</span><small>%</small></div><p>mezcla todo en la misma bolsa</p></div>
+      <div class="anillo a" style="--d:.8s;--p:.5"><svg viewBox="0 0 300 300"><circle class="fondo-a" cx="150" cy="150" r="140"/><circle class="v" cx="150" cy="150" r="140"/></svg><div class="pct"><span class="cuenta" data-n="50" data-dur="1.8">0</span><small>%</small></div><p>conecta los residuos con el abono</p></div>
+    </div>
+  </div>
+
+  <div class="cita" data-b="2" data-hasta="2">
+    <q class="palabras">«Las cáscaras de la papa, el cartón, las cáscaras de huevo… todo es un revoltijo.»</q>
+    <span class="quien a" style="--d:1.4s">Vecina de Villa Rosita, Usme</span>
+  </div>
+
+  <div class="remate" data-b="3">
+    <p class="titular palabras">Nadie rechazó la idea.</p>
+    <p class="titular verde palabras" style="--d:.7s">Lo que falta es una forma fácil.</p>
+  </div>
+
+  <p class="fuente corta a" style="--d:1.6s">Estudio cualitativo exploratorio del equipo RECOEVO: entrevistas semiestructuradas y observación, 220 frases analizadas con Framework Method · Villa Rosita, Usme, 19-sep-2026.</p>
+  <button class="mas" type="button" data-abrir="campo">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Y esto lo vimos de cerca: nuestro compañero Samuel vive en Villa Rosita, en Usme, y allá hicimos el trabajo de campo.</p>
+    <p data-p="1">El 100 % de los vecinos señaló el shut de la esquina; el 75 % habló de perros, ratas o plagas; el 63 % mezcla todo en la misma bolsa, y la mitad piensa en el abono.</p>
+    <p data-p="2">Una vecina lo dijo así: «todo es un revoltijo».</p>
+    <p data-p="3">Pero nadie rechazó la idea. Lo que falta es una forma fácil.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 5 · LA SOLUCIÓN (3D) -->
+<section class="diapo solucion" data-acto="solucion" data-titulo="RECOEVO: cómo funciona" data-escena="revelar,echa,pisa,olor,guarda,despiece" data-modal="producto">
+  <div class="ojo a" data-hasta="4"><b>04</b>La solución</div>
+
+  <div class="paso3d revelar-t" data-hasta="0">
+    <img class="a" style="--d:.5s" src="assets/img/RECOEVO_logo_horizontal_negativo.svg" alt="RECOEVO">
+    <p class="titular s palabras" style="--d:1.1s">Un triturador de cocina que funciona con el pie.</p>
+    <div class="chips">
+      <span class="chip a" style="--d:1.9s"><i></i>Sin electricidad</span>
+      <span class="chip a" style="--d:2.05s"><i></i>Sin olor</span>
+      <span class="chip a" style="--d:2.2s"><i></i>32 × 34 × 52 cm · ≈ 5 kg</span>
+    </div>
+  </div>
+
+  <div class="paso3d" data-b="1" data-hasta="1">
+    <span class="num-paso a">1</span>
+    <p class="titular palabras">Echa.</p>
+    <p class="bajada a" style="--d:.3s">Las cáscaras entran por la tapa.</p>
+    <div class="chips"><span class="chip a" style="--d:.7s"><i></i>Boca de 12 × 10 cm</span><span class="chip a" style="--d:.85s"><i></i>Tapa abierta: el pedal se bloquea</span></div>
+  </div>
+  <div class="paso3d" data-b="2" data-hasta="2">
+    <span class="num-paso a">2</span>
+    <p class="titular palabras">Pisa.</p>
+    <p class="bajada a" style="--d:.3s">≈ 11 pisadas al día: unos 20 segundos.</p>
+    <div class="chips"><span class="chip a" style="--d:.7s"><i></i>Pedal → cremallera → piñón</span><span class="chip a" style="--d:.85s"><i></i>13 cuchillas de acero templado</span><span class="chip a" style="--d:1s"><i></i>Tiras de ≈ 5 mm</span></div>
+  </div>
+  <div class="paso3d" data-b="3" data-hasta="3">
+    <span class="num-paso a">3</span>
+    <p class="titular palabras">Sin olor.</p>
+    <p class="bajada a" style="--d:.3s">Filtro de carbón activado en la tapa.</p>
+    <div class="chips"><span class="chip a" style="--d:.7s"><i></i>60 g · dura 6 meses</span><span class="chip a" style="--d:.85s"><i></i>Válvula de una vía: no entran moscas</span></div>
+  </div>
+  <div class="paso3d" data-b="4" data-hasta="4">
+    <span class="num-paso a">4</span>
+    <p class="titular palabras">Entrega.</p>
+    <p class="bajada a" style="--d:.3s">Una bolsa cerrada por semana, lista para la ruta de orgánicos.</p>
+    <div class="chips"><span class="chip a" style="--d:.7s"><i></i>Balde de 10 L</span><span class="chip a" style="--d:.85s"><i></i>Cualquier bolsa compostable</span><span class="chip a" style="--d:1s"><i></i>Puerta con seguro para niños</span></div>
+  </div>
+  <div class="despiece-t" data-b="5">
+    <p class="titular palabras">18 piezas. Cero cables.</p>
+    <p class="bajada a" style="--d:.5s">Hecho para fabricarse en Colombia, con 70 % de plástico reciclado en el cuerpo.</p>
+  </div>
+
+  <div class="pasos-uso" data-b="1" data-hasta="4">
+    <span class="a solo" data-n="1">1 · Echa</span><span class="a solo" data-n="2">2 · Pisa</span><span class="a solo" data-n="3">3 · Sin olor</span><span class="a solo" data-n="4">4 · Entrega</span>
+  </div>
+  <button class="mas" type="button" data-abrir="producto">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Por eso creamos RECOEVO: un triturador de cocina que funciona con el pie. Sin electricidad y sin olor.</p>
+    <p data-p="1">Uno: echas las cáscaras. Con la tapa abierta, el pedal se bloquea.</p>
+    <p data-p="2">Dos: pisas. Una cremallera y un piñón mueven trece cuchillas que cortan en tiras de cinco milímetros: unos veinte segundos al día.</p>
+    <p data-p="3">Tres: un filtro de carbón activado atrapa el olor durante seis meses.</p>
+    <p data-p="4">Y cuatro: abajo, un balde de diez litros con una bolsa compostable, que sale cerrada una vez por semana.</p>
+    <p data-p="5">Son 18 piezas y cero cables, pensadas para fabricarse en Colombia.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 6 · POR QUÉ RECOEVO -->
+<section class="diapo diferencial" data-acto="solucion" data-titulo="Sin luz y a precio de caneca" data-escena="vitrina,-" data-modal="diferencial">
+  <div class="ojo a"><b>04</b>Por qué RECOEVO</div>
+  <div class="col energia" data-hasta="0">
+    <div class="mega brillo-verde a zoom-grande" style="--d:.2s"><span class="cuenta" data-n="0" data-dur=".1">0</span><small>kWh</small></div>
+    <p class="titular s palabras" style="--d:.6s">Funciona aunque se vaya la luz.</p>
+    <p class="bajada s a" style="--d:1.3s">Sin enchufe, sin baterías, sin factura. Si sube la tarifa o llega un racionamiento, RECOEVO sigue funcionando.</p>
+  </div>
+  <div class="precio" data-b="1">
+    <p class="titular m palabras">Lo que cuesta una buena caneca.</p>
+    <div class="filas">
+      <div class="fila"><div class="nombre a">Caneca con pedal 20 L<small>solo guarda</small></div><div class="pista-b"><div class="b" style="--w:76;--d:.4s"></div><div class="v a" style="--d:.9s">$119.900</div></div></div>
+      <div class="fila yo"><div class="nombre a" style="--d:.1s">RECOEVO<small>tritura, sin luz</small></div><div class="pista-b"><div class="b" style="--w:127;--d:.6s"></div><div class="v a" style="--d:1.1s">$199.900</div></div></div>
+      <div class="fila"><div class="nombre a" style="--d:.2s">FoodCycler<small>eléctrico, importado</small></div><div class="pista-b"><div class="b" style="--w:803;--d:.8s"></div><div class="v a" style="--d:1.6s">$1.265.000</div></div></div>
+      <div class="fila"><div class="nombre a" style="--d:.3s">Lomi 3<small>eléctrico, importado</small></div><div class="pista-b"><div class="b" style="--w:1102;--d:1s"></div><div class="v a" style="--d:1.9s">$1.737.000</div></div></div>
+    </div>
+    <p class="nota-precio a" style="--d:2.4s">En 5 años, un hogar se ahorra ≈ <b>$2.745.100</b> frente a un triturador eléctrico: compra, energía y filtros (estimado).</p>
+  </div>
+  <p class="fuente" data-b="1"><span class="a solo">Precios con IVA: Homecenter, Best Buy y lomi.com (oct-2026); dólares a TRM $3.163,76 del 21-oct-2026 · Ahorro: plan RECOEVO, hoja 9.</span></p>
+  <button class="mas" type="button" data-abrir="diferencial">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Y no gasta energía: si sube la tarifa o hay racionamiento, sigue funcionando.</p>
+    <p data-p="1">Cuesta 199.900 pesos: lo de una buena caneca con pedal. Un procesador eléctrico cuesta más de un millón.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 7 · LO QUE ESPERAMOS LOGRAR -->
+<section class="diapo impacto" data-acto="impacto" data-titulo="Lo que esperamos lograr" data-viz="impacto" data-modal="impacto">
+  <div class="ojo a"><b>05</b>Lo que esperamos lograr</div>
+  <div class="ruta a" style="--d:.3s"><b>Usme</b><svg viewBox="0 0 44 20"><path d="M2 10h36m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg><b>Bogotá</b><svg viewBox="0 0 44 20"><path d="M2 10h36m-8-7 8 7-8 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg><b>Colombia</b></div>
+
+  <div class="col" data-hasta="0">
+    <p class="rotulo palabras">Bogotá tiene</p>
+    <div class="mega m metal a" style="--d:.2s"><span class="cuenta" data-n="2.9" data-dec="1" data-dur="1.6">0</span><small>millones</small></div>
+    <p class="unidad a" style="--d:.5s">de hogares</p>
+  </div>
+  <div class="col" data-b="1" data-hasta="1">
+    <p class="rotulo palabras">En 10 años, la meta:</p>
+    <div class="mega m brillo-acento a" style="--d:.2s"><span class="cuenta" data-n="735450" data-dur="2.4">0</span></div>
+    <p class="unidad a" style="--d:.5s">hogares con RECOEVO</p>
+    <p class="sub a" style="--d:1.4s">Es como 1 de cada 4 hogares de Bogotá.</p>
+  </div>
+  <div class="col" data-b="2">
+    <p class="rotulo palabras">Así dejan de llegar al relleno</p>
+    <div class="mega m brillo-acento a" style="--d:.2s"><span class="cuenta" data-n="406983" data-dur="2.4">0</span><small>t</small></div>
+    <p class="unidad a" style="--d:.5s">de comida en 10 años</p>
+    <p class="sub a" style="--d:1.4s">= lo que recibe Doña Juana en 2 meses.</p>
+  </div>
+
+  <div class="rejilla-h" data-hasta="1"></div>
+  <div class="leyenda-r a" style="--d:1s" data-hasta="1"><span>Cada punto: 10.000 hogares de Bogotá</span><span class="enc" data-b="1"><span class="a solo">● Hogares con RECOEVO</span></span></div>
+  <div class="meses" data-b="2"></div>
+  <div class="leyenda-m" data-b="2"><span class="a solo" style="--d:.8s">Lo que recibe Doña Juana en 10 años: cada cuadro es un mes</span></div>
+  <div class="extras" data-b="2">
+    <span class="chip a" style="--d:1.8s"><i></i>≈ 203.491 t de CO₂e evitadas (estimado)</span>
+    <span class="chip a" style="--d:1.95s"><i></i>34 empleos formales</span>
+    <span class="chip a" style="--d:2.1s"><i></i>≈ 720 t de plástico reciclado</span>
+  </div>
+  <p class="fuente a" style="--d:1.4s" data-hasta="1">Hogares de Bogotá: Encuesta Multipropósito 2025 (DANE) · Meta: plan RECOEVO a 10 años, escenario realista.</p>
+  <p class="fuente" data-b="2"><span class="a solo">Calculado con 0,46 kg de restos por hogar al día (la UAESP registra ≈ 1,2 kg: el impacto real podría ser mayor) y 85 % de uso · Doña Juana: ≈ 6.800 t/día.</span></p>
+  <button class="mas" type="button" data-abrir="impacto">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Empezamos en Usme, seguimos en Bogotá, que tiene 2,9 millones de hogares, y después el país.</p>
+    <p data-p="1">La meta: 735.450 hogares en diez años, como uno de cada cuatro hogares de Bogotá.</p>
+    <p data-p="2">Así salen del relleno 406.983 toneladas de comida, lo que recibe Doña Juana en dos meses, contando apenas medio kilo por hogar al día.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 8 · ODS -->
+<section class="diapo ods" data-acto="ods" data-titulo="Objetivos de Desarrollo Sostenible" data-modal="ods">
+  <div class="ojo a"><b>06</b>Objetivos de Desarrollo Sostenible</div>
+  <p class="titular m palabras encabezado-ods" style="--d:.15s">Más que un negocio: un propósito.</p>
+  <div class="fichas">
+    <article class="ficha principal oscura a" style="--c:#BF8B2E;--d:.5s"><div class="n">12</div><h3>Producción y consumo responsables</h3><p>Saca la comida de la bolsa de basura y la deja lista para volver a la tierra.</p><div class="meta">Metas 12.3 y 12.5</div></article>
+    <article class="ficha oscura a" style="--c:#FD9D24;--d:.7s"><div class="n">11</div><h3>Ciudades y comunidades sostenibles</h3><p>Menos bolsas rotas en las esquinas, menos ratas y menos carga para Doña Juana.</p><div class="meta">Meta 11.6</div></article>
+    <article class="ficha a" style="--c:#3F7E44;--d:.9s"><div class="n">13</div><h3>Acción por el clima</h3><p>La comida enterrada suelta metano, ≈ 80 veces más potente que el CO₂ en 20 años. Sin comida en el relleno, no hay metano.</p><div class="meta">≈ 203.491 t de CO₂e evitadas</div></article>
+  </div>
+  <p class="fuente a" style="--d:1.6s">Naciones Unidas, Agenda 2030 · Metano: El Tiempo, 16-oct-2026 (con datos de Greenpeace) · CO₂e: plan RECOEVO, estimado con 0,5 t por tonelada.</p>
+  <button class="mas" type="button" data-abrir="ods">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Y no es solo un negocio: aporta a tres Objetivos de Desarrollo Sostenible. El 12, producción y consumo responsables; el 11, ciudades sostenibles; y el 13, acción por el clima, porque la comida enterrada suelta metano.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 9 · MODELO DE NEGOCIO -->
+<section class="diapo negocio" data-acto="negocio" data-titulo="Modelo de negocio" data-viz="canales" data-modal="negocio">
+  <div class="ojo a"><b>07</b>Modelo de negocio</div>
+  <div data-hasta="0">
+    <p class="titular m palabras encabezado-n" style="--d:.15s">Ganamos vendiendo el producto.</p>
+    <div class="tarjetas">
+      <article class="tj a" style="--d:.5s"><span class="seg">B2C</span><h3>Hogares</h3><div class="p">$199.900 <small>con IVA</small></div><p>Marketplaces, tienda en línea y grandes superficies. En 12 cuotas de $16.658.</p></article>
+      <article class="tj a" style="--d:.7s"><span class="seg">B2B · B2G</span><h3>Empresas, conjuntos y alcaldías</h3><div class="p">$142.000 <small>+ IVA</small></div><p>Por producto, en lotes de 100 o más: 15 % menos. El decreto también los obliga a separar.</p></article>
+      <article class="tj a" style="--d:.9s"><span class="seg">Servicio</span><h3>Taller de separación</h3><div class="p">$8.000 <small>+ IVA</small></div><p>Por producto, con cada lote: para que sus hogares separen bien.</p></article>
+    </div>
+  </div>
+  <div class="canales" data-b="1">
+    <p class="titular s palabras encabezado-c">Cuatro canales de venta</p>
+    <div class="dona a zoom" style="--d:.1s"><svg viewBox="0 0 620 620"></svg><div class="centro"><b><span class="cuenta" data-n="50250" data-dur="1.8">0</span></b><span>productos en el año 3</span></div></div>
+    <div class="lista">
+      <div class="item a" style="--d:.4s"><div class="pc" style="color:#2FD07A">35 %</div><div><h4>Marketplaces</h4><p>Mercado Libre y Falabella.com: llegan a todo el país (comisión ≈ 14 %).</p></div></div>
+      <div class="item a" style="--d:.6s"><div class="pc" style="color:#A4D65E">35 %</div><div><h4>Lotes B2B y B2G</h4><p>Empresas, conjuntos y alcaldías: cientos de productos a la vez.</p></div></div>
+      <div class="item a" style="--d:.8s"><div class="pc" style="color:#F2B227">15 %</div><div><h4>Tienda en línea y WhatsApp</h4><p>Sin intermediario. El envío lo paga el cliente (Bogotá $14.900).</p></div></div>
+      <div class="item a" style="--d:1s"><div class="pc" style="color:#7FC8F8">15 %</div><div><h4>Grandes superficies</h4><p>Homecenter, Éxito, Alkosto: se quedan ≈ 40 % del precio.</p></div></div>
+    </div>
+  </div>
+  <p class="fuente a" style="--d:1.6s">Plan RECOEVO, escenario realista: Canvas y hoja 9 (ventas y marketing) · Comisiones: informe B7, noviembre de 2026.</p>
+  <button class="mas" type="button" data-abrir="negocio">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">¿Cómo ganamos dinero? Vendiendo el producto: a los hogares a 199.900, y por lotes a empresas, conjuntos y alcaldías a 142.000 más IVA, con un taller de separación.</p>
+    <p data-p="1">Por cuatro canales: marketplaces y lotes, 35 % cada uno; tienda propia y grandes superficies, 15 % cada uno.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 10 · LAS CIFRAS -->
+<section class="diapo cifras" data-acto="cifras" data-titulo="Las cifras" data-viz="cifras" data-modal="cifras">
+  <div class="ojo a"><b>08</b>Las cifras · plan a 10 años</div>
+
+  <div class="col" data-hasta="0">
+    <p class="rotulo palabras">Inversión inicial</p>
+    <div class="mega m metal a" style="--d:.2s">$<span class="cuenta" data-n="5954" data-dur="2">0</span><small>M</small></div>
+    <div class="desglose">
+      <div class="a" style="--d:.8s"><b>$3.147 M</b>Fábrica: máquinas, moldes y planta</div>
+      <div class="a" style="--d:.95s"><b>$484 M</b>Arranque</div>
+      <div class="a" style="--d:1.1s"><b>$2.323 M</b>Respaldo de caja, que vuelve</div>
+    </div>
+    <p class="sub a" style="--d:1.5s">Lo ponen los socios ($4.880 M) y un crédito ($1.074 M).</p>
+  </div>
+  <div class="col" data-b="1" data-hasta="1">
+    <p class="rotulo palabras">Cada producto deja libre el</p>
+    <div class="mega m brillo-sol a" style="--d:.2s"><span class="cuenta" data-n="49" data-dur="1.6">0</span><small>%</small></div>
+    <p class="unidad a" style="--d:.4s">para pagar los costos fijos</p>
+    <div class="linea-sep a" style="--d:.7s"></div>
+    <p class="rotulo a" style="--d:.8s">Punto de equilibrio</p>
+    <p class="cifra-l a" style="--d:.9s"><b><span class="cuenta" data-n="2380" data-dur="1.6">0</span></b> productos al mes</p>
+    <p class="sub a" style="--d:1.3s">Lo superamos en el mes 17.</p>
+  </div>
+  <div class="col" data-b="2" data-hasta="2">
+    <p class="rotulo palabras">Recuperamos la inversión en el</p>
+    <div class="mega brillo-verde a" style="--d:.2s">Mes <span class="cuenta" data-n="50" data-dur="1.4">0</span></div>
+    <p class="unidad a" style="--d:.5s">4 años y 2 meses</p>
+  </div>
+  <div class="col" data-b="3">
+    <p class="rotulo palabras">En 10 años</p>
+    <p class="bajada s a" style="--d:.3s">La curva muestra el dinero que deja el negocio, sumado mes a mes, ya descontada la inversión.</p>
+  </div>
+
+  <svg class="grafica-l jcurva" viewBox="0 0 1000 600" aria-hidden="true"></svg>
+
+  <div class="kpis" data-b="3">
+    <div class="kpi a" style="--d:.3s"><div class="v brillo-verde">$<span class="cuenta" data-n="30508" data-dur="2">0</span> M</div><div class="t">Utilidad neta en 10 años</div><div class="x">ya pagados costos e impuestos</div></div>
+    <div class="kpi a" style="--d:.5s"><div class="v metal"><span class="cuenta" data-n="512" data-dur="2">0</span> %</div><div class="t">Retorno de la inversión (ROI)</div><div class="x">$30.508 M ÷ $5.954 M</div></div>
+    <div class="kpi a" style="--d:.7s"><div class="v brillo-sol"><span class="cuenta" data-n="33.9" data-dec="1" data-dur="2">0</span> %</div><div class="t">TIR</div><div class="x">lo que rinde al año el dinero invertido</div></div>
+  </div>
+  <p class="fuente a" style="--d:1.6s" data-hasta="2">Escenario realista del plan financiero y presupuesto ejecutivo a 10 años · M = millones de pesos · Curva: dinero libre del negocio sumado mes a mes.</p>
+  <button class="mas" type="button" data-abrir="cifras">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Necesitamos 5.954 millones de pesos para la fábrica, el arranque y un respaldo de caja; los ponen los socios y un crédito.</p>
+    <p data-p="1">Cada producto deja libre el 49 % para pagar los costos fijos: el equilibrio son 2.380 productos al mes, y lo superamos en el mes 17.</p>
+    <p data-p="2">En el mes 50 recuperamos toda la inversión.</p>
+    <p data-p="3">Y en diez años, 30.508 millones de utilidad neta: un retorno del 512 % y una TIR del 33,9 %.</p>
+  </aside>
+</section>
+
+<!-- ======================================================================= 11 · CIERRE -->
+<section class="diapo cierre" data-acto="cierre" data-titulo="Cierre" data-escena="cierre" data-modal="equipo">
+  <div class="lema">
+    <p class="gracias a">Gracias</p>
+    <p class="titular palabras" style="--d:.3s">Menos relleno, más vida.</p>
+    <p class="bajada a" style="--d:1.3s">Siguiente paso: la preserie y las primeras preventas.<br>Nos encantaría su mentoría para llegar ahí.</p>
+  </div>
+  <div class="equipo a" style="--d:1.8s"><b>Ricardo Beltrán · William Fonseca · Samuel Medina · Faber Ortiz · Camila Riaño</b><br>Docente: Ingrid Zoraida Sandoval Pérez · Proceso Administrativo · Politécnico Grancolombiano</div>
+  <div class="qr a" style="--d:2.1s"><span>Todo el proyecto:<br>prototipo 3D, videos,<br>estudio de campo<br>y presupuesto</span><div class="cuadro"><img src="assets/img/qr_web.svg" alt="Código QR de la web de RECOEVO"></div></div>
+  <button class="mas" type="button" data-abrir="equipo">Más datos</button>
+  <aside class="notas">
+    <p data-p="0">Esta idea nos ilusiona de verdad. Entendemos que posiblemente nos falte la mirada de quien ya ha creado empresa; por eso nos encantaría una posible mentoría con ustedes, para afinar estos números con su experiencia. Mil gracias por tomarse el tiempo de escucharnos.</p>
+  </aside>
+</section>
+
+    </main>
+
+    <div id="hud">
+      <div class="actos"></div>
+      <div class="contador"></div>
+      <div class="acciones">
+        <button type="button" data-accion="datos">Más datos <kbd>M</kbd></button>
+        <button type="button" data-accion="preguntas">Preguntas <kbd>Q</kbd></button>
+        <button type="button" data-accion="indice">Índice <kbd>G</kbd></button>
+        <button type="button" data-accion="presentador">Presentador <kbd>P</kbd></button>
+        <button type="button" data-accion="pantalla">Pantalla completa <kbd>F</kbd></button>
+      </div>
+      <div class="progreso"><i></i></div>
+    </div>
+
+    <!-- ventana de más datos -->
+    <div class="capa" id="ventana" role="dialog" aria-modal="true">
+      <div class="panel">
+        <div class="cab"><div><div class="k"></div><h2></h2><p></p></div><button class="cerrar" type="button" aria-label="Cerrar">×</button></div>
+        <div class="cuerpo"></div>
+        <div class="pie-v">Esc para cerrar · cifras del escenario realista del plan RECOEVO y de sus fuentes</div>
+      </div>
+    </div>
+
+    <!-- preguntas del jurado -->
+    <div class="capa" id="preguntas" role="dialog" aria-modal="true">
+      <div class="panel">
+        <div class="cab"><div><div class="k">Preguntas del jurado</div><h2>Respuestas listas, por tema</h2><p>Toque un tema para ver sus preguntas; toque una pregunta para ver la explicación y de dónde sale cada cifra.</p></div><button class="cerrar" type="button" aria-label="Cerrar">×</button></div>
+        <div class="cuerpo"><div class="filtros"></div><div class="lista-q"></div></div>
+      </div>
+    </div>
+
+    <!-- índice -->
+    <div class="capa" id="indice" role="dialog" aria-modal="true">
+      <div class="panel">
+        <div class="cab"><div><div class="k">Índice</div><h2>Ir a una pantalla</h2></div><button class="cerrar" type="button" aria-label="Cerrar">×</button></div>
+        <div class="cuerpo"></div>
+      </div>
+    </div>
+
+    <div id="negro"></div>
+  </div>
+</div>
+
+<!-- vista del presentador (se abre con P en otra ventana) -->
+<div id="presentador"></div>
+
+<script>if (location.protocol === "file:") document.write('<script src="assets/modelo/recoevo_glb.js"><\/script>');</script>
+<script src="assets/js/three.min.js?v=1"></script>
+<script src="assets/js/glb.js?v=1"></script>
+<script src="assets/js/datos.js?v=1"></script>
+<script src="assets/js/preguntas.js?v=1"></script>
+<script src="assets/js/escena3d.js?v=1"></script>
+<script src="assets/js/viz.js?v=1"></script>
+<script src="assets/js/deck.js?v=1"></script>
+</body>
+</html>
