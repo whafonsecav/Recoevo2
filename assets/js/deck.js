@@ -139,7 +139,7 @@
   }
 
   // ---------------------------------------------------------------- tema: oscuro (problema y campo) y claro (desde la solución)
-  const CLAROS = ["solucion", "impacto", "ods", "negocio", "cifras"];
+  const CLAROS = ["solucion", "impacto", "ods"];
 
   // ---------------------------------------------------------------- curvas de nivel del fondo (líneas orgánicas, como un terreno)
   (function contornos() {

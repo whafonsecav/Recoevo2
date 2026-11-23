@@ -2,9 +2,9 @@
    Todas las cifras son del ESCENARIO REALISTA del plan (Plan detallado realista y Presupuesto ejecutivo, 3-nov-2026),
    del póster de la E-Fest, del estudio de campo (19-sep-2026) y de sus fuentes. Revisadas el 22-nov-2026. */
 window.RECOEVO_DATOS = {
-  // caja acumulada del negocio, mes 0 a 120, en millones de pesos (hoja «Proyección», fila 130; igual a la web /presupuesto/)
-  caja: [-4372.6, -4547.4, -4639.7, -4710.2, -4772.4, -4826.4, -4872.0, -4909.4, -4942.0, -4966.4, -4982.4, -4990.2, -4990.6, -4986.3, -5002.3, -5007.1, -5001.7, -4984.6, -4956.6, -4917.4, -4868.0, -4806.9, -4734.9, -4651.7, -4558.3, -4511.6, -4411.3, -4299.0, -4175.9, -4040.2, -3897.2, -3742.3, -3576.6, -3402.5, -3216.8, -3019.3, -2809.4, -2646.6, -2398.4, -2141.8, -1876.3, -1628.2, -1439.9, -1246.5, -1047.7, -843.6, -633.6, -419.1, -202.1, -65.4, 166.6, 404.3, 648.3, 893.7, 1144.7, 1401.3, 1663.5, 1931.3, 2205.4, 2480.9, 2763.8, 2539.4, 2849.8, 3163.2, 3480.2, 3799.3, 4122.1, 4448.1, 4772.6, 5100.8, 5431.4, 5765.8, 6102.8, 6334.0, 6694.3, 7057.8, 7425.0, 7794.6, 8164.0, 8536.7, 8912.0, 9290.9, 9672.5, 10058.2, 10446.5, 10715.9, 11130.6, 11548.6, 11970.7, 12390.8, 12815.0, 13242.8, 13673.2, 14107.5, 14544.7, 14986.1, 15430.3, 15736.0, 16204.7, 16676.8, 17148.5, 17622.8, 18101.4, 18583.7, 19068.9, 19558.2, 20050.5, 20547.2, 21047.1, 21397.5, 21930.0, 22461.1, 22996.7, 23535.1, 24078.0, 24624.9, 25174.8, 25729.1, 26286.5, 26851.0, 27421.8],
-  actos: [["problema", "Basura"], ["abono", "Abono"], ["campo", "Campo"], ["solucion", "Solución"], ["impacto", "Impacto"], ["ods", "ODS"], ["negocio", "Negocio"], ["cifras", "Cifras"]]
+  // caja acumulada del negocio, mes 0 a 120, en millones de pesos (hoja «Proyección»: flujo libre acumulado; plan sin crédito)
+  caja: [-4377.5, -4552.4, -4644.7, -4715.2, -4777.4, -4831.3, -4877.0, -4914.4, -4947.0, -4971.3, -4987.3, -4995.1, -4995.5, -4991.2, -5007.2, -5012.1, -5006.7, -4989.5, -4961.5, -4922.4, -4873.0, -4811.8, -4739.8, -4656.7, -4563.3, -4516.6, -4416.2, -4304.0, -4180.8, -4045.2, -3902.2, -3747.3, -3581.5, -3407.4, -3221.8, -3024.3, -2814.3, -2651.6, -2403.4, -2165.2, -1986.5, -1803.1, -1617.2, -1426.0, -1229.4, -1027.3, -819.2, -606.4, -391.1, -256.0, -25.4, 211.0, 453.8, 698.1, 948.2, 1204.0, 1465.4, 1732.8, 2006.5, 2281.6, 2564.4, 2340.0, 2650.4, 2963.8, 3280.8, 3599.9, 3922.7, 4248.7, 4573.2, 4901.4, 5232.0, 5566.4, 5903.3, 6134.6, 6494.9, 6858.4, 7225.6, 7595.2, 7964.6, 8337.3, 8712.6, 9091.5, 9473.1, 9858.8, 10247.1, 10516.5, 10931.2, 11349.2, 11771.3, 12191.4, 12615.6, 13043.4, 13473.8, 13908.1, 14345.3, 14786.7, 15230.9, 15536.6, 16005.3, 16477.4, 16949.1, 17423.4, 17902.0, 18384.3, 18869.4, 19358.8, 19851.1, 20347.8, 20847.6, 21198.1, 21730.6, 22261.7, 22797.3, 23335.7, 23878.6, 24425.5, 24975.4, 25529.7, 26087.1, 26651.6, 27222.4],
+  actos: [["problema", "Basura"], ["abono", "Abono"], ["campo", "Campo"], ["solucion", "Solución"], ["impacto", "Impacto"], ["negocio", "Negocio"], ["cifras", "Cifras"], ["pedido", "Pedido"]]
 };
 
 window.MODALES = {
@@ -194,9 +194,10 @@ window.MODALES = {
   },
 
   negocio: {
-    k: "07 · Modelo de negocio", t: "Precios, canales y lo que deja cada venta",
+    k: "06 · Modelo de negocio", t: "Precios, canales y lo que deja cada venta",
     p: "El único ingreso es la venta del producto (más los talleres a empresas). No hay suscripciones.",
     b: [
+      { tipo: "texto", titulo: "Estratos 1 y 2: comodato, no venta", html: "<p>Los mentores de la primera ronda nos dijeron: <b>no le vendan el producto a hogares de bajos ingresos</b>. Por eso, en los barrios de estratos 1 y 2 <b>la alcaldía local, el conjunto o una empresa compra el lote</b> ($142.000 + IVA por producto, el mismo precio de lote del plan) y <b>se lo presta al hogar en comodato</b>.</p><p><b>Comodato</b> (Código Civil, art. 2200) es un préstamo de uso gratuito: el hogar usa el producto sin pagar y, si se va o deja de usarlo, lo devuelve para otra familia. El producto sigue siendo de quien lo compró.</p><p><b>¿Y un descuento en la factura del agua?</b> No se puede: la Ley 142 de 1994 (art. 99.9) prohíbe exonerar o descontar el valor de los servicios públicos. Lo legal es un premio fuera de la factura, por ejemplo <b>puntos que se cambian en las tiendas del barrio</b>, pagados por las tiendas aliadas. Esa idea se probará en el piloto y <b>no está en las cifras del plan</b>.</p><p>Además, el <b>Decreto 0772 de 2026</b> prevé un beneficio en la tarifa de aseo para quienes gestionen sus orgánicos en comunidad; la CRA definirá cómo se aplica.</p>" },
       { tipo: "cifras", titulo: "Precios", items: [
         { v: "$199.900", t: "con IVA al público ($167.983 sin IVA). Sube con la inflación cada julio; en pesos de hoy siempre es $199.900.", f: "Hoja «Supuestos»" },
         { v: "$142.000 <small>+ IVA</small>", t: "por producto en lotes de 100 o más a empresas, conjuntos y alcaldías: 15 % menos que el precio público.", f: "Canvas del plan" },
@@ -219,57 +220,96 @@ window.MODALES = {
         { v: "2,0 <small>veces</small>", t: "lo que deja un cliente en línea frente a lo que cuesta conseguirlo (LTV $115.073 / CAC $56.572, año 3).", f: "Hoja 9" },
         { v: "Aliados", t: "Esenttia y recicladores (plástico), proveedores de acero y carbón activado, fabricantes de moldes, Bancóldex, SENA y universidades.", f: "Canvas, bloque 8" }
       ] },
-      { tipo: "temas", items: ["Canales", "Marketplaces", "Lotes", "Empresas y conjuntos", "Tienda en línea", "Grandes superficies", "Envíos", "Comisiones", "Marketing", "LTV y CAC", "Cuotas", "Clientes", "Alianzas"] }
+      { tipo: "temas", items: ["Comodato", "Canales", "Marketplaces", "Lotes", "Empresas y conjuntos", "Tienda en línea", "Grandes superficies", "Envíos", "Comisiones", "Marketing", "LTV y CAC", "Cuotas", "Clientes", "Alianzas"] }
     ]
   },
 
   cifras: {
-    k: "08 · Las cifras", t: "Plan financiero a 10 años, escenario realista",
-    p: "Montaje de enero a junio de 2027; ventas desde julio de 2027. M = millones de pesos. Las cifras coinciden con el presupuesto ejecutivo y con la web /presupuesto/.",
+    k: "07 · Las cifras", t: "Plan financiero a 10 años, escenario realista, sin crédito",
+    p: "Montaje de enero a junio de 2027; ventas desde julio de 2027. M = millones de pesos. Plan sin crédito: todo lo ponen socios e inversionistas.",
     b: [
       { tipo: "cifras", titulo: "Las cifras clave", items: [
-        { v: "$5.954 M", t: "Inversión inicial: fábrica $3.147 M + arranque $484 M + respaldo de caja que vuelve $2.323 M.", f: "Presupuesto ejecutivo, tabla 4" },
-        { v: "$144.319", t: "Costo de un producto, todo incluido (promedio de 10 años): variable $104.611 y fijos $2.872 M al año.", f: "Tablas 9 y 13" },
+        { v: "$5.520 M", t: "Inversión inicial, sin crédito: fábrica $3.147 M + arranque $489 M + respaldo de caja que vuelve $1.884 M.", f: "Presupuesto ejecutivo, tabla 4" },
+        { v: "$143.564", t: "Costo de un producto, todo incluido (promedio de 10 años): variable $104.611 y fijos $2.816 M al año.", f: "Tablas 9 y 13" },
         { v: "49 <small>%</small>", t: "Margen de contribución: cada producto deja $100.574 de los $205.185 que recibe la empresa.", f: "Tabla 13" },
-        { v: "2.380 <small>/mes</small>", t: "Punto de equilibrio = fijos ÷ margen. Las ventas lo superan en el mes 17; la operación paga lo que cuesta operar desde el mes 9.", f: "Tabla 13" },
-        { v: "Mes 50", t: "Recuperación de la inversión (4 años y 2 meses). Exigiendo el costo del dinero: mes 74.", f: "Tabla 14" },
-        { v: "$30.508 M", t: "Utilidad neta de 10 años, ya pagados costos e impuesto de renta (35 %).", f: "Tabla 11" },
-        { v: "512 <small>%</small>", t: "Retorno de la inversión (ROI): $30.508 M ÷ $5.954 M. Sobre el aporte de los socios es 625 %.", f: "Tabla 14" },
-        { v: "33,9 <small>%</small>", t: "TIR: lo que rinde al año el dinero invertido. El VPN (lo que vale hoy, descontando 22,4 % al año) es +$3.397 M.", f: "Hoja «11 Resultados»" },
-        { v: "28,7 <small>%</small>", t: "Utilidad sobre el costo; 19,9 % sobre las ventas ($153.075 M en 10 años).", f: "Tablas 11 y 12" }
+        { v: "2.334 <small>/mes</small>", t: "Punto de equilibrio = fijos ÷ margen. Las ventas lo superan en el mes 16; la operación paga lo que cuesta operar desde el mes 9.", f: "Tabla 13" },
+        { v: "Mes 51", t: "Recuperación de la inversión (4 años y 3 meses). Exigiendo el costo del dinero: mes 77.", f: "Tabla 14" },
+        { v: "$30.870 M", t: "Utilidad neta de 10 años, ya pagados costos e impuesto de renta (35 %).", f: "Tabla 11" },
+        { v: "559 <small>%</small>", t: "Retorno de la inversión (ROI): $30.870 M ÷ $5.520 M.", f: "Tabla 14" },
+        { v: "33,6 <small>%</small>", t: "TIR: lo que rinde al año el dinero invertido. El VPN (lo que vale hoy, descontando 23,8 % al año) es +$2.766 M.", f: "Hoja «11 Resultados»" },
+        { v: "29,2 <small>%</small>", t: "Utilidad sobre el costo; 20,2 % sobre las ventas ($153.075 M en 10 años).", f: "Tablas 11 y 12" }
       ] },
       { tipo: "tabla", titulo: "Año por año (M = millones de pesos)", cols: ["Año", "Productos", "Precio con IVA", "Ventas", "Gasto", "Utilidad neta", "Caja acumulada"], num: [1, 2, 3, 4, 5, 6], filas: [
-        ["0", "0", "—", "0", "486", "−486", "−4.373"], ["1", "16.200", "$199.900", "2.448", "3.312", "−865", "−4.991"],
-        ["2", "32.250", "$211.244", "5.144", "5.008", "136", "−4.558"], ["3", "50.250", "$223.232", "8.471", "6.888", "1.454", "−2.809"],
-        ["4", "65.500", "$235.901", "11.668", "8.558", "2.022", "−202"], ["5", "77.500", "$249.288", "14.589", "10.226", "2.836", "2.764"],
-        ["6", "86.750", "$263.435", "17.257", "11.445", "3.778", "6.103"], ["7", "92.750", "$278.385", "19.498", "12.751", "4.385", "10.447"],
-        ["8", "98.750", "$294.184", "21.937", "14.168", "5.050", "15.430"], ["9", "104.750", "$310.879", "24.590", "15.806", "5.710", "21.047"],
-        ["10", "110.750", "$328.521", "27.474", "17.491", "6.489", "27.422"], ["Total", "735.450", "", "153.075", "106.139", "30.508", ""]
+        ["0", "0", "—", "0", "491", "−491", "−4.378"], ["1", "16.200", "$199.900", "2.448", "3.131", "−683", "−4.996"],
+        ["2", "32.250", "$211.244", "5.144", "4.856", "289", "−4.563"], ["3", "50.250", "$223.232", "8.471", "6.769", "1.416", "−2.814"],
+        ["4", "65.500", "$235.901", "11.668", "8.480", "2.072", "−391"], ["5", "77.500", "$249.288", "14.589", "10.197", "2.855", "2.564"],
+        ["6", "86.750", "$263.435", "17.257", "11.445", "3.778", "5.903"], ["7", "92.750", "$278.385", "19.498", "12.751", "4.385", "10.247"],
+        ["8", "98.750", "$294.184", "21.937", "14.168", "5.050", "15.231"], ["9", "104.750", "$310.879", "24.590", "15.806", "5.710", "20.848"],
+        ["10", "110.750", "$328.521", "27.474", "17.491", "6.489", "27.222"], ["Total", "735.450", "", "153.075", "105.584", "30.870", ""]
       ], total: true, nota: "El precio sube cada julio con la inflación (5,7 %, promedio DANE 2016-2025); en pesos de hoy siempre es $199.900." },
       { tipo: "tabla", titulo: "La inversión inicial y cómo se paga", cols: ["Concepto", "Valor"], num: [1], filas: [
         ["Máquinas y equipos: 25 tipos, 97 unidades con estantes y mesas (3 inyectoras servo de 650, 400 y 250 t, prensa, horno de temple, láser, torno, línea de ensamble…)", "$1.672,3 M"],
         ["10 moldes de inyección, troqueles y clisés", "$1.012,8 M"], ["Adecuación de la bodega, transformador, oficina y computadores", "$462,0 M"],
-        ["Gastos de arranque (trámites, marca y patentes, preserie de 300 productos, pruebas, montaje)", "$484,1 M"],
-        ["Respaldo que vuelve: capital de trabajo $1.171 M, IVA de máquinas $598 M, colchón $500 M, depósito $54 M", "$2.322,9 M"],
-        ["Total", "$5.954,0 M"]
-      ], total: true, nota: "Lo ponen los socios ($4.880 M, 82 %) y un crédito ($1.074 M, 18 %; 19,5 % E.A. a 60 meses, cuota de $27,2 M). El plan no depende de dinero del Estado." },
-      { tipo: "tabla", titulo: "De dónde salen los $144.319 de cada producto", cols: ["Parte", "Por producto"], num: [1], filas: [
+        ["Gastos de arranque (trámites, marca y patentes, preserie de 300 productos, pruebas, montaje)", "$489,0 M"],
+        ["Respaldo que vuelve: capital de trabajo $732 M, IVA de máquinas $598 M, colchón $500 M, depósito $54 M", "$1.883,9 M"],
+        ["Total", "$5.520,0 M"]
+      ], total: true, nota: "Lo ponen socios e inversionistas, sin crédito: no hay intereses ni cuotas. Entra en 3 etapas (validar, preserie y fábrica). El plan no depende de dinero del Estado; si llega capital semilla del Fondo Emprender, baja el aporte." },
+      { tipo: "tabla", titulo: "De dónde salen los $143.564 de cada producto", cols: ["Parte", "Por producto"], num: [1], filas: [
         ["Materiales (resina por tonelada, fleje de acero, carbón, empaque)", "$58.081"], ["Publicidad, comisiones, distribución y garantía", "$30.141"],
         ["Nómina de todas las personas", "$29.310"], ["Planta: arriendo, servicios, mantenimiento y seguros", "$11.487"],
         ["Máquinas y moldes (depreciación)", "$4.825"], ["Energía e insumos de producción", "$4.637"], ["Oficina, ICA y 4 × 1.000", "$3.269"],
-        ["Legales y contables", "$1.149"], ["Intereses del crédito", "$762"], ["Gastos de arranque", "$658"], ["Total", "$144.319"]
+        ["Legales y contables", "$1.149"], ["Gastos de arranque", "$665"], ["Intereses", "$0"], ["Total", "$143.564"]
       ], total: true },
       { tipo: "tabla", titulo: "¿Y si algo sale mal? Valor presente (VPN) si cada variable cambia 20 %", cols: ["Variable", "Si baja 20 %", "Si sube 20 %"], num: [1, 2], filas: [
-        ["Precio", "−$1.590 M", "$8.246 M"], ["Ventas", "$1.069 M", "$5.063 M"], ["Materiales", "$5.118 M", "$1.683 M"],
-        ["Costos fijos de planta", "$4.235 M", "$2.562 M"], ["Dólar", "$3.918 M", "$2.877 M"], ["Mano de obra", "$3.782 M", "$3.012 M"]
-      ], nota: "VPN base: +$3.397 M. En 1.000 futuros simulados (Monte Carlo), el 86,9 % termina con VPN positivo; la TIR del futuro del medio es 28,35 %. Lo que más hay que cuidar es el precio." },
+        ["Precio", "−$1.865 M", "$7.241 M"], ["Ventas", "$610 M", "$4.308 M"], ["Materiales", "$4.351 M", "$1.172 M"],
+        ["Costos fijos de planta", "$3.536 M", "$1.995 M"], ["Dólar", "$3.249 M", "$2.283 M"], ["Mano de obra", "$3.122 M", "$2.410 M"]
+      ], nota: "VPN base: +$2.766 M. En 1.000 futuros simulados (Monte Carlo), el 80,6 % termina con VPN positivo; la TIR del futuro del medio es 28,0 %. Lo que más hay que cuidar es el precio." },
       { tipo: "cifras", titulo: "La fábrica", items: [
         { v: "1.150 <small>m²</small>", t: "bodega arrendada en un parque industrial de la Sabana de Bogotá ($26,8 M al mes con administración).", f: "Hoja «3 Máquinas y planta»" },
         { v: "3.818 → 11.453", t: "productos al mes: año 1 con un turno; desde el año 5 con tres turnos de inyección.", f: "Hoja «6 Capacidad»" },
         { v: "23,2 <small>min</small>", t: "de trabajo de una persona por producto (9,5 min de máquina).", f: "Hoja «6 Capacidad»" },
         { v: "$1.315 M <small>/año</small>", t: "se ahorran en el año 3 por fabricar en casa en vez de comprar las piezas hechas.", f: "Hoja «4 Materia prima»" }
       ] },
-      { tipo: "temas", items: ["Inversión inicial", "Financiación", "Crédito", "Precio", "Costo por producto", "Costos fijos y variables", "Margen de contribución", "Punto de equilibrio", "Recuperación (payback)", "Utilidad", "ROI", "TIR", "VPN y WACC", "Rentabilidad", "EBITDA", "Flujo de caja", "Riesgos", "Sensibilidad", "Supuestos", "Capacidad", "Fábrica propia", "Máquinas y moldes"] }
+      { tipo: "temas", items: ["Inversión inicial", "Financiación", "Precio", "Costo por producto", "Costos fijos y variables", "Margen de contribución", "Punto de equilibrio", "Recuperación (payback)", "Utilidad", "ROI", "TIR", "VPN y WACC", "Rentabilidad", "EBITDA", "Flujo de caja", "Riesgos", "Sensibilidad", "Supuestos", "Capacidad", "Fábrica propia", "Máquinas y moldes"] }
+    ]
+  },
+
+  pedido: {
+    k: "08 · El plan por etapas", t: "Validar antes de construir, y sin crédito",
+    p: "Cada etapa se libera solo si se cumple la meta de la anterior. M = millones de pesos. Todas las cifras salen del plan RECOEVO, escenario realista.",
+    b: [
+      { tipo: "tabla", titulo: "Las tres etapas", cols: ["Etapa", "En qué se usa", "Meta para pasar a la siguiente", "Valor"], num: [3], filas: [
+        ["1 · Validar", "Ajuste del diseño para inyección $25 M · 5 prototipos impresos en 3D $8 M · pruebas de 20.000 pisadas, corte, olor y caída $10 M · muestras y validación de proveedores $5 M · marca, modelo de utilidad y diseño $6,8 M", "Los 5 prototipos rotan entre 10 familias de Tihuaque, en Usme (dos turnos de 6 semanas): 8 de 10 lo usan a diario. Cuchillas y pedal pasan 20.000 pisadas", "$54,8 M"],
+        ["2 · Preserie", "10 moldes de inyección, troqueles y clisés $1.012,8 M · preserie de 300 productos $27 M", "300 productos en hogares, conjuntos y alcaldías locales; preventas y cartas de intención de compra", "$1.039,8 M"],
+        ["3 · Fábrica", "Máquinas y equipos $1.672,3 M · bodega, oficina y computadores $462,0 M · resto del arranque $407,2 M · respaldo de caja que vuelve $1.883,9 M", "Ventas desde el mes 1 del plan", "$4.425,4 M"],
+        ["Total", "", "", "$5.520 M"]
+      ], total: true, nota: "Hoy pedimos solo la etapa 1: $55 M por el 10 % de RECOEVO. Si se cumple la meta, el inversionista tiene la primera opción para invertir en las siguientes." },
+      { tipo: "tabla", titulo: "Lo que nos dijeron los mentores y lo que cambiamos", cols: ["Nos dijeron", "Lo que hicimos"], filas: [
+        ["Los costos no eran coherentes: detallar inyección, mecanizado de cuchillas y trámites legales.", "Cada peso tiene nombre: 10 moldes $1.012,8 M (el del gabinete $308 M, el de la tapa $79,2 M), prensa de 80 t que estampa las 13 cuchillas, horno de temple, y trámites $57,3 M, con marca, modelo de utilidad y diseño ($6,8 M)."],
+        ["Validar el hábito con 10 familias antes de gastar en grande.", "Es la etapa 1: 5 prototipos rotan entre 10 familias de Tihuaque, con pruebas de 20.000 pisadas, corte y olor. Sin esa meta no se compran moldes."],
+        ["No depender de que el Distrito pague por tonelada (Resolución CRA 720 de 2015).", "Ganamos vendiendo el producto. La CRA 720 no remunera los orgánicos; si llega la tarifa de tratamiento que prepara la CRA, es ganancia extra, no la base del plan."],
+        ["No venderle el producto a hogares de bajos ingresos.", "Comodato: la alcaldía local o el conjunto compra el lote y se lo presta gratis al hogar (Código Civil, art. 2200)."],
+        ["¿Las bolsas compostables aguantan el camión compactador? ¿Necesitan flota propia?", "No necesitamos flota: la bolsa cerrada va a la ruta de orgánicos que el Decreto 0772 obliga a pasar al menos una vez por semana. El balde de 10 L sirve con cualquier bolsa."],
+        ["Para vender abono hace falta registro ICA y la NTC 5167.", "No vendemos abono: el hogar entrega la bolsa a la ruta. Si en el futuro vendemos compost, se hace el registro ICA (Resoluciones 150 de 2003 y 68370 de 2020) y se cumple la NTC 5167."],
+        ["Bajar la inversión y el riesgo.", "Sin crédito: la inversión baja de $5.954 M a $5.520 M porque ya no hay cuotas ni intereses que cubrir, y el dinero entra por etapas."]
+      ] },
+      { tipo: "tabla", titulo: "Marco legal que respalda el plan", cols: ["Norma", "Qué dice", "Qué significa para RECOEVO"], filas: [
+        ["Decreto 0772 de 2026 (Ministerio de Vivienda, 16-jul-2026)", "Separar los orgánicos es obligatorio; ruta selectiva de orgánicos al menos una vez por semana; los municipios deben asegurar su tratamiento de forma progresiva.", "Hogares, conjuntos y empresas necesitan una forma fácil de separar: ese es el producto."],
+        ["Decreto 0670 de 2025 (Programa Basura Cero)", "Reglamenta el art. 227 de la Ley 2294 de 2023 (Plan Nacional de Desarrollo).", "La política nacional va hacia menos relleno: viento a favor."],
+        ["Resolución CRA 720 de 2015", "Paga por tonelada aprovechada (valor base de aprovechamiento), pero no menciona el compostaje ni los orgánicos. CRA es la Comisión de Regulación de Agua Potable y Saneamiento Básico.", "No dependemos de ese pago; si se amplía a orgánicos, es un ingreso extra."],
+        ["Ley 142 de 1994, art. 99.9", "Prohíbe exonerar o descontar el valor de los servicios públicos.", "El incentivo al hogar no puede ser un descuento en la factura: se da fuera de ella (puntos en tiendas del barrio)."],
+        ["Código Civil, art. 2200", "Comodato: préstamo de uso gratuito de un bien, que se devuelve.", "Base legal para prestar el producto a hogares de estratos 1 y 2."],
+        ["Resoluciones ICA 150 de 2003 y 68370 de 2020; NTC 5167", "Registro del ICA (Instituto Colombiano Agropecuario) y calidad para vender abonos orgánicos.", "Hoy no aplica: no vendemos abono. Aplicaría en una fase futura de compost."],
+        ["Decisión Andina 486 de 2000", "Marca, modelo de utilidad y diseño industrial se registran en la SIC (Superintendencia de Industria y Comercio).", "Están en la etapa 1 ($6,8 M)."],
+        ["Estatuto Tributario, art. 255", "Descuento del 25 % en el impuesto de renta por inversiones ambientales certificadas por la ANLA.", "Posible beneficio, por validar con un contador; no está en las cifras."]
+      ] },
+      { tipo: "cifras", titulo: "Dinero sin deuda", items: [
+        { v: "$0", t: "de crédito: el plan completo lo ponen socios e inversionistas; no hay intereses ni cuotas.", f: "Plan RECOEVO, escenario realista" },
+        { v: "$55 M", t: "lo que pedimos hoy, por el 10 % de RECOEVO: la etapa 1 ($54,8 M).", f: "Gastos de arranque del plan" },
+        { v: "Fondo Emprender", t: "capital semilla del SENA que se condona si se cumplen las metas; en 2026 abrió 12 convocatorias con más de $282.000 M. El plan lo deja en $0 por prudencia.", f: "Infobae, 17-mar-2026" },
+        { v: "$5.520 M", t: "el plan completo en 3 etapas; antes, con crédito, eran $5.954 M.", f: "Presupuesto de inversión" }
+      ] },
+      { tipo: "temas", items: ["Mentores", "Inversión inicial", "Financiación", "Piloto y preserie", "Siguiente paso", "CRA y tarifas", "Decreto 0772", "Permisos"] }
     ]
   },
 
@@ -283,8 +323,15 @@ window.MODALES = {
         { v: "3D", t: "prototipo interactivo en la web, video, manual de marca, póster y planos para el prototipo físico.", f: "" },
         { v: "252", t: "preguntas del jurado respondidas, con de dónde sale cada cifra (botón «Preguntas»).", f: "" }
       ] },
-      { tipo: "texto", titulo: "Lo que sigue", html: "<p><b>1.</b> Cinco prototipos funcionales impresos en 3D ($8 M) y el ajuste del diseño para inyección ($25 M). <b>2.</b> Una <b>preserie de 300 productos</b> ($27 M) para pruebas, demostraciones, primeras preventas y cartas de intención. <b>3.</b> Un piloto con hogares reales, empezando por Usme, para medir los kilos por hogar, el uso y el precio. Si hay financiación: montaje de enero a junio de 2027 y ventas desde julio de 2027.</p><p>Lo que les pedimos: <b>una conversación y una posible mentoría</b>, para afinar estos números con su experiencia.</p>" },
+      { tipo: "texto", titulo: "Lo que sigue", html: "<p><b>Etapa 1 · Validar ($54,8 M):</b> ajuste del diseño para inyección, cinco prototipos que rotan entre 10 familias de Tihuaque, pruebas de 20.000 pisadas, corte y olor, y registro de marca, modelo de utilidad y diseño. <b>Etapa 2 · Preserie ($1.039,8 M):</b> moldes y 300 productos para preventas y cartas de intención. <b>Etapa 3 · Fábrica ($4.425,4 M):</b> montaje de enero a junio de 2027 y ventas desde julio de 2027.</p><p>Lo que les pedimos: <b>$55 M por el 10 % de RECOEVO</b>, para la etapa 1, y la primera opción para invertir en las siguientes.</p>" },
       { tipo: "temas", items: ["Equipo", "Por qué este equipo", "Metodologías", "Origen de la idea", "Siguiente paso", "Piloto y preserie", "Cronograma", "Indicadores de éxito", "Visión de largo plazo"] }
     ]
   }
 };
+
+/* El ODS es ahora el último paso de «Lo que esperamos lograr»: su ventana suma los bloques de los ODS. */
+(function () {
+  const M = window.MODALES, temas = M.impacto.b.pop();
+  M.impacto.b.push(...M.ods.b.filter(b => b.tipo !== "temas"), temas);
+  M.impacto.t = "Hogares, toneladas, empleo y ODS";
+})();

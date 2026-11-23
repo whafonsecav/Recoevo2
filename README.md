@@ -27,13 +27,15 @@ Presentación en estilo keynote para la final del concurso (Proceso Administrati
 2. La comida que enterramos (33.300 t/día, 60 % es comida, Doña Juana, Decreto 0772)
 3. El campo paga caro el abono (urea +187 %, 2026, importación y tierra degradada)
 4. Trabajo de campo en Villa Rosita, Usme
-5. RECOEVO en 3D: echa, pisa, sin olor, entrega y despiece
+5. RECOEVO en 3D: echa, pisa, corta (acercamiento a las 13 cuchillas), sin olor, entrega y despiece
 6. Sin luz y a precio de caneca
-7. Lo que esperamos lograr (735.450 hogares, 406.983 t)
-8. Objetivos de Desarrollo Sostenible 12, 11 y 13
-9. Modelo de negocio y canales
-10. Las cifras: inversión, equilibrio, recuperación, utilidad, ROI y TIR
+7. Lo que esperamos lograr (735.450 hogares, 406.983 t) y los ODS 12, 11 y 13
+8. Modelo de negocio, canales y comodato para estratos 1 y 2
+9. Las cifras, sin crédito: inversión, costo por producto, equilibrio, recuperación, utilidad y ROI
+10. El plan por etapas (validar → preserie → fábrica) y el pedido al inversionista
 11. Cierre
+
+La paleta tiene 5 colores de la marca (noche #0B2A1F, bosque #154734, verde #0E9A48, papel #F3EFE4 y ámbar #E9A23B solo para alertas) y el lima #A4D65E solo para cifras sobre fondo oscuro. Tres actos: el problema (oscuro, ámbar), la solución (claro, verde) y el negocio (oscuro, lima).
 
 Todas las cifras son del escenario realista del plan financiero a 10 años, del póster de la E-Fest y del estudio de campo (19-sep-2026).
 

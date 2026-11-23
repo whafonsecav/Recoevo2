@@ -20,7 +20,7 @@
   const B2G = v => new T.Vector3(v[0], v[2], -v[1]);           // ejes de Blender → glTF
   const SVGNS = "http://www.w3.org/2000/svg";
 
-  const API = { listo: false, estado() {}, saltar() {}, nombre: null };
+  const API = { listo: false, estado() {}, saltar() {}, nombre: null, ancla(n) { const a = N[n]; if (!a) return null; const v = new T.Vector3(); a.getWorldPosition(v); return [v.x, v.y, v.z].map(x => +x.toFixed(3)); } };
   window.Escena = API;
 
   // ---------------------------------------------------------------- respaldo si el navegador no tiene WebGL
@@ -149,25 +149,26 @@
   // ---------------------------------------------------------------- estados
   const DEF = { th: 0.5, ph: 1.24, r: 2.1, ox: 0, oy: 0.27, oz: 0, desp: 0.13, rayos: 0, sep: 0, tapa: 0, puerta: 0, balde: 0, lev: 0, foco: 0, luz: 1 };
   const ESTADOS = {
-    revelar: { th: 0.5, ph: 1.3, r: 2.05, oy: 0.28, desp: 0.135, giro: 0.32, intro: true },
-    echa: { th: 0.2, ph: 1.08, r: 2.25, oy: 0.4, desp: 0.13, yaw: -0.42, tapa: 1,
+    revelar: { th: 0.5, ph: 1.3, r: 1.95, oy: 0.28, desp: 0.135, giro: 0.32, intro: true },
+    echa: { th: 0.2, ph: 1.08, r: 2.25, oy: 0.4, desp: 0.13, yaw: -0.42, tapa: 1, empuje: 0.06,
       et: [{ a: "A_camara", t: "Boca de 12 × 10 cm", s: "la mano no llega a las cuchillas" },
            { a: "A_seguro", t: "Seguro de tapa", s: "abierta: el pedal no baja" },
            { a: "A_pedal_der", t: "Pedal bloqueado", s: "hasta cerrar la tapa" }] },
-    pisa: { th: 0.95, ph: 1.34, r: 1.72, oy: 0.26, desp: 0.12, yaw: 0, rayos: 1, pedal: true,
+    pisa: { th: 0.95, ph: 1.34, r: 1.72, oy: 0.26, desp: 0.12, yaw: 0, rayos: 1, pedal: true, empuje: 0.07,
       et: [{ a: "A_pinon", t: "Piñón con trinquete", s: "≈ 143° por pisada" },
-           { a: "A_eje", t: "13 cuchillas", s: "acero templado, Ø 56 mm" },
-           { a: "A_peine", t: "Peine fijo", s: "corta en tiras de ≈ 5 mm" },
            { a: "A_cremallera", t: "Cremallera", s: "baja 3 cm en cada pisada" },
            { a: "A_pedal_der", t: "Pedal", s: "palanca 2:1, sin motor" }] },
-    olor: { th: 0.3, ph: 0.95, r: 2.05, oy: 0.38, oz: -0.03, desp: 0.14, yaw: -0.25, lev: 1, foco: 1, focoG: ["G_filtro", "G_tapa_filtro"],
+    corte: { th: 0.66, ph: 1.38, r: 1.12, oy: 0.37, desp: 0.11, yaw: 0, rayos: 1, pedal: true, ciclo: 2.1, empuje: 0.09, fan: { G_camara: 0.12, G_gabinete: 0.05, G_tapa: 0.06 },
+      et: [{ a: "A_eje", t: "13 cuchillas", s: "acero templado, Ø 56 mm" },
+           { a: "A_peine", t: "Peine fijo", s: "tiras de ≈ 5 mm" }] },
+    olor: { th: 0.3, ph: 0.95, r: 2.05, oy: 0.38, oz: -0.03, desp: 0.14, yaw: -0.25, lev: 1, foco: 1, focoG: ["G_filtro", "G_tapa_filtro"], empuje: 0.06,
       et: [{ m: "Filtro de carbón 60 g", t: "Filtro de carbón", s: "60 g · dura ≈ 6 meses" },
            { a: "A_tapa", t: "Junta de caucho", s: "sella la tapa y la puerta" }] },
-    guarda: { th: -0.55, ph: 1.24, r: 2.05, oy: 0.22, oz: 0.06, desp: 0.15, yaw: 0, puerta: 1, balde: 1,
+    guarda: { th: -0.55, ph: 1.24, r: 2.05, oy: 0.22, oz: 0.06, desp: 0.15, yaw: 0, puerta: 1, balde: 1, empuje: 0.06,
       et: [{ a: "A_balde", t: "Balde de 10 L", s: "una bolsa por semana" },
            { a: "A_puerta", t: "Puerta con seguro", s: "a prueba de niños" },
            { a: "A_pedal_izq", t: "Pedal izquierdo", s: "material seco, opcional" }] },
-    despiece: { th: 0.6, ph: 1.2, r: 4.15, oy: 0.86, desp: 0, sep: 1, oscila: { base: 0.12, amp: 0.26, vel: 0.22 }, colI: 470, colD: 1450, yMin: 330,
+    despiece: { th: 0.6, ph: 1.2, r: 3.75, oy: 0.84, desp: 0, sep: 1, oscila: { base: 0.12, amp: 0.26, vel: 0.22 }, colI: 470, colD: 1450, yMin: 440, yMax: 940,
       et: [{ a: "A_tapa", t: "Tapa y filtro", lado: "i" }, { a: "A_deposito", t: "Material seco (opcional)", lado: "i" },
            { a: "A_puerta", t: "Puerta", lado: "i" }, { a: "A_balde", t: "Balde de 10 L", lado: "i" },
            { a: "A_eje", t: "Eje con 13 cuchillas", lado: "d" }, { a: "A_pinon", t: "Piñón y trinquete", lado: "d" },
@@ -309,10 +310,10 @@
     let objetivo = ANG_REPOSO;
     if (actual && actual.pedal) {
       pedalT += dt;
-      const ciclo = 1.3, u = pedalT % ciclo, vueltas = Math.floor(pedalT / ciclo);
-      objetivo = pisada(u);
+      const ciclo = actual.ciclo || 1.3, u = pedalT % ciclo, vueltas = Math.floor(pedalT / ciclo);
+      objetivo = pisada(u / ciclo * 1.3);
       pedalAng = objetivo;
-      const parcial = u < 0.15 ? 0 : suave((u - 0.15) / 0.3);
+      const uu = u / ciclo * 1.3, parcial = uu < 0.15 ? 0 : suave((uu - 0.15) / 0.3);
       ejeVueltas = ejeBase + (vueltas + parcial) * 2.5;
     } else {
       if (pedalT > 0) { ejeBase = ejeVueltas; pedalT = 0; }
@@ -328,7 +329,7 @@
     const focoG = actual && actual.focoG ? actual.focoG : null;
     const pulso = 0.5 + 0.5 * Math.sin(ahora / 260);
     for (const { m, g, base } of mallas) {
-      const fan = FANTASMA[g];
+      const fan = actual && actual.fan && actual.fan[g] !== undefined ? actual.fan[g] : FANTASMA[g];
       const mat = m.material;
       if (fan !== undefined && rx > 0.001) {
         mat.transparent = true;
@@ -359,6 +360,7 @@
     cam.setViewOffset(1920, 1080, -P.desp * 1920, 0, 1920, 1080);
     render.toneMappingExposure = 1.1 * (0.06 + 0.94 * P.luz);
     brillo.material.opacity = P.luz * (1 - 0.6 * suave(P.sep));
+    piso.material.opacity = 0.26 * (1 - suave(P.sep * 1.6));
     anillos.forEach((a, i) => { a.material.opacity = [0.5, 0.26, 0.14][i] * P.luz * (1 - suave(P.sep)); a.rotation.z += 0.0015 * (i + 1); });
   }
 
@@ -383,6 +385,7 @@
       for (const k of ["th", "ph", "r", "ox", "oy", "oz", "desp"]) P[k] = DESDE[k] + (M[k] - DESDE[k]) * kc;
       for (const k of ["rayos", "sep", "tapa", "puerta", "balde", "lev", "foco"]) P[k] = DESDE[k] + (M[k] - DESDE[k]) * kp;
       P.luz = DESDE.luz + (M.luz - DESDE.luz) * salCubica(u);
+      if (actual.empuje && !CAPTURA && u >= 1) P.r = M.r * (1 - actual.empuje * suave((ahora - T0 - DUR * 1000) / 9000));
       if (actual.giro) {                                   // giro continuo que acelera con suavidad
         velGiro = vel0 + (actual.giro - vel0) * kc;
         P.yaw += velGiro * dt;

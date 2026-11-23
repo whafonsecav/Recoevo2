@@ -12,8 +12,8 @@
 
   // ======================================================================== 1 · la montaña de basura (cada cuadro = 10 t)
   const B = { lienzo: null, g: null, q: 1, parts: [], t0: 0, raf: 0, org: 0, orgT: 0, dj: 0, dim: 0, rebanada: null, quieta: false, djV: 0, dimV: 0 };
-  const GRIS = ["#59625d", "#6a746e", "#7b857f", "#8b958f", "#5f6a64"];
-  const ORG = ["#9BD04F", "#7DB33A", "#C9A23B", "#E39B32", "#B98A3E", "#6E9E3A", "#D8B74A"];
+  const GRIS = ["#3d5a4d", "#4a6a5b", "#58776a", "#668478", "#455f53"];
+  const ORG = ["#E9A23B", "#D9912E", "#F0B65C", "#C98328", "#F3C77A", "#DFA048", "#E5AE52"];
   function prepararBasura(lienzo) {
     B.lienzo = lienzo; B.g = lienzo.getContext("2d");
     const N = 3330, celda = 10, ncol = 112, cx = 1365, sigma = 230, x0 = cx - ncol * celda / 2, base = 930;
@@ -84,9 +84,9 @@
     if (B.djV > 0.02) {
       const s = B.rebanada, a = B.djV * (1 - B.dimV);
       g.globalAlpha = a;
-      g.strokeStyle = "#FF6A3D"; g.lineWidth = 2;
+      g.strokeStyle = "#E9A23B"; g.lineWidth = 2;
       g.strokeRect(s.x1 - 6, s.tope - 8, s.x2 - s.x1 + 12, B.base - s.tope + 14);
-      g.fillStyle = "#FF6A3D";
+      g.fillStyle = "#E9A23B";
       g.font = "600 32px Lexend, sans-serif"; g.textAlign = "center";
       g.fillText("Doña Juana", (s.x1 + s.x2) / 2, s.tope - 62);
       g.font = "400 24px Nunito, sans-serif"; g.fillStyle = "rgba(242,246,243,.8)";
@@ -213,10 +213,10 @@
   function prepararCurva(svg) {
     J.svg = svg;
     svg.innerHTML =
-      `<defs><linearGradient id="gradA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(46,208,122,.34)"/><stop offset="1" stop-color="rgba(46,208,122,0)"/></linearGradient></defs>` +
+      `<defs><linearGradient id="gradA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(164,214,94,.34)"/><stop offset="1" stop-color="rgba(164,214,94,0)"/></linearGradient></defs>` +
       `<g class="eje"></g><path class="area-neg"/><path class="area-pos"/><path class="curva-r"/><path class="curva-v"/>` +
       `<g class="cabeza"><circle class="punta-h" r="12"/><circle class="punta" r="7"/></g>` +
-      ["m17|#F2B227|Mes 17|punto de equilibrio", "m50|#2FD07A|Mes 50|recuperamos la inversión"].map(x => { const [id, c, t1, t2] = x.split("|");
+      ["m17|#E9A23B|Mes 16|punto de equilibrio", "m50|#A4D65E|Mes 51|recuperamos la inversión"].map(x => { const [id, c, t1, t2] = x.split("|");
         return `<g class="marca" data-id="${id}" style="opacity:0"><line stroke="${c}"/><circle class="h" r="10" stroke="${c}"/><circle class="p" r="10" stroke="${c}"/><text class="t1" fill="${c}">${t1}</text><text class="s">${t2}</text></g>`; }).join("");
     J.v = Object.assign({}, VISTAS[0]); J.vMeta = VISTAS[0];
   }
@@ -242,15 +242,15 @@
     const mr = Math.min(m, 50);
     const rojo = pts(0, mr);
     svg.querySelector(".curva-r").setAttribute("d", "M" + px(0) + "," + py(f[0]) + " L" + rojo.join(" L"));
-    svg.querySelector(".curva-v").setAttribute("d", m > 50 ? "M" + px(50) + "," + py(f[50]) + " L" + pts(50, m).join(" L") : "");
+    svg.querySelector(".curva-v").setAttribute("d", m > 51 ? "M" + px(51) + "," + py(f[51]) + " L" + pts(51, m).join(" L") : "");
     svg.querySelector(".area-neg").setAttribute("d", "M" + px(0) + "," + py(0) + " L" + px(0) + "," + py(f[0]) + " L" + rojo.join(" L") + ` L${px(mr)},${py(0)} Z`);
     svg.querySelector(".area-neg").style.opacity = J.paso >= 2 ? 1 : 0;
-    svg.querySelector(".area-pos").setAttribute("d", m > 50 ? `M${px(50)},${py(0)} L` + pts(50, m).join(" L") + ` L${px(m)},${py(0)} Z` : "");
+    svg.querySelector(".area-pos").setAttribute("d", m > 51 ? `M${px(51)},${py(0)} L` + pts(51, m).join(" L") + ` L${px(m)},${py(0)} Z` : "");
     svg.querySelector(".area-pos").style.opacity = J.paso >= 3 ? 1 : 0;
     // punta luminosa: va delante de la curva mientras se dibuja
     const cab = svg.querySelector(".cabeza");
     cab.setAttribute("transform", `translate(${px(m).toFixed(1)},${py(valor(m)).toFixed(1)})`);
-    cab.style.setProperty("--c", m > 50 ? "#2FD07A" : "#FF6A3D");
+    cab.style.setProperty("--c", m > 51 ? "#A4D65E" : "#E9A23B");
     cab.style.opacity = m > 0.5 ? 1 : 0;
     // marcas (elementos fijos: solo se mueven y se encienden)
     const poner = (id, mes, dx, dy, ancla, ver, sinTexto) => {
@@ -263,8 +263,8 @@
       for (const [t, off] of [[t1, -34], [t2, -6]]) { t.setAttribute("x", x + dx); t.setAttribute("y", y + dy + off); t.setAttribute("text-anchor", ancla); }
     };
     const fin = J.paso >= 3;
-    poner("m17", 17, 40, -70, "start", J.paso >= 2 && m >= 17, fin);
-    poner("m50", 50, -40, fin ? -100 : -84, "end", J.paso >= 2 && m >= 50);
+    poner("m17", 16, 40, -70, "start", J.paso >= 2 && m >= 16, fin);
+    poner("m50", 51, -40, fin ? -100 : -84, "end", J.paso >= 2 && m >= 51);
   }
   function animarCurva(ahora) {
     const dt = Math.min(0.05, (ahora - (J.t || ahora)) / 1000); J.t = ahora;
@@ -285,7 +285,7 @@
     },
     paso(d, paso, inicio) {
       J.paso = paso;
-      J.mMeta = [0, 0, 50, 120][Math.min(3, paso)];
+      J.mMeta = [0, 0, 51, 120][Math.min(3, paso)];
       J.vMeta = VISTAS[paso >= 3 ? 1 : 0];
       if (inicio && paso > 0) J.m = J.mMeta;
       if (CAPTURA) { J.m = J.mMeta; J.v = Object.assign({}, J.vMeta); dibujarCurva(); return; }
