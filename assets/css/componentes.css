@@ -815,3 +815,64 @@ body.captura .curva-caja { opacity: 1; }
 .cmd-flecha, .et-flecha { border: none !important; border-radius: 0; transform: none; width: 40px; height: 40px; }
 .cmd-flecha::before, .et-flecha::before { content: ""; display: block; width: 100%; height: 100%; border-top: 4px solid var(--acento); border-right: 4px solid var(--acento); border-radius: 3px; transform: translateX(-8px) rotate(45deg); }
 .et { padding-bottom: 176px; }
+
+
+/* «Más datos» oculto hasta activarlo (tecla D), siempre en la esquina de abajo a la derecha */
+.mas { display: none !important; }
+body.ver-mas .mas { display: inline-flex !important; position: absolute; left: auto; top: auto; right: 56px; bottom: 80px; opacity: 1; }
+
+/* pedido: el plan completo en una barra y el pedido de hoy como la primera parte */
+.encabezado-e { top: 186px; }
+.plan-barra { position: absolute; left: 128px; right: 128px; top: 318px; height: 30px; display: flex; gap: 6px; }
+.plan-barra i { display: block; height: 100%; width: calc(var(--w) * 1%); border-radius: 8px; }
+.plan-barra .pb1 { min-width: 30px; background: var(--lima); box-shadow: 0 0 22px rgba(164, 214, 94, .7); }
+.plan-barra .pb2 { background: rgba(243, 239, 228, .55); }
+.plan-barra .pb3 { background: rgba(243, 239, 228, .22); }
+.plan-barra .pb-hoy { position: absolute; left: 0; top: -44px; font-size: 26px; font-weight: 700; color: var(--lima); }
+.etapas { top: 400px; }
+.et p b { color: var(--texto); font-weight: 600; }
+.pl.hoy { border-color: rgba(164, 214, 94, .55); background: linear-gradient(180deg, rgba(164, 214, 94, .18), rgba(164, 214, 94, .05)); }
+.pedido-c .rotulo { font-size: 44px; }
+
+
+/* cifras · paso 1: la cuenta del costo */
+.cuenta-c { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
+.cc { padding-bottom: 16px; border-bottom: 1px solid rgba(var(--rgb-l), .14); }
+.cc b { display: block; font-size: 92px; font-weight: 700; letter-spacing: -.045em; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cc b small { font-size: 40px; font-weight: 500; letter-spacing: 0; color: var(--t2); }
+.cc b em { font-style: normal; font-weight: 400; color: var(--acento); margin-right: 10px; }
+.cc span { display: block; margin-top: 8px; font-size: 30px; font-weight: 300; color: var(--t2); }
+.cc.total { border-bottom: none; }
+.cc.total b { color: var(--lima); text-shadow: 0 0 40px rgba(164, 214, 94, .35); }
+.costo-c { position: absolute; left: 1000px; right: 128px; top: 200px; }
+.uds { position: relative; height: 250px; display: flex; align-items: flex-end; gap: 14px; margin: 18px 0 34px; }
+.ud { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.ud i { display: block; width: 100%; height: var(--h); border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, #b8e07a, #7cae40); transform-origin: 50% 100%; transform: scaleY(0); }
+.diapo.activa .costo-c.on .ud i { transform: scaleY(1); transition: transform 1s var(--ease) calc(var(--i) * 70ms + .4s); }
+.ud b { position: absolute; bottom: calc(var(--h) + 34px); font-size: 24px; font-weight: 700; white-space: nowrap; }
+.ud span { margin-top: 8px; font-size: 20px; color: var(--t3); }
+.gasto-l { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+.gl { display: grid; grid-template-columns: 210px 1fr auto; align-items: baseline; gap: 18px; padding: 10px 0; border-bottom: 1px solid rgba(var(--rgb-l), .1); }
+.gl b { font-size: 36px; font-weight: 700; letter-spacing: -.02em; color: var(--lima); white-space: nowrap; }
+.gl span { font-size: 24px; line-height: 1.25; color: var(--t2); }
+.gl em { font-style: normal; font-size: 24px; font-weight: 600; white-space: nowrap; }
+
+/* ajustes: cuenta del costo y etapas */
+.costo-c { opacity: 0; transition: opacity .5s ease; top: 196px; }
+.costo-c.on:not(.fuera) { opacity: 1; }
+.uds { height: 170px; margin: 10px 0 22px; gap: 12px; }
+.ud b { font-size: 22px; bottom: calc(var(--h) * .68 + 30px); }
+.ud i { height: calc(var(--h) * .68); }
+.gasto-l { gap: 4px; margin-top: 8px; }
+.gl { grid-template-columns: 190px 1fr auto; padding: 8px 0; }
+.gl b { font-size: 32px; }
+.gl span { font-size: 22px; }
+.gl em { font-size: 22px; }
+.cc b { font-size: 84px; }
+.etapas { top: 404px; }
+.et { padding: 32px 34px 140px; }
+.et-v { font-size: 76px; margin-top: 18px; }
+.et p { font-size: 27px; margin-top: 18px; }
+.et-meta { bottom: 28px; }
+.plan-barra .pb-hoy { top: 38px; font-size: 24px; }
+.plan-barra { top: 312px; }

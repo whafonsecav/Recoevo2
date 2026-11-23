@@ -401,6 +401,7 @@
     else if (k === "End") ir(diapos.length - 1, 1);
     else if (k === "f" || k === "F") pantallaCompleta();
     else if (k === "m" || k === "M") abrirDatos();
+    else if (k === "d" || k === "D") verBotonesDatos();
     else if (k === "q" || k === "Q") abrirPreguntas();
     else if (k === "g" || k === "G") abrirIndice();
     else if (k === "p" || k === "P") abrirPresentador();
@@ -424,8 +425,14 @@
   $$("#hud [data-accion]").forEach(b => b.addEventListener("click", e => {
     e.stopPropagation();
     origenVentana = b;
-    ({ datos: () => abrirDatos(), preguntas: () => abrirPreguntas(), indice: abrirIndice, presentador: abrirPresentador, pantalla: pantallaCompleta })[b.dataset.accion]();
+    ({ datos: () => abrirDatos(), botones: verBotonesDatos, preguntas: () => abrirPreguntas(), indice: abrirIndice, presentador: abrirPresentador, pantalla: pantallaCompleta })[b.dataset.accion]();
   }));
+  // «Más datos» no se ve durante la presentación: se activa o se apaga con D (o con el botón del HUD)
+  function verBotonesDatos() {
+    const on = document.body.classList.toggle("ver-mas");
+    const b = $("#hud [data-accion=botones]");
+    if (b) b.firstChild.textContent = on ? "Ocultar botones de datos " : "Mostrar botones de datos ";
+  }
   let reposo = 0;
   addEventListener("mousemove", () => {
     document.body.classList.add("mueve"); document.body.classList.remove("sin-cursor");

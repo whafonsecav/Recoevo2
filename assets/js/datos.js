@@ -60,7 +60,7 @@ window.MODALES = {
   },
 
   campo: {
-    k: "03 · Trabajo de campo", t: "Lo que encontramos en Villa Rosita, Usme",
+    k: "03 · Trabajo de campo", t: "Lo que encontramos en Tihuaque, Usme",
     p: "Estudio cualitativo exploratorio del 19 de septiembre de 2026: entrevistas semiestructuradas y observación en la calle. Las cifras describen a las personas entrevistadas, no a todo el barrio.",
     b: [
       { tipo: "cifras", titulo: "El estudio", items: [
@@ -226,7 +226,7 @@ window.MODALES = {
 
   cifras: {
     k: "07 · Las cifras", t: "Plan financiero a 10 años, escenario realista, sin crédito",
-    p: "Montaje de enero a junio de 2027; ventas desde julio de 2027. M = millones de pesos. Plan sin crédito: todo lo ponen socios e inversionistas.",
+    p: "Los 10 años se cuentan desde la primera venta, cuando abre la fábrica; antes van las 3 etapas (≈ 13 meses). M = millones de pesos. Plan sin crédito: todo lo ponen socios e inversionistas.",
     b: [
       { tipo: "cifras", titulo: "Las cifras clave", items: [
         { v: "$5.520 M", t: "Inversión inicial, sin crédito: fábrica $3.147 M + arranque $489 M + respaldo de caja que vuelve $1.884 M.", f: "Presupuesto ejecutivo, tabla 4" },
@@ -239,6 +239,18 @@ window.MODALES = {
         { v: "33,6 <small>%</small>", t: "TIR: lo que rinde al año el dinero invertido. El VPN (lo que vale hoy, descontando 23,8 % al año) es +$2.766 M.", f: "Hoja «11 Resultados»" },
         { v: "29,2 <small>%</small>", t: "Utilidad sobre el costo; 20,2 % sobre las ventas ($153.075 M en 10 años).", f: "Tablas 11 y 12" }
       ] },
+      { tipo: "tabla", titulo: "Cómo se llega al costo de un producto (10 años = la vida útil de las máquinas)", cols: ["Parte del gasto", "Total 10 años", "Por producto"], num: [1, 2], filas: [
+        ["Fabricar: materiales, energía y planta (arriendo, mantenimiento y seguros)", "$54.574 M", "$74.205"],
+        ["Administrar y vender: nómina de todos, publicidad, comisiones, distribución, oficina y legales", "$46.972 M", "$63.868"],
+        ["Máquinas y moldes: lo que se gastan en los 10 años (depreciación) más las compras de los años siguientes", "$3.549 M", "$4.825"],
+        ["Arranque: trámites, desarrollo y pruebas, montaje y lanzamiento", "$489 M", "$665"],
+        ["Total: gasto completo ÷ 735.450 productos vendidos", "$105.584 M", "$143.564"]
+      ], total: true, nota: "Por producto = total de los 10 años ÷ 735.450 productos vendidos en esos 10 años. Es un promedio: el año 1 cada producto cuesta $193.259, porque se venden pocos; desde el año 4 baja a ≈ $130.000." },
+      { tipo: "tabla", titulo: "Cuántos productos: capacidad de la fábrica y ventas", cols: ["Año", "Capacidad al mes", "Turnos de inyección", "Vendidos en el año"], num: [1, 3], filas: [
+        ["1", "3.818", "1", "16.200"], ["2", "7.635", "2", "32.250"], ["3", "7.635", "2", "50.250"], ["4", "7.635", "2", "65.500"],
+        ["5", "11.453", "3", "77.500"], ["6", "11.453", "3", "86.750"], ["7", "11.453", "3", "92.750"], ["8", "11.453", "3", "98.750"],
+        ["9", "11.453", "3", "104.750"], ["10", "11.453", "3", "110.750"], ["Total", "", "", "735.450"]
+      ], total: true, nota: "Las ventas suben poco a poco: de 800 productos al mes en el mes 1 a ≈ 9.500 al cerrar el año 10. La fábrica suma un turno cuando las ventas pasan del 85 % de lo que puede hacer." },
       { tipo: "tabla", titulo: "Año por año (M = millones de pesos)", cols: ["Año", "Productos", "Precio con IVA", "Ventas", "Gasto", "Utilidad neta", "Caja acumulada"], num: [1, 2, 3, 4, 5, 6], filas: [
         ["0", "0", "—", "0", "491", "−491", "−4.378"], ["1", "16.200", "$199.900", "2.448", "3.131", "−683", "−4.996"],
         ["2", "32.250", "$211.244", "5.144", "4.856", "289", "−4.563"], ["3", "50.250", "$223.232", "8.471", "6.769", "1.416", "−2.814"],
@@ -279,11 +291,11 @@ window.MODALES = {
     p: "Cada etapa se libera solo si se cumple la meta de la anterior. M = millones de pesos. Todas las cifras salen del plan RECOEVO, escenario realista.",
     b: [
       { tipo: "tabla", titulo: "Las tres etapas", cols: ["Etapa", "En qué se usa", "Meta para pasar a la siguiente", "Valor"], num: [3], filas: [
-        ["1 · Validar", "Ajuste del diseño para inyección $25 M · 5 prototipos impresos en 3D $8 M · pruebas de 20.000 pisadas, corte, olor y caída $10 M · muestras y validación de proveedores $5 M · marca, modelo de utilidad y diseño $6,8 M", "Los 5 prototipos rotan entre 10 familias de Tihuaque, en Usme (dos turnos de 6 semanas): 8 de 10 lo usan a diario. Cuchillas y pedal pasan 20.000 pisadas", "$54,8 M"],
-        ["2 · Preserie", "10 moldes de inyección, troqueles y clisés $1.012,8 M · preserie de 300 productos $27 M", "300 productos en hogares, conjuntos y alcaldías locales; preventas y cartas de intención de compra", "$1.039,8 M"],
-        ["3 · Fábrica", "Máquinas y equipos $1.672,3 M · bodega, oficina y computadores $462,0 M · resto del arranque $407,2 M · respaldo de caja que vuelve $1.883,9 M", "Ventas desde el mes 1 del plan", "$4.425,4 M"],
+        ["1 · Validar, 3 meses (sin fábrica: talleres de Bogotá hacen las piezas y el equipo arma)", "Ajuste del diseño para inyección $25 M · 5 prototipos impresos en 3D $8 M · pruebas de 20.000 pisadas, corte, olor y caída $10 M · muestras y validación de proveedores $5 M · marca, modelo de utilidad y diseño $6,8 M", "Los 5 prototipos rotan entre 10 familias de Tihuaque, en Usme (dos turnos de 6 semanas): 8 de 10 lo usan a diario. Cuchillas y pedal pasan 20.000 pisadas", "$54,8 M"],
+        ["2 · Preserie, ≈ 4 meses (moldes propios, que tardan 10 a 12 semanas; inyección en un taller contratado)", "10 moldes de inyección, troqueles y clisés $1.012,8 M · preserie de 300 productos $27 M", "300 productos en hogares, conjuntos y alcaldías locales; preventas y cartas de intención de compra", "$1.039,8 M"],
+        ["3 · Fábrica propia, ≈ 6 meses de montaje (las máquinas tardan ≈ 4 meses en llegar)", "Máquinas y equipos $1.672,3 M · bodega, oficina y computadores $462,0 M · resto del arranque $407,2 M · respaldo de caja que vuelve $1.883,9 M", "Abre la fábrica: mes 1 del plan, 16.200 productos en el año 1", "$4.425,4 M"],
         ["Total", "", "", "$5.520 M"]
-      ], total: true, nota: "Hoy pedimos solo la etapa 1: $55 M por el 10 % de RECOEVO. Si se cumple la meta, el inversionista tiene la primera opción para invertir en las siguientes." },
+      ], total: true, nota: "Los $55 M de hoy son parte de los $5.520 M, no algo aparte. Hoy pedimos solo la etapa 1 ($55 M por el 10 % de RECOEVO); las etapas 2 y 3 ($5.465 M) se piden en nuevas rondas, solo si se cumple cada meta, y el inversionista de hoy tiene la primera opción." },
       { tipo: "tabla", titulo: "Lo que nos dijeron los mentores y lo que cambiamos", cols: ["Nos dijeron", "Lo que hicimos"], filas: [
         ["Los costos no eran coherentes: detallar inyección, mecanizado de cuchillas y trámites legales.", "Cada peso tiene nombre: 10 moldes $1.012,8 M (el del gabinete $308 M, el de la tapa $79,2 M), prensa de 80 t que estampa las 13 cuchillas, horno de temple, y trámites $57,3 M, con marca, modelo de utilidad y diseño ($6,8 M)."],
         ["Validar el hábito con 10 familias antes de gastar en grande.", "Es la etapa 1: 5 prototipos rotan entre 10 familias de Tihuaque, con pruebas de 20.000 pisadas, corte y olor. Sin esa meta no se compran moldes."],
@@ -323,7 +335,7 @@ window.MODALES = {
         { v: "3D", t: "prototipo interactivo en la web, video, manual de marca, póster y planos para el prototipo físico.", f: "" },
         { v: "252", t: "preguntas del jurado respondidas, con de dónde sale cada cifra (botón «Preguntas»).", f: "" }
       ] },
-      { tipo: "texto", titulo: "Lo que sigue", html: "<p><b>Etapa 1 · Validar ($54,8 M):</b> ajuste del diseño para inyección, cinco prototipos que rotan entre 10 familias de Tihuaque, pruebas de 20.000 pisadas, corte y olor, y registro de marca, modelo de utilidad y diseño. <b>Etapa 2 · Preserie ($1.039,8 M):</b> moldes y 300 productos para preventas y cartas de intención. <b>Etapa 3 · Fábrica ($4.425,4 M):</b> montaje de enero a junio de 2027 y ventas desde julio de 2027.</p><p>Lo que les pedimos: <b>$55 M por el 10 % de RECOEVO</b>, para la etapa 1, y la primera opción para invertir en las siguientes.</p>" },
+      { tipo: "texto", titulo: "Lo que sigue", html: "<p><b>Etapa 1 · Validar ($54,8 M):</b> ajuste del diseño para inyección, cinco prototipos que rotan entre 10 familias de Tihuaque, pruebas de 20.000 pisadas, corte y olor, y registro de marca, modelo de utilidad y diseño. <b>Etapa 2 · Preserie ($1.039,8 M):</b> moldes y 300 productos para preventas y cartas de intención. <b>Etapa 3 · Fábrica ($4.425,4 M):</b> ≈ 6 meses de montaje; ahí arranca el año 1 de ventas (16.200 productos).</p><p>Lo que les pedimos: <b>$55 M por el 10 % de RECOEVO</b>, para la etapa 1, y la primera opción para invertir en las siguientes.</p>" },
       { tipo: "temas", items: ["Equipo", "Por qué este equipo", "Metodologías", "Origen de la idea", "Siguiente paso", "Piloto y preserie", "Cronograma", "Indicadores de éxito", "Visión de largo plazo"] }
     ]
   }

@@ -244,9 +244,9 @@
     svg.querySelector(".curva-r").setAttribute("d", "M" + px(0) + "," + py(f[0]) + " L" + rojo.join(" L"));
     svg.querySelector(".curva-v").setAttribute("d", m > 51 ? "M" + px(51) + "," + py(f[51]) + " L" + pts(51, m).join(" L") : "");
     svg.querySelector(".area-neg").setAttribute("d", "M" + px(0) + "," + py(0) + " L" + px(0) + "," + py(f[0]) + " L" + rojo.join(" L") + ` L${px(mr)},${py(0)} Z`);
-    svg.querySelector(".area-neg").style.opacity = J.paso >= 2 ? 1 : 0;
+    svg.querySelector(".area-neg").style.opacity = J.paso >= 3 ? 1 : 0;
     svg.querySelector(".area-pos").setAttribute("d", m > 51 ? `M${px(51)},${py(0)} L` + pts(51, m).join(" L") + ` L${px(m)},${py(0)} Z` : "");
-    svg.querySelector(".area-pos").style.opacity = J.paso >= 3 ? 1 : 0;
+    svg.querySelector(".area-pos").style.opacity = J.paso >= 4 ? 1 : 0;
     // punta luminosa: va delante de la curva mientras se dibuja
     const cab = svg.querySelector(".cabeza");
     cab.setAttribute("transform", `translate(${px(m).toFixed(1)},${py(valor(m)).toFixed(1)})`);
@@ -262,13 +262,13 @@
       for (const c of [h, p]) { c.setAttribute("cx", x); c.setAttribute("cy", y); }
       for (const [t, off] of [[t1, -34], [t2, -6]]) { t.setAttribute("x", x + dx); t.setAttribute("y", y + dy + off); t.setAttribute("text-anchor", ancla); }
     };
-    const fin = J.paso >= 3;
-    poner("m17", 16, 40, -70, "start", J.paso >= 2 && m >= 16, fin);
-    poner("m50", 51, -40, fin ? -100 : -84, "end", J.paso >= 2 && m >= 51);
+    const fin = J.paso >= 4;
+    poner("m17", 16, 40, -70, "start", J.paso >= 3 && m >= 16, fin);
+    poner("m50", 51, -40, fin ? -100 : -84, "end", J.paso >= 3 && m >= 51);
   }
   function animarCurva(ahora) {
     const dt = Math.min(0.05, (ahora - (J.t || ahora)) / 1000); J.t = ahora;
-    const velMes = J.paso >= 3 ? 46 : 26;                       // meses por segundo
+    const velMes = J.paso >= 4 ? 46 : 26;                       // meses por segundo
     if (J.m < J.mMeta) J.m = Math.min(J.mMeta, J.m + velMes * dt * (0.35 + 0.65 * Math.min(1, (J.mMeta - J.m) / 8)));
     else J.m = J.mMeta;
     let quieto = J.m === J.mMeta;
@@ -280,13 +280,13 @@
   VIZ.cifras = {
     entrar(d, paso) {
       if (!J.svg) prepararCurva(d.querySelector(".jcurva"));
-      J.m = 0; J.v = Object.assign({}, VISTAS[paso >= 3 ? 1 : 0]);
+      J.m = 0; J.v = Object.assign({}, VISTAS[paso >= 4 ? 1 : 0]);
       this.paso(d, paso, true);
     },
     paso(d, paso, inicio) {
       J.paso = paso;
-      J.mMeta = [0, 0, 51, 120][Math.min(3, paso)];
-      J.vMeta = VISTAS[paso >= 3 ? 1 : 0];
+      J.mMeta = [0, 0, 0, 51, 120][Math.min(4, paso)];
+      J.vMeta = VISTAS[paso >= 4 ? 1 : 0];
       if (inicio && paso > 0) J.m = J.mMeta;
       if (CAPTURA) { J.m = J.mMeta; J.v = Object.assign({}, J.vMeta); dibujarCurva(); return; }
       cancelAnimationFrame(J.raf); J.t = 0;
