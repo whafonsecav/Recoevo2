@@ -54,7 +54,7 @@ window.MODALES = {
         { v: "2,8 M <small>ha</small>", t: "de tierra degradada: el 40 % de la tierra agrícola del país.", f: "Agronegocios; CONtexto Ganadero (Asocompost), 2019" },
         { v: "&lt; 300 <small>kg/ha</small>", t: "de abono orgánico se aplica, cuando lo mínimo recomendado es 1.000 kg por hectárea.", f: "CONtexto Ganadero (Asocompost), 2019" }
       ] },
-      { tipo: "texto", titulo: "La visión de la fase 2 (fuera de las cifras del plan)", html: "<p>Recoger las bolsas, compostarlas y devolver el abono al campo. Con ≈ 35 % de la masa convertida en compost, las <b>406.983 t</b> de restos de los 10 años darían <b>≈ 142.444 t de compost</b> (estimado). Esa fase no suma ingresos ni costos al plan actual.</p>" },
+      { tipo: "texto", titulo: "La visión de la fase 2 (fuera de las cifras del plan)", html: "<p>Recoger las bolsas, compostarlas y devolver el abono al campo. Con ≈ 35 % de la masa convertida en compost, las <b>769.728 t</b> de restos de los 10 años darían <b>≈ 269.405 t de compost</b> (estimado). Esa fase no suma ingresos ni costos al plan actual.</p>" },
       { tipo: "temas", items: ["Fertilizantes y urea", "Tierra degradada", "Compost", "Visión de largo plazo"] }
     ]
   },
@@ -101,10 +101,10 @@ window.MODALES = {
         { v: "32 × 34 × 52 <small>cm</small>", t: "el cuerpo, del tamaño de una caneca con pedal; con los pedales el fondo llega a ≈ 40,5 cm. Pesa ≈ 5 kg.", f: "Hoja «5 Producto» del plan" },
         { v: "2 : 1", t: "palanca del pedal: el pie baja 6 cm y la cremallera 3 cm. Un resorte la devuelve.", f: "Hoja «5 Producto»" },
         { v: "≈ 143°", t: "gira el eje de las cuchillas en cada pisada. El trinquete, como la rueda libre de una bicicleta, no lo deja devolverse.", f: "Piñón módulo 2 de 12 dientes" },
-        { v: "≈ 11 <small>pisadas</small>", t: "al día para lo de un hogar: unos 20 segundos. Cada pisada pone 13,2 J.", f: "Con 0,46 kg de restos al día" },
+        { v: "≈ 20 <small>pisadas</small>", t: "al día para lo de un hogar: menos de 40 segundos. Cada pisada pone 13,2 J.", f: "Con 0,87 kg de restos al día" },
         { v: "13 <small>cuchillas</small>", t: "de gancho, Ø 56 × 2,5 mm, de acero 3Cr13 templado a 48–52 HRC. Ancho de corte ≈ 10 cm.", f: "Se estampan y templan en la planta" },
         { v: "≈ 5 <small>mm</small>", t: "tiras: la cáscara se corta contra los 12 dedos del peine fijo, con 0,3 mm de holgura, como unas tijeras.", f: "Peine de inox 304" },
-        { v: "10 <small>L</small>", t: "el balde; en una semana se llena ≈ 75 %: una bolsa compostable por semana (no viene incluida).", f: "≈ 3,4 kg de restos por semana" },
+        { v: "10 <small>L</small>", t: "el balde (7,5 L útiles): con lo de un hogar se llena en ≈ 5 días, así que sale una bolsa compostable cada ≈ 5 días (no viene incluida).", f: "≈ 6,1 kg de restos por semana" },
         { v: "60 <small>g</small>", t: "de carbón activado en la tapa; dura ≈ 6 meses. La válvula de una vía deja salir el aire y no deja entrar moscas.", f: "Junta de caucho en tapa y puerta" },
         { v: "2 <small>L</small>", t: "compartimento opcional de material seco (papel, hojas secas o aserrín): 40 mL por pisada del pedal izquierdo, ≈ 17 días.", f: "Si la bolsa sale cada 2 o 3 días, no hace falta" },
         { v: "70 <small>%</small>", t: "de plástico reciclado en el gabinete y la base: ≈ 720 toneladas de plástico reciclado en 10 años.", f: "Hoja «5 Producto»; banco de preguntas" }
@@ -158,18 +158,18 @@ window.MODALES = {
         { v: "≈ 2,9 M", t: "hogares en Bogotá: 735.450 es como 1 de cada 4.", f: "Encuesta Multipropósito 2025" }
       ] },
       { tipo: "tabla", titulo: "Año por año", cols: ["Año", "Productos vendidos", "Hogares acumulados", "t fuera del relleno", "Empleos"], num: [1, 2, 3, 4], filas: [
-        ["1", "16.200", "16.200", "1.082", "12"], ["2", "32.250", "48.450", "4.590", "17"], ["3", "50.250", "98.700", "10.581", "22"],
-        ["4", "65.500", "164.200", "18.997", "25"], ["5", "77.500", "241.700", "29.267", "28"], ["6", "86.750", "328.450", "41.107", "29"],
-        ["7", "92.750", "421.200", "53.944", "30"], ["8", "98.750", "519.950", "67.637", "31"], ["9", "104.750", "624.700", "82.186", "33"],
-        ["10", "110.750", "735.450", "97.591", "34"], ["Total", "735.450", "735.450", "406.983", "34 (máx.)"]
+        ["1", "16.200", "16.200", "2.046", "12"], ["2", "32.250", "48.450", "8.681", "17"], ["3", "50.250", "98.700", "20.012", "22"],
+        ["4", "65.500", "164.200", "35.929", "25"], ["5", "77.500", "241.700", "55.353", "28"], ["6", "86.750", "328.450", "77.746", "29"],
+        ["7", "92.750", "421.200", "102.025", "30"], ["8", "98.750", "519.950", "127.922", "31"], ["9", "104.750", "624.700", "155.439", "33"],
+        ["10", "110.750", "735.450", "184.575", "34"], ["Total", "735.450", "735.450", "769.728", "34 (máx.)"]
       ], total: true },
       { tipo: "cifras", titulo: "El impacto", items: [
-        { v: "≈ 60 <small>días</small>", t: "de lo que recibe Doña Juana equivalen a las 406.983 t: el 1,6 % de lo que le llegaría en 10 años.", f: "Con ≈ 6.800 t/día" },
-        { v: "≈ 288 <small>t/día</small>", t: "menos en el año 10, con todos los hogares: ≈ 4 % de lo que entra hoy a Doña Juana.", f: "Plan realista" },
-        { v: "≈ 203.491 <small>t</small>", t: "de CO₂ equivalente evitadas en 10 años (estimado con 0,5 t por tonelada; la literatura da 0,4 a 0,7).", f: "Hoja «Supuestos»" },
+        { v: "≈ 114 <small>días</small>", t: "de lo que recibe Doña Juana equivalen a las 769.728 t de los 10 años (≈ 4 meses).", f: "Con 6.769 t/día (UAESP, 2026)" },
+        { v: "≈ 544 <small>t/día</small>", t: "menos en el año 10, con todos los hogares: ≈ 8 % de lo que entra hoy a Doña Juana y ≈ 1 de cada 5 kilos de comida de los hogares de Bogotá.", f: "Plan realista" },
+        { v: "≈ 384.864 <small>t</small>", t: "de CO₂ equivalente evitadas en 10 años (estimado con 0,5 t por tonelada; la literatura da 0,4 a 0,7).", f: "Hoja «Supuestos»" },
         { v: "34", t: "empleos directos formales en el año 10 (13 fijos + 21 operarios); 12 al arrancar.", f: "Hoja «Proyección»" }
       ] },
-      { tipo: "texto", titulo: "Supuestos, dichos con honestidad", html: "<p>El impacto usa <b>0,46 kg de restos por hogar al día</b> y <b>85 % de uso diario</b>. Son supuestos del plan, no mediciones: la UAESP registra ≈ 1,2 kg por hogar, así que el impacto real podría ser mayor. Se medirán con hogares reales en la preserie.</p>" },
+      { tipo: "texto", titulo: "Supuestos, dichos con honestidad", html: "<p><b>¿Cuánta comida bota un hogar de Bogotá?</b> 0,87 kg al día, con datos oficiales: cada persona genera 0,434 kg de orgánicos al día (UAESP y Consorcio NCU, caracterización de residuos de Bogotá, 2017); el 74 % de esos orgánicos sale de los hogares (UAESP, guía técnica de orgánicos); y un hogar tiene 2,71 personas (DANE, Encuesta Multipropósito 2025). 0,434 × 74 % × 2,71 = 0,87 kg.</p><p><b>¿Por qué no 1,2 kg?</b> Ese número divide todos los orgánicos de la ciudad (≈ 3.440 t al día, con plazas de mercado y restaurantes) entre los hogares: exagera. <b>¿Y el 85 %?</b> Es un supuesto prudente de cuántos hogares lo usan a diario; se medirá en el piloto de Tihuaque.</p><p>Cuenta: hogares con RECOEVO × 0,87 kg × 85 % × días del año = 769.728 t en 10 años.</p>" },
       { tipo: "temas", items: ["Toneladas", "Hogares", "Bogotá", "Usme", "Mercado (TAM, SAM, SOM)", "Demanda", "Adopción", "CO₂", "Empleos", "Medición del impacto", "Impacto social"] }
     ]
   },
@@ -181,12 +181,12 @@ window.MODALES = {
       { tipo: "tabla", titulo: "Objetivos y metas", cols: ["Objetivo", "Meta", "Cómo aporta RECOEVO"], filas: [
         ["12 · Producción y consumo responsables (principal)", "12.3: reducir a la mitad el desperdicio de alimentos · 12.5: reducir la generación de desechos", "Saca los restos de comida de la bolsa de basura y los deja listos para compostar."],
         ["11 · Ciudades y comunidades sostenibles", "11.6: reducir el impacto ambiental de las ciudades, con atención a los desechos municipales", "Menos bolsas rotas en las esquinas, menos ratas y menos carga para Doña Juana."],
-        ["13 · Acción por el clima", "Reducir las emisiones", "La comida enterrada se pudre sin aire y suelta metano (≈ 80 veces el CO₂ en 20 años). ≈ 203.491 t de CO₂e evitadas en 10 años (estimado)."]
+        ["13 · Acción por el clima", "Reducir las emisiones", "La comida enterrada se pudre sin aire y suelta metano (≈ 80 veces el CO₂ en 20 años). ≈ 384.864 t de CO₂e evitadas en 10 años (estimado)."]
       ] },
       { tipo: "cifras", titulo: "Lo que lo hace sostenible", items: [
         { v: "0 <small>kWh</small>", t: "No usa energía: funciona aunque suba la tarifa o haya racionamiento.", f: "Producto 100 % mecánico" },
         { v: "70 <small>%</small>", t: "de plástico reciclado en el cuerpo: ≈ 720 t en 10 años.", f: "Plan realista" },
-        { v: "406.983 <small>t</small>", t: "de comida fuera del relleno en 10 años.", f: "Plan realista" },
+        { v: "769.728 <small>t</small>", t: "de comida fuera del relleno en 10 años.", f: "Plan realista" },
         { v: "Fase 2", t: "Convertir las bolsas en abono para el campo (≈ 142.444 t de compost posibles; fuera de las cifras).", f: "Visión de largo plazo" }
       ] },
       { tipo: "temas", items: ["ODS", "Metano", "CO₂", "Plástico reciclado", "Compost", "Impacto social"] }

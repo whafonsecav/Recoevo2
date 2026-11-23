@@ -165,7 +165,7 @@
       et: [{ m: "Filtro de carbón 60 g", t: "Filtro de carbón", s: "60 g · dura ≈ 6 meses" },
            { a: "A_tapa", t: "Junta de caucho", s: "sella la tapa y la puerta" }] },
     guarda: { th: -0.55, ph: 1.24, r: 2.05, oy: 0.22, oz: 0.06, desp: 0.15, yaw: 0, puerta: 1, balde: 1, empuje: 0.06,
-      et: [{ a: "A_balde", t: "Balde de 10 L", s: "una bolsa por semana" },
+      et: [{ a: "A_balde", t: "Balde de 10 L", s: "una bolsa cada ≈ 5 días" },
            { a: "A_puerta", t: "Puerta con seguro", s: "a prueba de niños" },
            { a: "A_pedal_izq", t: "Pedal izquierdo", s: "material seco, opcional" }] },
     despiece: { th: 0.6, ph: 1.2, r: 3.75, oy: 0.84, desp: 0, sep: 1, oscila: { base: 0.12, amp: 0.26, vel: 0.22 }, colI: 470, colD: 1450, yMin: 440, yMax: 940,
