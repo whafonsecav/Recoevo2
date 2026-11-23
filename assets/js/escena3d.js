@@ -12,6 +12,11 @@
   const capaEt = document.getElementById("etiquetas3d");
   const CAPTURA = /captura/.test(location.search);
   const suave = x => { x = Math.min(1, Math.max(0, x)); return x * x * x * (x * (x * 6 - 15) + 10); };
+  const lim = x => Math.min(1, Math.max(0, x));
+  const enCubica = x => (x = lim(x), x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const enQuinta = x => (x = lim(x), x < .5 ? 16 * x ** 5 : 1 - Math.pow(-2 * x + 2, 5) / 2);
+  const salCubica = x => 1 - Math.pow(1 - lim(x), 3);
+  const atras = x => { x = lim(x); const s = 1.0; return 1 + (s + 1) * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2); };
   const B2G = v => new T.Vector3(v[0], v[2], -v[1]);           // ejes de Blender → glTF
   const SVGNS = "http://www.w3.org/2000/svg";
 
@@ -173,6 +178,7 @@
 
   const P = Object.assign({ yaw: 0 }, DEF), M = Object.assign({ yaw: 0 }, DEF);
   let actual = null, pendiente, visible = false, tCambio = 0, apagarEn = 0;
+  let DESDE = Object.assign({}, P), T0 = -1e9, DUR = 2, progreso = 1, velGiro = 0, vel0 = 0, residuo = 0;
   let pedalT = 0, ejeBase = 0, ejeVueltas = 0, oscT = 0;
 
   const difAng = (a, b) => { let d = (a - b) % (Math.PI * 2); if (d > Math.PI) d -= Math.PI * 2; if (d < -Math.PI) d += Math.PI * 2; return d; };
@@ -192,44 +198,52 @@
     if (!visible) { visible = true; arrancar(); }
     lienzo.classList.add("visible");
     apagarEn = 0;
+    if (actual === antes) return;
     const e = Object.assign({}, DEF, actual);
     for (const k of Object.keys(DEF)) M[k] = e[k];
-    if (e.yaw !== undefined) M.yaw = P.yaw + difAng(e.yaw, P.yaw);
-    if (actual.intro && !antes && !CAPTURA) { P.r = 4.6; P.ph = 1.47; P.luz = 0; P.th = M.th - 0.6; }
-    if (actual === antes) return;
-    tCambio = performance.now();
+    if (actual.intro && !antes && !CAPTURA) { P.r = 4.8; P.ph = 1.5; P.luz = 0; P.th = M.th - 0.75; P.oy = 0.18; velGiro = 0; }
+    DESDE = Object.assign({}, P);
+    DUR = actual.intro && !antes ? 3.8 : (actual.sep || (antes && antes.sep)) ? 2.5 : 2.1;
+    vel0 = velGiro;
+    if (e.yaw !== undefined) M.yaw = P.yaw + difAng(e.yaw, P.yaw) - (actual.giro ? 0 : vel0 * DUR / 3);
+    else if (actual.oscila) M.yaw = P.yaw + difAng(actual.oscila.base, P.yaw);
+    residuo = 0;
+    T0 = performance.now();
+    tCambio = T0;
     crearEtiquetas(actual.et || []);
     if (CAPTURA) API.saltar();
   };
   API.saltar = function () {
     for (const k of Object.keys(M)) P[k] = M[k];
-    tCambio = -1e9;
+    DESDE = Object.assign({}, P);
+    T0 = -1e9; tCambio = -1e9; progreso = 1; vel0 = 0;
   };
 
   // ---------------------------------------------------------------- etiquetas (columna a la derecha y, en el despiece, también a la izquierda)
   let etiquetas = [];
   function quitarEtiquetas() {
-    for (const e of etiquetas) { e.div.classList.remove("visible"); e.g.style.opacity = 0; const d = e; setTimeout(() => { d.div.remove(); d.g.remove(); }, 650); }
+    for (const e of etiquetas) { e.div.classList.remove("visible"); e.g.classList.remove("visible"); const d = e; setTimeout(() => { d.div.remove(); d.g.remove(); }, 750); }
     etiquetas = [];
   }
   function crearEtiquetas(lista) {
     quitarEtiquetas();
-    for (const s of lista) {
+    lista.forEach((s, i) => {
       const div = document.createElement("div");
+      div.style.setProperty("--i", i);
       div.className = "et3d" + (s.lado === "i" ? " izq" : "");
       div.innerHTML = `<div class="caja"><b>${s.t}</b>${s.s ? `<span>${s.s}</span>` : ""}</div>`;
       capaEt.appendChild(div);
       const g = document.createElementNS(SVGNS, "g");
-      g.style.opacity = 0;
-      g.innerHTML = '<line/><circle class="halo" r="11"/><circle r="5.5"/>';
+      g.style.setProperty("--i", i);
+      g.innerHTML = '<line pathLength="1"/><circle class="halo" r="11"/><circle r="5.5"/>';
       svgL.appendChild(g);
       etiquetas.push({ s, div, g, ancla: null });
-    }
+    });
   }
   const v3 = new T.Vector3();
   function moverEtiquetas(ahora) {
     if (!etiquetas.length || !actual) return;
-    const mostrar = ahora - tCambio > (actual.sep ? 1700 : 1150);
+    const mostrar = progreso > (actual.sep ? .9 : .78);
     const colD = actual.colD || 1530, colI = actual.colI || 470;
     const puntos = etiquetas.map(e => {
       const a = N[e.s.a || e.s.m];
@@ -244,14 +258,14 @@
       const grupo = puntos.filter(p => (p.e.s.lado || "d") === lado).sort((a, b) => a.y - b.y);
       let y = actual.yMin || 200;
       for (const p of grupo) { p.ly = Math.max(p.y, y); y = p.ly + 92; }
-      const exceso = (grupo.length ? grupo[grupo.length - 1].ly : 0) - 940;
+      const exceso = (grupo.length ? grupo[grupo.length - 1].ly : 0) - (actual.yMax || 900);
       if (exceso > 0) for (const p of grupo) p.ly -= exceso;
       for (let i = 1; i < grupo.length; i++) if (grupo[i].ly < grupo[i - 1].ly + 92) grupo[i].ly = grupo[i - 1].ly + 92;
       for (const p of grupo) {
         const lx = lado === "d" ? colD : colI;
         p.e.div.style.transform = `translate(${lx}px, ${p.ly}px)`;
         p.e.div.classList.toggle("visible", mostrar);
-        p.e.g.style.opacity = mostrar ? 1 : 0;
+        p.e.g.classList.toggle("visible", mostrar);
         const [ln, halo, punto] = p.e.g.children;
         ln.setAttribute("x1", p.x); ln.setAttribute("y1", p.y);
         ln.setAttribute("x2", lado === "d" ? lx - 12 : lx + 12); ln.setAttribute("y2", p.ly);
@@ -278,7 +292,7 @@
       const o = N[nombre];
       if (!o) continue;
       const i = ORDEN.indexOf(nombre);
-      const k = i < 0 ? suave((e - 0.3) / 0.7) : suave((e - i / n * 0.45) / 0.55);
+      const k = i < 0 ? suave((e - 0.3) / 0.7) : atras((e - i / n * 0.45) / 0.55);
       const lev = LEVANTAR[nombre] ? suave(P.lev) : 0;
       const pos = B2G(v).multiplyScalar(k);
       if (lev) pos.add(B2G(LEVANTAR[nombre]).multiplyScalar(lev));
@@ -338,7 +352,9 @@
   // ---------------------------------------------------------------- cámara
   function camara() {
     const o = new T.Vector3(P.ox, P.oy, P.oz);
-    cam.position.set(o.x + P.r * Math.sin(P.ph) * Math.sin(P.th), o.y + P.r * Math.cos(P.ph), o.z + P.r * Math.sin(P.ph) * Math.cos(P.th));
+    const t = CAPTURA ? 0 : performance.now() / 1000;
+    const th = P.th + 0.012 * Math.sin(t * 0.31), ph = P.ph + 0.007 * Math.sin(t * 0.23 + 1), r = P.r * (1 + 0.005 * Math.sin(t * 0.19 + 2));
+    cam.position.set(o.x + r * Math.sin(ph) * Math.sin(th), o.y + r * Math.cos(ph), o.z + r * Math.sin(ph) * Math.cos(th));
     cam.lookAt(o);
     cam.setViewOffset(1920, 1080, -P.desp * 1920, 0, 1920, 1080);
     render.toneMappingExposure = 1.1 * (0.06 + 0.94 * P.luz);
@@ -360,13 +376,23 @@
   function cuadro(ahora) {
     const dt = Math.min(0.05, (ahora - antes) / 1000); antes = ahora;
     if (actual) {
-      const kc = 1 - Math.exp(-dt * (actual.intro && P.luz < 0.98 ? 1.25 : 2.3));
-      const kp = 1 - Math.exp(-dt * 2.0);
-      if (actual.giro) { P.yaw += actual.giro * dt; M.yaw = P.yaw; }
-      else if (actual.oscila) { oscT += dt; M.yaw = actual.oscila.base + actual.oscila.amp * Math.sin(oscT * actual.oscila.vel * Math.PI * 2 / 3); }
-      for (const k of ["th", "ph", "r", "ox", "oy", "oz", "desp", "yaw"]) P[k] += (M[k] - P[k]) * kc;
-      for (const k of ["rayos", "sep", "tapa", "puerta", "balde", "lev", "foco"]) P[k] += (M[k] - P[k]) * kp;
-      P.luz += (M.luz - P.luz) * (1 - Math.exp(-dt * 1.1));
+      const u = lim((ahora - T0) / (DUR * 1000));
+      progreso = u;
+      const kc = enCubica(u);
+      const kp = enQuinta((ahora - T0 - 220) / (DUR * 920));
+      for (const k of ["th", "ph", "r", "ox", "oy", "oz", "desp"]) P[k] = DESDE[k] + (M[k] - DESDE[k]) * kc;
+      for (const k of ["rayos", "sep", "tapa", "puerta", "balde", "lev", "foco"]) P[k] = DESDE[k] + (M[k] - DESDE[k]) * kp;
+      P.luz = DESDE.luz + (M.luz - DESDE.luz) * salCubica(u);
+      if (actual.giro) {                                   // giro continuo que acelera con suavidad
+        velGiro = vel0 + (actual.giro - vel0) * kc;
+        P.yaw += velGiro * dt;
+      } else {
+        velGiro = vel0 * Math.pow(1 - u, 2);                 // lo que venía girando se frena sin salto
+        residuo += velGiro * dt;
+        let base = DESDE.yaw + (M.yaw - DESDE.yaw) * kc + residuo;
+        if (actual.oscila) { oscT += dt; base += actual.oscila.amp * kc * Math.sin(oscT * actual.oscila.vel * Math.PI * 2 / 3); }
+        P.yaw = base;
+      }
     }
     aplicar(dt, ahora);
     camara();

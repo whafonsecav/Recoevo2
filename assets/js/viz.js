@@ -123,12 +123,14 @@
     iniciar(d) {
       const rej = d.querySelector(".rejilla-h");
       if (rej && !rej.children.length) {
-        const total = 290, si = 74;           // 2,9 M hogares; cada punto 10.000; 735.450 ≈ 74 puntos
-        let k = 0;
+        const total = 290, si = 74, cols = 20;  // 2,9 M hogares; cada punto 10.000; 735.450 ≈ 74 puntos
+        const filas = Math.ceil(total / cols), cx = (cols - 1) / 2, cy = (filas - 1) / 2;
         for (let i = 0; i < total; i++) {
           const el = document.createElement("i");
-          el.style.setProperty("--j", i);
-          if (Math.floor((i + 1) * si / total) > Math.floor(i * si / total)) { el.className = "si"; el.style.setProperty("--k", k++); }
+          const dist = Math.hypot(i % cols - cx, Math.floor(i / cols) - cy);
+          el.style.setProperty("--j", (dist * 9).toFixed(0));          // aparecen en onda desde el centro
+          el.style.setProperty("--k", (dist * 3.2).toFixed(1));
+          if (Math.floor((i + 1) * si / total) > Math.floor(i * si / total)) el.className = "si";
           rej.appendChild(el);
         }
       }
@@ -173,6 +175,7 @@
     svg.innerHTML =
       `<defs><linearGradient id="gradA" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(46,208,122,.34)"/><stop offset="1" stop-color="rgba(46,208,122,0)"/></linearGradient></defs>` +
       `<g class="eje"></g><path class="area-neg"/><path class="area-pos"/><path class="curva-r"/><path class="curva-v"/>` +
+      `<g class="cabeza"><circle class="punta-h" r="12"/><circle class="punta" r="7"/></g>` +
       ["m17|#F2B227|Mes 17|punto de equilibrio", "m50|#2FD07A|Mes 50|recuperamos la inversión"].map(x => { const [id, c, t1, t2] = x.split("|");
         return `<g class="marca" data-id="${id}" style="opacity:0"><line stroke="${c}"/><circle class="h" r="10" stroke="${c}"/><circle class="p" r="10" stroke="${c}"/><text class="t1" fill="${c}">${t1}</text><text class="s">${t2}</text></g>`; }).join("");
     J.v = Object.assign({}, VISTAS[0]); J.vMeta = VISTAS[0];
@@ -204,6 +207,11 @@
     svg.querySelector(".area-neg").style.opacity = J.paso >= 2 ? 1 : 0;
     svg.querySelector(".area-pos").setAttribute("d", m > 50 ? `M${px(50)},${py(0)} L` + pts(50, m).join(" L") + ` L${px(m)},${py(0)} Z` : "");
     svg.querySelector(".area-pos").style.opacity = J.paso >= 3 ? 1 : 0;
+    // punta luminosa: va delante de la curva mientras se dibuja
+    const cab = svg.querySelector(".cabeza");
+    cab.setAttribute("transform", `translate(${px(m).toFixed(1)},${py(valor(m)).toFixed(1)})`);
+    cab.style.setProperty("--c", m > 50 ? "#2FD07A" : "#FF6A3D");
+    cab.style.opacity = m > 0.5 ? 1 : 0;
     // marcas (elementos fijos: solo se mueven y se encienden)
     const poner = (id, mes, dx, dy, ancla, ver, sinTexto) => {
       const g = svg.querySelector(`[data-id=${id}]`), x = px(mes), y = py(f[mes]);

@@ -71,7 +71,8 @@
 
   if (PRESENTADOR) { vistaPresentador(); return; }
 
-  // ---------------------------------------------------------------- contadores
+  // ---------------------------------------------------------------- cifras que ruedan (odómetro)
+  // El número final queda oculto (marca el lugar exacto de cada carácter) y encima ruedan tiras de 0 a 9.
   function visibleEn(el, d) {
     for (let a = el; a && a !== d; a = a.parentElement) {
       if (a.dataset && a.dataset.b !== undefined && !a.classList.contains("on")) return false;
@@ -79,32 +80,107 @@
     }
     return true;
   }
+  function segundos(v) { v = (v || "").trim(); return v ? (parseFloat(v) || 0) * (/ms$/.test(v) ? 1 : 1000) : 0; }
   function retraso(el) {
-    const a = el.closest(".a") || el.closest("[style*='--d']");
-    const v = a ? getComputedStyle(a).getPropertyValue("--d") : "";
-    return (parseFloat(v) || 0) * (/ms/.test(v) ? 1 : 1000);
+    const a = el.closest(".a");
+    const d = el.closest(".diapo");
+    return (a ? segundos(getComputedStyle(a).getPropertyValue("--d")) : 0) + (d ? segundos(getComputedStyle(d).getPropertyValue("--r")) : 0);
+  }
+  function armarOdometro(el) {
+    const n = +el.dataset.n, dec = +(el.dataset.dec || 0), pre = el.dataset.pre || "";
+    const txt = pre + fmt(n, dec);
+    el.classList.add("odo-listo");
+    el.innerHTML = `<span class="fin">${txt}</span><span class="odo" aria-hidden="true"></span>`;
+    const fin = el.firstChild.firstChild, odo = el.lastChild;
+    const caja = el.getBoundingClientRect(), K = (caja.width / (el.offsetWidth || 1)) || 1, lh = el.offsetHeight;
+    el.style.setProperty("--lh", lh + "px");
+    const r = document.createRange(), cols = [];
+    let j = 0;
+    Array.from(txt).forEach((ch, i) => {
+      r.setStart(fin, i); r.setEnd(fin, i + 1);
+      const q = r.getBoundingClientRect();
+      const c = document.createElement("span");
+      c.style.left = ((q.left - caja.left) / K).toFixed(2) + "px";
+      c.style.width = (q.width / K).toFixed(2) + "px";
+      const t = document.createElement("span");
+      t.style.lineHeight = lh + "px";
+      if (/\d/.test(ch)) { t.className = "odo-t"; t.textContent = "01234567890123456789".split("").join("\n"); cols.push({ t, fin: 10 + +ch, j: j++ }); }
+      else { t.className = "odo-s"; t.textContent = ch; }
+      c.appendChild(t); odo.appendChild(c);
+    });
+    el._odo = { cols, lh };
+  }
+  function rodar(el, inmediato) {
+    if (!el._odo) armarOdometro(el);
+    const o = el._odo, base = retraso(el) + 140, lento = +(el.dataset.dur || 1.8) / 1.8;
+    o.cols.forEach(c => {
+      const dur = (1250 + c.j * 160) * lento, del = base + c.j * 75;
+      c.t.style.transition = inmediato ? "none" : `transform ${dur}ms cubic-bezier(.12,.86,.18,1) ${del}ms`;
+      c.t.style.animation = inmediato ? "none" : `desenfoque ${dur}ms cubic-bezier(.2,.8,.2,1) ${del}ms both`;
+      c.t.style.transform = `translate3d(0, ${-c.fin * o.lh}px, 0)`;
+    });
+  }
+  function volverACero(el) {
+    if (!el._odo) return;
+    el._odo.cols.forEach(c => { c.t.style.transition = "none"; c.t.style.animation = "none"; c.t.style.transform = "translate3d(0,0,0)"; });
   }
   function contadores(d) {
     for (const el of $$(".cuenta", d)) {
       const ver = visibleEn(el, d);
-      const n = +el.dataset.n, dec = +(el.dataset.dec || 0), pre = el.dataset.pre || "";
-      if (ver && !el._hecho) {
-        el._hecho = true;
-        if (CAPTURA) { el.textContent = pre + fmt(n, dec); continue; }
-        const dur = (+el.dataset.dur || 1.8) * 1000, ini = performance.now() + retraso(el) + 150;
-        el.textContent = pre + fmt(0, dec);
-        const paso = ahora => {
-          if (!el._hecho) return;
-          const k = Math.min(1, Math.max(0, (ahora - ini) / dur));
-          const e = k === 1 ? 1 : 1 - Math.pow(2, -10 * k);
-          el.textContent = pre + fmt(n * e, dec);
-          if (k < 1) requestAnimationFrame(paso);
-        };
-        requestAnimationFrame(paso);
-      } else if (!ver && el._hecho) { el._hecho = false; el.textContent = pre + fmt(0, dec); }
+      if (ver && !el._hecho) { el._hecho = true; rodar(el, CAPTURA); }
+      else if (!ver && el._hecho) { el._hecho = false; volverACero(el); }
     }
   }
-  function reiniciarContadores(d) { for (const el of $$(".cuenta", d)) { el._hecho = false; el.textContent = (el.dataset.pre || "") + fmt(0, +(el.dataset.dec || 0)); } }
+  function reiniciarContadores(d) { for (const el of $$(".cuenta", d)) { el._hecho = false; volverACero(el); } }
+  function armarTodo() {
+    $$(".cuenta").forEach(el => { armarOdometro(el); if (el._hecho) rodar(el, true); });
+    $$(".logo-svg .trazo").forEach(p => p.style.setProperty("--L", Math.ceil(p.getTotalLength() + 2)));
+    if (actual >= 0) contadores(diapos[actual]);
+  }
+
+  // ---------------------------------------------------------------- transición de capítulo
+  const capa = $("#capitulo");
+  function capitulo(d) {
+    const ojo = d.querySelector(".ojo");
+    if (!ojo || !capa) return false;
+    capa.querySelector(".cap-num").textContent = ojo.querySelector("b").textContent;
+    capa.querySelector(".cap-nombre").textContent = Array.from(ojo.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent).join("").trim();
+    capa.classList.remove("corre"); void capa.offsetWidth; capa.classList.add("corre");
+    return true;
+  }
+
+  // ---------------------------------------------------------------- polvo de luz (partículas muy suaves en el fondo)
+  (function polvo() {
+    const c = $("#polvo"); if (!c || CAPTURA) return;
+    const g = c.getContext("2d");
+    const N = 70, ps = [];
+    let W = 0, H = 0, q = 1, color = "164,214,94", antes = 0, cuadro = 0;
+    const tam = () => { q = Math.min(1.5, window.devicePixelRatio || 1); W = c.width = Math.round(innerWidth * q); H = c.height = Math.round(innerHeight * q); };
+    tam(); addEventListener("resize", tam);
+    for (let i = 0; i < N; i++) ps.push({ x: Math.random(), y: Math.random(), r: .5 + Math.random() * 1.8, v: .006 + Math.random() * .02, f: Math.random() * 6.28, a: .05 + Math.random() * .28, z: .4 + Math.random() * .6 });
+    const leerColor = () => {
+      const v = getComputedStyle(mundo).getPropertyValue("--acento").trim();
+      const m = v.match(/^#([0-9a-f]{6})$/i);
+      if (m) color = [0, 2, 4].map(i => parseInt(m[1].substr(i, 2), 16)).join(",");
+    };
+    setInterval(leerColor, 900); leerColor();
+    function paso(t) {
+      requestAnimationFrame(paso);
+      if (document.hidden || ++cuadro % 2) return;          // ≈ 30 cuadros por segundo: suave y liviano
+      const dt = Math.min(.1, (t - antes) / 1000); antes = t;
+      g.clearRect(0, 0, W, H);
+      for (const p of ps) {
+        p.y -= p.v * dt * p.z; p.f += dt * .4;
+        if (p.y < -.02) { p.y = 1.02; p.x = Math.random(); }
+        const x = (p.x + Math.sin(p.f) * .012) * W, y = p.y * H, r = p.r * q * (1 + p.z);
+        const brillo = p.a * (.6 + .4 * Math.sin(p.f * 1.7));
+        const gr = g.createRadialGradient(x, y, 0, x, y, r * 4);
+        gr.addColorStop(0, `rgba(${color},${brillo})`); gr.addColorStop(1, `rgba(${color},0)`);
+        g.fillStyle = gr; g.beginPath(); g.arc(x, y, r * 4, 0, 6.283); g.fill();
+      }
+    }
+    requestAnimationFrame(paso);
+  })();
 
   // ---------------------------------------------------------------- pasos y navegación
   let actual = -1, paso = 0, tInicio = 0, ultimo = 0;
@@ -136,13 +212,16 @@
     if (actual === 0 && n > 0 && !tInicio) tInicio = Date.now();
     actual = n;
     clearTimeout(nuevo._t);
-    nuevo.classList.remove("sale", "sale-atras", "entra", "entra-atras");
+    nuevo.classList.remove("sale", "sale-atras", "entra", "entra-atras", "con-cap");
     if (viejo !== nuevo) reiniciarContadores(nuevo);
+    const conCap = !!(viejo && viejo !== nuevo && dir > 0 && !CAPTURA && viejo.dataset.acto !== nuevo.dataset.acto && capitulo(nuevo));
+    nuevo.style.setProperty("--r", conCap ? ".6s" : "0s");
     void nuevo.offsetWidth;
     nuevo.classList.add("activa");
     if (viejo && viejo !== nuevo && !CAPTURA) {
       nuevo.classList.add(dir > 0 ? "entra" : "entra-atras");
-      setTimeout(() => nuevo.classList.remove("entra", "entra-atras"), 1100);
+      if (conCap) nuevo.classList.add("con-cap");
+      setTimeout(() => nuevo.classList.remove("entra", "entra-atras", "con-cap"), 1700);
     }
     paso = pasoIni != null ? Math.min(pasoIni, nuevo._pasos) : (dir < 0 ? nuevo._pasos : 0);
     mundo.dataset.acto = nuevo.dataset.acto;
@@ -154,7 +233,7 @@
   function siguiente() {
     if (abierta() || Date.now() - ultimo < 160) return; ultimo = Date.now();
     const d = diapos[actual];
-    if (paso < d._pasos) { paso++; aplicarPaso(d, paso); try { history.replaceState(null, "", "#" + (actual + 1) + "." + paso); } catch (e) { } }
+    if (paso < d._pasos) { paso++; d.style.setProperty("--r", "0s"); aplicarPaso(d, paso); try { history.replaceState(null, "", "#" + (actual + 1) + "." + paso); } catch (e) { } }
     else if (actual < diapos.length - 1) ir(actual + 1, 1);
   }
   function anterior() {
@@ -182,29 +261,42 @@
   const capas = { ventana: $("#ventana"), preguntas: $("#preguntas"), indice: $("#indice") };
   const abierta = () => Object.values(capas).some(c => c.classList.contains("abierta"));
   function cerrarCapas() { Object.values(capas).forEach(c => c.classList.remove("abierta")); avisar(); }
-  function abrir(c) { cerrarCapas(); c.classList.add("abierta"); c.querySelector(".cuerpo").scrollTop = 0; avisar(); }
+  function abrir(c, origen) {
+    cerrarCapas();
+    c.classList.add("abierta");
+    const panel = c.querySelector(".panel");
+    panel.style.transformOrigin = "50% 50%";
+    if (origen && origen.getBoundingClientRect) {
+      const pr = panel.getBoundingClientRect(), br = origen.getBoundingClientRect(), K = pr.width / panel.offsetWidth || 1;
+      panel.style.transformOrigin = `${((br.left + br.width / 2 - pr.left) / K).toFixed(0)}px ${((br.top + br.height / 2 - pr.top) / K).toFixed(0)}px`;
+    }
+    panel.style.animation = "none"; void panel.offsetWidth; panel.style.animation = "";
+    c.querySelector(".cuerpo").scrollTop = 0;
+    avisar();
+  }
   Object.values(capas).forEach(c => {
     c.addEventListener("click", e => { if (e.target === c) cerrarCapas(); });
     c.querySelector(".cerrar").addEventListener("click", cerrarCapas);
   });
 
-  const esc_ = s => String(s);
+  let nI = 0;
+  const I = () => ` style="--i:${Math.min(nI++, 24)}"`;
   function bloque(b) {
     const h = b.titulo ? `<h3>${b.titulo}</h3>` : "";
-    if (b.tipo === "cifras") return `<section class="bq">${h}<div class="cifras-v">${b.items.map(i => `<div class="cifra-v"><div class="v">${i.v}</div><div class="t">${i.t}</div>${i.f ? `<div class="f">${i.f}</div>` : ""}</div>`).join("")}</div></section>`;
+    if (b.tipo === "cifras") return `<section class="bq">${h}<div class="cifras-v">${b.items.map(i => `<div class="cifra-v"${I()}><div class="v">${i.v}</div><div class="t">${i.t}</div>${i.f ? `<div class="f">${i.f}</div>` : ""}</div>`).join("")}</div></section>`;
     if (b.tipo === "tabla") {
       const num = b.num || [];
-      const filas = b.filas.map((f, i) => `<tr${b.total && i === b.filas.length - 1 ? ' class="total"' : ""}>${f.map((c, j) => `<td${num.includes(j) ? ' class="n"' : ""}>${c}</td>`).join("")}</tr>`).join("");
+      const filas = b.filas.map((f, i) => `<tr${I()}${b.total && i === b.filas.length - 1 ? ' class="total"' : ""}>${f.map((c, j) => `<td${num.includes(j) ? ' class="n"' : ""}>${c}</td>`).join("")}</tr>`).join("");
       return `<section class="bq">${h}<table class="tabla-v"><thead><tr>${b.cols.map((c, j) => `<th${num.includes(j) ? ' class="n"' : ""}>${c}</th>`).join("")}</tr></thead><tbody>${filas}</tbody></table>${b.nota ? `<p class="nota-v">${b.nota}</p>` : ""}</section>`;
     }
-    if (b.tipo === "barras") return `<section class="bq">${h}<div class="barras-v">${b.items.map(([n, v, et, cl]) => `<div class="fila${cl ? " " + cl : ""}"><span>${n}</span><i style="--w:${(v / b.max * 100).toFixed(2)}"></i><b>${et || (b.dinero ? "$" + fmt(v) : fmt(v))}</b></div>`).join("")}</div></section>`;
+    if (b.tipo === "barras") return `<section class="bq">${h}<div class="barras-v">${b.items.map(([n, v, et, cl]) => `<div class="fila${cl ? " " + cl : ""}"${I()}><span>${n}</span><i style="--w:${(v / b.max * 100).toFixed(2)}"></i><b>${et || (b.dinero ? "$" + fmt(v) : fmt(v))}</b></div>`).join("")}</div></section>`;
     if (b.tipo === "texto") return `<section class="bq">${h}<div class="texto-v">${b.html}</div></section>`;
-    if (b.tipo === "citas") return `<section class="bq">${h}<div class="citas-v">${b.items.map(([q, a]) => `<blockquote>«${q}»<cite>${a}</cite></blockquote>`).join("")}</div></section>`;
+    if (b.tipo === "citas") return `<section class="bq">${h}<div class="citas-v">${b.items.map(([q, a]) => `<blockquote${I()}>«${q}»<cite>${a}</cite></blockquote>`).join("")}</div></section>`;
     if (b.tipo === "temas") {
       const hay = new Set(window.BANCO.banco.flatMap(q => q.k));
       const items = b.items.filter(k => hay.has(k));
       if (!items.length) return "";
-      return `<section class="bq"><h3>Preguntas del jurado sobre esto</h3><div class="temas-v">${items.map(k => `<button type="button" data-tema="${k}">${k} <em>${window.BANCO.banco.filter(q => q.k.includes(k)).length}</em></button>`).join("")}</div></section>`;
+      return `<section class="bq"><h3>Preguntas del jurado sobre esto</h3><div class="temas-v">${items.map(k => `<button type="button" data-tema="${k}"${I()}>${k} <em>${window.BANCO.banco.filter(q => q.k.includes(k)).length}</em></button>`).join("")}</div></section>`;
     }
     return "";
   }
@@ -215,10 +307,13 @@
     c.querySelector(".k").textContent = m.k;
     c.querySelector("h2").textContent = m.t;
     c.querySelector(".cab p").textContent = m.p || "";
+    nI = 0;
     c.querySelector(".cuerpo").innerHTML = m.b.map(bloque).join("");
-    c.querySelectorAll("[data-tema]").forEach(b => b.addEventListener("click", () => abrirPreguntas(b.dataset.tema)));
-    abrir(c);
+    c.querySelectorAll("[data-tema]").forEach(b => b.addEventListener("click", () => { origenVentana = b; abrirPreguntas(b.dataset.tema); }));
+    abrir(c, origenVentana);
+    origenVentana = null;
   }
+  let origenVentana = null;
 
   let temaActivo = null;
   function abrirPreguntas(tema) {
@@ -232,7 +327,7 @@
       c.querySelector(".lista-q").addEventListener("click", e => { const b = e.target.closest(".q > button"); if (b) b.parentElement.classList.toggle("abierta"); });
     }
     mostrarTema(tema || null);
-    abrir(c);
+    abrir(c, origenVentana); origenVentana = null;
   }
   function mostrarTema(k) {
     temaActivo = k;
@@ -240,7 +335,7 @@
     c.querySelectorAll(".filtros button").forEach(b => b.classList.toggle("on", b.dataset.k === k));
     const lista = k ? B.banco.filter(q => q.k.includes(k)) : B.banco;
     c.querySelector(".cab h2").textContent = k ? `${k}: ${lista.length} preguntas` : `Respuestas listas: ${lista.length} preguntas`;
-    c.querySelector(".lista-q").innerHTML = lista.map(q => `<article class="q"><button type="button"><div class="pr">${q.q}</div><div class="rc">${q.r}</div></button><div class="det"><p><b>En sencillo:</b> ${q.s}</p>${q.c.length ? `<b>Cómo se calculó o de dónde sale:</b><ul>${q.c.map(x => `<li>${x}</li>`).join("")}</ul>` : ""}</div></article>`).join("");
+    c.querySelector(".lista-q").innerHTML = lista.map((q, i) => `<article class="q" style="--i:${Math.min(i, 14)}"><button type="button"><div class="pr">${q.q}</div><div class="rc">${q.r}</div></button><div class="det"><p><b>En sencillo:</b> ${q.s}</p>${q.c.length ? `<b>Cómo se calculó o de dónde sale:</b><ul>${q.c.map(x => `<li>${x}</li>`).join("")}</ul>` : ""}</div></article>`).join("");
     c.querySelector(".lista-q").scrollTop = 0;
     const b = c.querySelector(".filtros button.on"); if (b) b.scrollIntoView({ block: "nearest" });
   }
@@ -248,9 +343,9 @@
   function abrirIndice() {
     const c = capas.indice;
     const nombres = Object.fromEntries(window.RECOEVO_DATOS.actos);
-    c.querySelector(".cuerpo").innerHTML = diapos.map((d, i) => `<button type="button" class="mini${i === actual ? " actual" : ""}" data-i="${i}"><small>${nombres[d.dataset.acto] || (i ? "Cierre" : "Inicio")}</small><b>${d.dataset.titulo}</b><span>${i + 1}</span></button>`).join("");
+    c.querySelector(".cuerpo").innerHTML = diapos.map((d, i) => `<button type="button" class="mini${i === actual ? " actual" : ""}" data-i="${i}" style="--i:${i}"><small>${nombres[d.dataset.acto] || (i ? "Cierre" : "Inicio")}</small><b>${d.dataset.titulo}</b><span>${i + 1}</span></button>`).join("");
     c.querySelectorAll(".mini").forEach(b => b.addEventListener("click", () => { cerrarCapas(); ir(+b.dataset.i, +b.dataset.i >= actual ? 1 : -1); }));
-    abrir(c);
+    abrir(c, origenVentana); origenVentana = null;
   }
 
   function pantallaCompleta() {
@@ -296,9 +391,10 @@
     if (Math.abs(dx) < 12 && Math.abs(dy) < 12 && Date.now() - t0.t < 600) siguiente();
   });
   esc.addEventListener("contextmenu", e => { if (!e.target.closest(".capa")) { e.preventDefault(); anterior(); } });
-  $$(".mas").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); abrirDatos(b.dataset.abrir); }));
+  $$(".mas").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); origenVentana = b; abrirDatos(b.dataset.abrir); }));
   $$("#hud [data-accion]").forEach(b => b.addEventListener("click", e => {
     e.stopPropagation();
+    origenVentana = b;
     ({ datos: () => abrirDatos(), preguntas: () => abrirPreguntas(), indice: abrirIndice, presentador: abrirPresentador, pantalla: pantallaCompleta })[b.dataset.accion]();
   }));
   let reposo = 0;
@@ -329,6 +425,7 @@
   const ini = CAPTURA ? (+params.get("captura") || 1) - 1 : h[1] ? Math.min(diapos.length, +h[1]) - 1 : 0;
   const pIni = CAPTURA ? +(params.get("paso") || 0) : h[2] ? +h[2] : 0;
   ir(ini, 1, pIni);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(armarTodo));
   if (CAPTURA && window.Escena) { const sal = () => { if (window.Escena.listo) window.Escena.saltar(); else setTimeout(sal, 100); }; sal(); }
   addEventListener("hashchange", () => {
     const m = location.hash.match(/^#(\d+)(?:\.(\d+))?/);

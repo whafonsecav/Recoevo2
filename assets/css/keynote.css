@@ -79,21 +79,23 @@ img { display: block; }
 .diapos { position: absolute; inset: 0; z-index: 2; }
 .diapo { position: absolute; inset: 0; visibility: hidden; pointer-events: none; }
 .diapo.activa { visibility: visible; pointer-events: auto; }
-.diapo.entra { animation: entra 1.05s var(--ease) both; }
-.diapo.entra-atras { animation: entraAtras 1.05s var(--ease) both; }
-.diapo.sale { visibility: visible; animation: sale .62s var(--sale) both; }
-.diapo.sale-atras { visibility: visible; animation: saleAtras .62s var(--sale) both; }
-@keyframes entra { from { opacity: 0; transform: translateY(26px) scale(.975); filter: blur(14px); } }
-@keyframes entraAtras { from { opacity: 0; transform: scale(1.03); filter: blur(14px); } }
-@keyframes sale { to { opacity: 0; transform: scale(1.04); filter: blur(16px); } }
-@keyframes saleAtras { to { opacity: 0; transform: translateY(26px) scale(.97); filter: blur(14px); } }
+.diapo.entra { animation: entra 1.2s cubic-bezier(.16, 1, .3, 1) .1s both; }
+.diapo.entra-atras { animation: entraAtras 1.1s cubic-bezier(.16, 1, .3, 1) .08s both; }
+.diapo.entra.con-cap { animation-delay: .38s; }
+.diapo.sale { visibility: visible; animation: sale .72s cubic-bezier(.55, 0, .75, .2) both; }
+.diapo.sale-atras { visibility: visible; animation: saleAtras .65s cubic-bezier(.55, 0, .75, .2) both; }
+@keyframes entra { from { opacity: 0; transform: scale(.9); filter: blur(22px); } 60% { filter: blur(0); } }
+@keyframes entraAtras { from { opacity: 0; transform: scale(1.08); filter: blur(18px); } }
+@keyframes sale { to { opacity: 0; transform: scale(1.14); filter: blur(24px); } }
+@keyframes saleAtras { to { opacity: 0; transform: scale(.92); filter: blur(16px); } }
 
 /* ---------------------------------------------------------------- sistema de animación de elementos
    .a aparece cuando su diapositiva está activa; si está dentro de un [data-b] (paso), cuando ese paso se enciende. */
 .a {
   --tx: 0px; --ty: 46px; --s: 1; --bl: 10px;
   opacity: 0; transform: translate3d(var(--tx), var(--ty), 0) scale(var(--s)); filter: blur(var(--bl));
-  transition: opacity .9s var(--ease) var(--d, 0s), transform 1.15s var(--ease) var(--d, 0s), filter .9s var(--ease) var(--d, 0s);
+  --dd: calc(var(--d, 0s) + var(--r, 0s));
+  transition: opacity .9s var(--ease) var(--dd), transform 1.15s var(--ease) var(--dd), filter .9s var(--ease) var(--dd);
 }
 .a.zoom { --ty: 0px; --s: .86; }
 .a.zoom-grande { --ty: 0px; --s: 1.25; --bl: 22px; }
@@ -110,14 +112,15 @@ img { display: block; }
 
 /* palabras que suben desde una máscara */
 .palabras .w { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .02em .12em; margin: -.06em -.02em -.12em; }
-.palabras .w > span { display: inline-block; transform: translate3d(0, 112%, 0) rotate(4deg); transform-origin: 0 100%; transition: transform 1.05s var(--ease) calc(var(--d, 0s) + var(--i, 0) * 55ms); }
-.diapo.activa .palabras .w > span, .diapo.sale .palabras .w > span, .diapo.sale-atras .palabras .w > span { transform: none; }
-.diapo.activa [data-b]:not(.on) .palabras .w > span, .diapo.activa .palabras[data-b]:not(.on) .w > span { transform: translate3d(0, 112%, 0) rotate(4deg); transition-delay: 0s; transition-duration: .3s; }
+.palabras .w > span { display: inline-block; transform: translate3d(0, 112%, 0) rotate(4deg); transform-origin: 0 100%; opacity: 0; filter: blur(6px); transition: transform 1.1s var(--ease) calc(var(--d, 0s) + var(--r, 0s) + var(--i, 0) * 55ms), opacity .7s ease calc(var(--d, 0s) + var(--r, 0s) + var(--i, 0) * 55ms), filter .9s ease calc(var(--d, 0s) + var(--r, 0s) + var(--i, 0) * 55ms); }
+.diapo.activa .palabras .w > span, .diapo.sale .palabras .w > span, .diapo.sale-atras .palabras .w > span { transform: none; opacity: 1; filter: none; }
+.diapo.activa [data-b]:not(.on) .palabras .w > span, .diapo.activa .palabras[data-b]:not(.on) .w > span { transform: translate3d(0, 112%, 0) rotate(4deg); opacity: 0; filter: blur(6px); transition-delay: 0s; transition-duration: .3s; }
 
 /* ---------------------------------------------------------------- tipografía */
 .ojo { position: absolute; left: 128px; top: 104px; display: flex; align-items: center; gap: 18px; font-size: 22px; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--acento); }
 .ojo b { display: inline-grid; place-items: center; min-width: 52px; height: 34px; padding: 0 12px; border-radius: 99px; border: 1.5px solid currentColor; font-size: 17px; letter-spacing: .08em; }
-.ojo::after { content: ""; width: 120px; height: 1.5px; background: linear-gradient(90deg, currentColor, transparent); opacity: .7; }
+.ojo::after { content: ""; width: 120px; height: 1.5px; background: linear-gradient(90deg, currentColor, transparent); opacity: .7; transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.4s var(--ease) calc(var(--d, 0s) + var(--r, 0s) + .35s); }
+.diapo.activa .ojo::after, .diapo.sale .ojo::after { transform: scaleX(1); }
 .titular { margin: 0; font-size: 112px; line-height: 1.0; font-weight: 700; letter-spacing: -.038em; }
 .titular.m { font-size: 92px; }
 .titular.s { font-size: 74px; letter-spacing: -.03em; }
@@ -128,11 +131,11 @@ img { display: block; }
 .mega.l { font-size: 240px; }
 .mega.m { font-size: 190px; }
 .mega small { font-size: .32em; letter-spacing: -.02em; font-weight: 600; margin-left: .12em; }
-.metal { background: linear-gradient(180deg, #ffffff 18%, #cfd8d3 62%, #8d9a93 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.brillo-verde { background: linear-gradient(180deg, #e9ffe9 0%, #7ef0a8 38%, #19b35d 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.brillo-acento { background: linear-gradient(180deg, #fff 0%, var(--acento) 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.brillo-sol { background: linear-gradient(180deg, #fff6d8 0%, #F2B227 60%, #c9860b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.brillo-alerta { background: linear-gradient(180deg, #ffe0d4 0%, #FF6A3D 60%, #c23a14 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.metal { --grad: linear-gradient(180deg, #ffffff 18%, #cfd8d3 62%, #8d9a93 100%); --oc: transparent; background: linear-gradient(180deg, #ffffff 18%, #cfd8d3 62%, #8d9a93 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.brillo-verde { --grad: linear-gradient(180deg, #e9ffe9 0%, #7ef0a8 38%, #19b35d 100%); --oc: transparent; background: linear-gradient(180deg, #e9ffe9 0%, #7ef0a8 38%, #19b35d 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.brillo-acento { --grad: linear-gradient(180deg, #fff 0%, var(--acento) 70%); --oc: transparent; background: linear-gradient(180deg, #fff 0%, var(--acento) 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.brillo-sol { --grad: linear-gradient(180deg, #fff6d8 0%, #F2B227 60%, #c9860b 100%); --oc: transparent; background: linear-gradient(180deg, #fff6d8 0%, #F2B227 60%, #c9860b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.brillo-alerta { --grad: linear-gradient(180deg, #ffe0d4 0%, #FF6A3D 60%, #c23a14 100%); --oc: transparent; background: linear-gradient(180deg, #ffe0d4 0%, #FF6A3D 60%, #c23a14 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .verde { color: var(--verde); } .brote { color: var(--brote); } .sol { color: var(--sol); } .alerta { color: var(--alerta); } .tenue { color: var(--t3); } .acento { color: var(--acento); }
 .fuente { position: absolute; left: 128px; bottom: 92px; font-family: "Nunito", sans-serif; font-size: 18px; color: var(--t3); letter-spacing: .01em; max-width: 1300px; }
 .chip { display: inline-flex; align-items: center; gap: 14px; padding: 14px 26px; border-radius: 99px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); font-size: 28px; font-weight: 500; color: var(--texto); backdrop-filter: blur(8px); }
