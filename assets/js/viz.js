@@ -263,8 +263,8 @@
       for (const [t, off] of [[t1, -34], [t2, -6]]) { t.setAttribute("x", x + dx); t.setAttribute("y", y + dy + off); t.setAttribute("text-anchor", ancla); }
     };
     const fin = J.paso >= 3;
-    poner("m17", 17, 40, -70, "start", J.paso >= 1 && m >= 17, fin);
-    poner("m50", 50, -40, fin ? -100 : -110, "end", J.paso >= 2 && m >= 50);
+    poner("m17", 17, 40, -70, "start", J.paso >= 2 && m >= 17, fin);
+    poner("m50", 50, -40, fin ? -100 : -84, "end", J.paso >= 2 && m >= 50);
   }
   function animarCurva(ahora) {
     const dt = Math.min(0.05, (ahora - (J.t || ahora)) / 1000); J.t = ahora;
@@ -285,7 +285,7 @@
     },
     paso(d, paso, inicio) {
       J.paso = paso;
-      J.mMeta = [14, 24, 50, 120][Math.min(3, paso)];
+      J.mMeta = [0, 0, 50, 120][Math.min(3, paso)];
       J.vMeta = VISTAS[paso >= 3 ? 1 : 0];
       if (inicio && paso > 0) J.m = J.mMeta;
       if (CAPTURA) { J.m = J.mMeta; J.v = Object.assign({}, J.vMeta); dibujarCurva(); return; }

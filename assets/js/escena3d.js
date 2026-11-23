@@ -151,22 +151,22 @@
   const ESTADOS = {
     revelar: { th: 0.5, ph: 1.3, r: 2.05, oy: 0.28, desp: 0.135, giro: 0.32, intro: true },
     echa: { th: 0.2, ph: 1.08, r: 2.25, oy: 0.4, desp: 0.13, yaw: -0.42, tapa: 1,
-      et: [{ a: "A_camara", t: "Boca de 12 × 10 cm", s: "la mano no alcanza las cuchillas" },
+      et: [{ a: "A_camara", t: "Boca de 12 × 10 cm", s: "la mano no llega a las cuchillas" },
            { a: "A_seguro", t: "Seguro de tapa", s: "abierta: el pedal no baja" },
            { a: "A_pedal_der", t: "Pedal bloqueado", s: "hasta cerrar la tapa" }] },
     pisa: { th: 0.95, ph: 1.34, r: 1.72, oy: 0.26, desp: 0.12, yaw: 0, rayos: 1, pedal: true,
-      et: [{ a: "A_pinon", t: "Piñón con trinquete", s: "≈ 143° por pisada, sin devolverse" },
+      et: [{ a: "A_pinon", t: "Piñón con trinquete", s: "≈ 143° por pisada" },
            { a: "A_eje", t: "13 cuchillas", s: "acero templado, Ø 56 mm" },
            { a: "A_peine", t: "Peine fijo", s: "corta en tiras de ≈ 5 mm" },
            { a: "A_cremallera", t: "Cremallera", s: "baja 3 cm en cada pisada" },
            { a: "A_pedal_der", t: "Pedal", s: "palanca 2:1, sin motor" }] },
     olor: { th: 0.3, ph: 0.95, r: 2.05, oy: 0.38, oz: -0.03, desp: 0.14, yaw: -0.25, lev: 1, foco: 1, focoG: ["G_filtro", "G_tapa_filtro"],
-      et: [{ m: "Filtro de carbón 60 g", t: "Filtro de carbón activado", s: "60 g · dura ≈ 6 meses" },
+      et: [{ m: "Filtro de carbón 60 g", t: "Filtro de carbón", s: "60 g · dura ≈ 6 meses" },
            { a: "A_tapa", t: "Junta de caucho", s: "sella la tapa y la puerta" }] },
     guarda: { th: -0.55, ph: 1.24, r: 2.05, oy: 0.22, oz: 0.06, desp: 0.15, yaw: 0, puerta: 1, balde: 1,
       et: [{ a: "A_balde", t: "Balde de 10 L", s: "una bolsa por semana" },
-           { a: "A_puerta", t: "Puerta con seguro", s: "doble acción, a prueba de niños" },
-           { a: "A_pedal_izq", t: "Pedal izquierdo", s: "material seco (opcional)" }] },
+           { a: "A_puerta", t: "Puerta con seguro", s: "a prueba de niños" },
+           { a: "A_pedal_izq", t: "Pedal izquierdo", s: "material seco, opcional" }] },
     despiece: { th: 0.6, ph: 1.2, r: 4.15, oy: 0.86, desp: 0, sep: 1, oscila: { base: 0.12, amp: 0.26, vel: 0.22 }, colI: 470, colD: 1450, yMin: 330,
       et: [{ a: "A_tapa", t: "Tapa y filtro", lado: "i" }, { a: "A_deposito", t: "Material seco (opcional)", lado: "i" },
            { a: "A_puerta", t: "Puerta", lado: "i" }, { a: "A_balde", t: "Balde de 10 L", lado: "i" },
@@ -244,7 +244,7 @@
   function moverEtiquetas(ahora) {
     if (!etiquetas.length || !actual) return;
     const mostrar = progreso > (actual.sep ? .9 : .78);
-    const colD = actual.colD || 1530, colI = actual.colI || 470;
+    const colD = actual.colD || 1500, colI = actual.colI || 470;
     const puntos = etiquetas.map(e => {
       const a = N[e.s.a || e.s.m];
       if (!a) return null;
@@ -257,10 +257,10 @@
     for (const lado of ["d", "i"]) {
       const grupo = puntos.filter(p => (p.e.s.lado || "d") === lado).sort((a, b) => a.y - b.y);
       let y = actual.yMin || 200;
-      for (const p of grupo) { p.ly = Math.max(p.y, y); y = p.ly + 92; }
+      for (const p of grupo) { p.ly = Math.max(p.y, y); y = p.ly + 104; }
       const exceso = (grupo.length ? grupo[grupo.length - 1].ly : 0) - (actual.yMax || 900);
       if (exceso > 0) for (const p of grupo) p.ly -= exceso;
-      for (let i = 1; i < grupo.length; i++) if (grupo[i].ly < grupo[i - 1].ly + 92) grupo[i].ly = grupo[i - 1].ly + 92;
+      for (let i = 1; i < grupo.length; i++) if (grupo[i].ly < grupo[i - 1].ly + 104) grupo[i].ly = grupo[i - 1].ly + 104;
       for (const p of grupo) {
         const lx = lado === "d" ? colD : colI;
         p.e.div.style.transform = `translate(${lx}px, ${p.ly}px)`;
