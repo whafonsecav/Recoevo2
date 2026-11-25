@@ -409,17 +409,35 @@
     else if (/^[1-9]$/.test(k)) ir(+k - 1, +k - 1 >= actual ? 1 : -1);
     else if (k === "0") ir(9, 9 >= actual ? 1 : -1);
   });
-  // clic o toque: avanzar (salvo en botones y ventanas); deslizar: adelante o atrás
-  let toque = null;
-  esc.addEventListener("pointerdown", e => { toque = { x: e.clientX, y: e.clientY, t: Date.now() }; });
+  // Ratón: clic avanza. Táctil: tocar el lado izquierdo (30 % de la pantalla) devuelve, el resto avanza;
+  // deslizar a la izquierda avanza y a la derecha devuelve. Nada de esto actúa sobre botones ni ventanas.
+  // El táctil va por touchstart/touchend: al deslizar, el navegador cancela los pointer* (pointercancel)
+  // y nunca llega pointerup; por eso antes no se podía devolver con el dedo.
+  function gesto(x, y, t0, objetivo, tactil) {
+    if (objetivo.closest && objetivo.closest("button, a, .capa, #hud")) return;
+    const dx = x - t0.x, dy = y - t0.y;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? siguiente() : anterior(); return; }
+    if (Math.abs(dx) < 16 && Math.abs(dy) < 16 && Date.now() - t0.t < 700) {
+      if (tactil && x < innerWidth * 0.3) anterior(); else siguiente();
+    }
+  }
+  let toque = null, dedo = null;
+  esc.addEventListener("pointerdown", e => { toque = e.pointerType === "touch" ? null : { x: e.clientX, y: e.clientY, t: Date.now() }; });
   esc.addEventListener("pointerup", e => {
-    if (!toque) return;
-    const dx = e.clientX - toque.x, dy = e.clientY - toque.y; const t0 = toque; toque = null;
-    if (e.target.closest("button, a, .capa, #hud")) return;
+    if (!toque || e.pointerType === "touch") return;
+    const t0 = toque; toque = null;
     if (e.button !== undefined && e.button !== 0) return;
-    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? siguiente() : anterior(); return; }
-    if (Math.abs(dx) < 12 && Math.abs(dy) < 12 && Date.now() - t0.t < 600) siguiente();
+    gesto(e.clientX, e.clientY, t0, e.target, false);
   });
+  esc.addEventListener("touchstart", e => {
+    dedo = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() } : null;
+  }, { passive: true });
+  esc.addEventListener("touchend", e => {
+    if (!dedo || e.touches.length) return;
+    const t0 = dedo; dedo = null; const c = e.changedTouches[0];
+    gesto(c.clientX, c.clientY, t0, e.target, true);
+  });
+  esc.addEventListener("touchcancel", () => { dedo = null; });
   esc.addEventListener("contextmenu", e => { if (!e.target.closest(".capa")) { e.preventDefault(); anterior(); } });
   $$(".mas").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); origenVentana = b; abrirDatos(b.dataset.abrir); }));
   $$("#hud [data-accion]").forEach(b => b.addEventListener("click", e => {

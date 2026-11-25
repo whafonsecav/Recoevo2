@@ -949,3 +949,7 @@ body.captura .cascada-p .cf i::after { transform: scaleX(1); }
 .valor-e .ve b { display: block; font-size: 56px; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--acento); white-space: nowrap; }
 .valor-e .ve-f { flex: none; width: 22px; height: 22px; margin-bottom: 16px; border-top: 4px solid rgba(var(--rgb-l), .4); border-right: 4px solid rgba(var(--rgb-l), .4); border-radius: 2px; transform: rotate(45deg); }
 .pedido-c .valor-e + .sub { margin-top: 26px; }
+
+/* Táctil: sin zoom por doble toque, para que dos toques seguidos pasen dos pasos */
+#escenario { touch-action: manipulation; }
+
