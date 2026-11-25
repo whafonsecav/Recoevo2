@@ -1,9 +1,9 @@
 /* RECOEVO · datos de la presentación y contenido de las ventanas «Más datos».
    Todas las cifras son del ESCENARIO REALISTA del plan (Plan detallado realista y Presupuesto ejecutivo, 3-nov-2026),
-   del póster de la E-Fest, del estudio de campo (19-sep-2026) y de sus fuentes. Revisadas el 22-nov-2026. */
+   del póster de la E-Fest, del estudio de campo (19-sep-2026) y de sus fuentes. Revisadas el 22-nov-2026; plan recalculado el 25-nov-2026 con 10 prototipos. */
 window.RECOEVO_DATOS = {
   // caja acumulada del negocio, mes 0 a 120, en millones de pesos (hoja «Proyección»: flujo libre acumulado; plan sin crédito)
-  caja: [-4377.5, -4552.4, -4644.7, -4715.2, -4777.4, -4831.3, -4877.0, -4914.4, -4947.0, -4971.3, -4987.3, -4995.1, -4995.5, -4991.2, -5007.2, -5012.1, -5006.7, -4989.5, -4961.5, -4922.4, -4873.0, -4811.8, -4739.8, -4656.7, -4563.3, -4516.6, -4416.2, -4304.0, -4180.8, -4045.2, -3902.2, -3747.3, -3581.5, -3407.4, -3221.8, -3024.3, -2814.3, -2651.6, -2403.4, -2165.2, -1986.5, -1803.1, -1617.2, -1426.0, -1229.4, -1027.3, -819.2, -606.4, -391.1, -256.0, -25.4, 211.0, 453.8, 698.1, 948.2, 1204.0, 1465.4, 1732.8, 2006.5, 2281.6, 2564.4, 2340.0, 2650.4, 2963.8, 3280.8, 3599.9, 3922.7, 4248.7, 4573.2, 4901.4, 5232.0, 5566.4, 5903.3, 6134.6, 6494.9, 6858.4, 7225.6, 7595.2, 7964.6, 8337.3, 8712.6, 9091.5, 9473.1, 9858.8, 10247.1, 10516.5, 10931.2, 11349.2, 11771.3, 12191.4, 12615.6, 13043.4, 13473.8, 13908.1, 14345.3, 14786.7, 15230.9, 15536.6, 16005.3, 16477.4, 16949.1, 17423.4, 17902.0, 18384.3, 18869.4, 19358.8, 19851.1, 20347.8, 20847.6, 21198.1, 21730.6, 22261.7, 22797.3, 23335.7, 23878.6, 24425.5, 24975.4, 25529.7, 26087.1, 26651.6, 27222.4],
+  caja: [-4386.4, -4561.3, -4653.6, -4724.1, -4786.3, -4840.2, -4885.9, -4923.3, -4955.9, -4980.2, -4996.3, -5004.0, -5004.5, -5000.1, -5016.1, -5021.0, -5015.6, -4998.4, -4970.4, -4931.3, -4881.9, -4820.7, -4748.7, -4665.6, -4572.2, -4525.5, -4425.1, -4312.9, -4189.8, -4054.1, -3911.1, -3756.2, -3590.5, -3416.3, -3230.7, -3033.2, -2823.2, -2660.5, -2412.3, -2171.0, -1992.3, -1808.9, -1623.0, -1431.8, -1235.2, -1033.1, -825.0, -612.2, -396.9, -261.7, -31.2, 205.2, 448.0, 692.3, 942.4, 1198.2, 1459.6, 1727.0, 2000.7, 2275.8, 2558.6, 2334.2, 2644.6, 2958.0, 3275.0, 3594.1, 3916.9, 4242.9, 4567.5, 4895.6, 5226.2, 5560.6, 5897.6, 6128.8, 6489.1, 6852.6, 7219.8, 7589.4, 7958.8, 8331.5, 8706.8, 9085.7, 9467.4, 9853.0, 10241.3, 10510.7, 10925.4, 11343.4, 11765.5, 12185.6, 12609.8, 13037.6, 13468.0, 13902.3, 14339.5, 14780.9, 15225.1, 15530.8, 15999.5, 16471.6, 16943.3, 17417.6, 17896.2, 18378.5, 18863.7, 19353.0, 19845.3, 20342.1, 20841.9, 21192.3, 21724.8, 22255.9, 22791.5, 23329.9, 23872.8, 24419.7, 24969.6, 25523.9, 26081.3, 26645.8, 27216.6],
   actos: [["problema", "Basura"], ["abono", "Abono"], ["campo", "Campo"], ["solucion", "Solución"], ["impacto", "Impacto"], ["negocio", "Negocio"], ["cifras", "Cifras"], ["pedido", "Pedido"]]
 };
 
@@ -226,25 +226,25 @@ window.MODALES = {
 
   cifras: {
     k: "07 · Las cifras", t: "Plan financiero a 10 años, escenario realista, sin crédito",
-    p: "Los 10 años se cuentan desde la primera venta, cuando abre la fábrica; antes van las 3 etapas (≈ 13 meses). M = millones de pesos. Plan sin crédito: todo lo ponen socios e inversionistas.",
+    p: "Los 10 años se cuentan desde la primera venta, cuando abre la fábrica; antes van las 3 etapas (≈ 14 meses). M = millones de pesos. Plan sin crédito: todo lo ponen socios e inversionistas.",
     b: [
       { tipo: "cifras", titulo: "Las cifras clave", items: [
-        { v: "$5.520 M", t: "Inversión inicial, sin crédito: fábrica $3.147 M + arranque $489 M + respaldo de caja que vuelve $1.884 M.", f: "Presupuesto ejecutivo, tabla 4" },
-        { v: "$143.564", t: "Costo de un producto, todo incluido (promedio de 10 años): variable $104.611 y fijos $2.816 M al año.", f: "Tablas 9 y 13" },
+        { v: "$5.530 M", t: "Inversión inicial, sin crédito: fábrica $3.147 M + arranque $498 M + respaldo de caja que vuelve $1.885 M.", f: "Presupuesto ejecutivo, tabla 4" },
+        { v: "$143.576", t: "Costo de un producto, todo incluido (promedio de 10 años): variable $104.611 y fijos $2.816 M al año.", f: "Tablas 9 y 13" },
         { v: "49 <small>%</small>", t: "Margen de contribución: cada producto deja $100.574 de los $205.185 que recibe la empresa.", f: "Tabla 13" },
         { v: "2.334 <small>/mes</small>", t: "Punto de equilibrio = fijos ÷ margen. Las ventas lo superan en el mes 16; la operación paga lo que cuesta operar desde el mes 9.", f: "Tabla 13" },
         { v: "Mes 51", t: "Recuperación de la inversión (4 años y 3 meses). Exigiendo el costo del dinero: mes 77.", f: "Tabla 14" },
-        { v: "$30.870 M", t: "Utilidad neta de 10 años, ya pagados costos e impuesto de renta (35 %).", f: "Tabla 11" },
-        { v: "559 <small>%</small>", t: "Retorno de la inversión (ROI): $30.870 M ÷ $5.520 M.", f: "Tabla 14" },
-        { v: "33,6 <small>%</small>", t: "TIR: lo que rinde al año el dinero invertido. El VPN (lo que vale hoy, descontando 23,8 % al año) es +$2.766 M.", f: "Hoja «11 Resultados»" },
+        { v: "$30.864 M", t: "Utilidad neta de 10 años, ya pagados costos e impuesto de renta (35 %).", f: "Tabla 11" },
+        { v: "558 <small>%</small>", t: "Retorno de la inversión (ROI): $30.864 M ÷ $5.530 M.", f: "Tabla 14" },
+        { v: "33,6 <small>%</small>", t: "TIR: lo que rinde al año el dinero invertido. El VPN (lo que vale hoy, descontando 23,8 % al año) es +$2.759 M.", f: "Hoja «11 Resultados»" },
         { v: "29,2 <small>%</small>", t: "Utilidad sobre el costo; 20,2 % sobre las ventas ($153.075 M en 10 años).", f: "Tablas 11 y 12" }
       ] },
       { tipo: "tabla", titulo: "Cómo se llega al costo de un producto (10 años = la vida útil de las máquinas)", cols: ["Parte del gasto", "Total 10 años", "Por producto"], num: [1, 2], filas: [
         ["Fabricar: materiales, energía y planta (arriendo, mantenimiento y seguros)", "$54.574 M", "$74.205"],
         ["Administrar y vender: nómina de todos, publicidad, comisiones, distribución, oficina y legales", "$46.972 M", "$63.868"],
         ["Máquinas y moldes: lo que se gastan en los 10 años (depreciación) más las compras de los años siguientes", "$3.549 M", "$4.825"],
-        ["Arranque: trámites, desarrollo y pruebas, montaje y lanzamiento", "$489 M", "$665"],
-        ["Total: gasto completo ÷ 735.450 productos vendidos", "$105.584 M", "$143.564"]
+        ["Arranque: trámites, desarrollo y pruebas, montaje y lanzamiento", "$498 M", "$677"],
+        ["Total: gasto completo ÷ 735.450 productos vendidos", "$105.593 M", "$143.576"]
       ], total: true, nota: "Por producto = total de los 10 años ÷ 735.450 productos vendidos en esos 10 años. Es un promedio: el año 1 cada producto cuesta $193.259, porque se venden pocos; desde el año 4 baja a ≈ $130.000." },
       { tipo: "tabla", titulo: "Cuántos productos: capacidad de la fábrica y ventas", cols: ["Año", "Capacidad al mes", "Turnos de inyección", "Vendidos en el año"], num: [1, 3], filas: [
         ["1", "3.818", "1", "16.200"], ["2", "7.635", "2", "32.250"], ["3", "7.635", "2", "50.250"], ["4", "7.635", "2", "65.500"],
@@ -252,30 +252,30 @@ window.MODALES = {
         ["9", "11.453", "3", "104.750"], ["10", "11.453", "3", "110.750"], ["Total", "", "", "735.450"]
       ], total: true, nota: "Las ventas suben poco a poco: de 800 productos al mes en el mes 1 a ≈ 9.500 al cerrar el año 10. La fábrica suma un turno cuando las ventas pasan del 85 % de lo que puede hacer." },
       { tipo: "tabla", titulo: "Año por año (M = millones de pesos)", cols: ["Año", "Productos", "Precio con IVA", "Ventas", "Gasto", "Utilidad neta", "Caja acumulada"], num: [1, 2, 3, 4, 5, 6], filas: [
-        ["0", "0", "—", "0", "491", "−491", "−4.378"], ["1", "16.200", "$199.900", "2.448", "3.131", "−683", "−4.996"],
-        ["2", "32.250", "$211.244", "5.144", "4.856", "289", "−4.563"], ["3", "50.250", "$223.232", "8.471", "6.769", "1.416", "−2.814"],
-        ["4", "65.500", "$235.901", "11.668", "8.480", "2.072", "−391"], ["5", "77.500", "$249.288", "14.589", "10.197", "2.855", "2.564"],
-        ["6", "86.750", "$263.435", "17.257", "11.445", "3.778", "5.903"], ["7", "92.750", "$278.385", "19.498", "12.751", "4.385", "10.247"],
-        ["8", "98.750", "$294.184", "21.937", "14.168", "5.050", "15.231"], ["9", "104.750", "$310.879", "24.590", "15.806", "5.710", "20.848"],
-        ["10", "110.750", "$328.521", "27.474", "17.491", "6.489", "27.222"], ["Total", "735.450", "", "153.075", "105.584", "30.870", ""]
+        ["0", "0", "—", "0", "500", "−500", "−4.386"], ["1", "16.200", "$199.900", "2.448", "3.131", "−683", "−5.004"],
+        ["2", "32.250", "$211.244", "5.144", "4.856", "289", "−4.572"], ["3", "50.250", "$223.232", "8.471", "6.769", "1.419", "−2.823"],
+        ["4", "65.500", "$235.901", "11.668", "8.480", "2.072", "−397"], ["5", "77.500", "$249.288", "14.589", "10.197", "2.855", "2.559"],
+        ["6", "86.750", "$263.435", "17.257", "11.445", "3.778", "5.898"], ["7", "92.750", "$278.385", "19.498", "12.751", "4.385", "10.241"],
+        ["8", "98.750", "$294.184", "21.937", "14.168", "5.050", "15.225"], ["9", "104.750", "$310.879", "24.590", "15.806", "5.710", "20.842"],
+        ["10", "110.750", "$328.521", "27.474", "17.491", "6.489", "27.217"], ["Total", "735.450", "", "153.075", "105.593", "30.864", ""]
       ], total: true, nota: "El precio sube cada julio con la inflación (5,7 %, promedio DANE 2016-2025); en pesos de hoy siempre es $199.900." },
       { tipo: "tabla", titulo: "La inversión inicial y cómo se paga", cols: ["Concepto", "Valor"], num: [1], filas: [
         ["Máquinas y equipos: 25 tipos, 97 unidades con estantes y mesas (3 inyectoras servo de 650, 400 y 250 t, prensa, horno de temple, láser, torno, línea de ensamble…)", "$1.672,3 M"],
         ["10 moldes de inyección, troqueles y clisés", "$1.012,8 M"], ["Adecuación de la bodega, transformador, oficina y computadores", "$462,0 M"],
-        ["Gastos de arranque (trámites, marca y patentes, preserie de 300 productos, pruebas, montaje)", "$489,0 M"],
-        ["Respaldo que vuelve: capital de trabajo $732 M, IVA de máquinas $598 M, colchón $500 M, depósito $54 M", "$1.883,9 M"],
-        ["Total", "$5.520,0 M"]
+        ["Gastos de arranque (trámites, marca y patentes, 10 prototipos, preserie de 300 productos, pruebas, montaje)", "$497,9 M"],
+        ["Respaldo que vuelve: capital de trabajo $733 M, IVA de máquinas $598 M, colchón $500 M, depósito $54 M", "$1.885,0 M"],
+        ["Total", "$5.530,0 M"]
       ], total: true, nota: "Lo ponen socios e inversionistas, sin crédito: no hay intereses ni cuotas. Entra en 3 etapas (validar, preserie y fábrica). El plan no depende de dinero del Estado; si llega capital semilla del Fondo Emprender, baja el aporte." },
-      { tipo: "tabla", titulo: "De dónde salen los $143.564 de cada producto", cols: ["Parte", "Por producto"], num: [1], filas: [
+      { tipo: "tabla", titulo: "De dónde salen los $143.576 de cada producto", cols: ["Parte", "Por producto"], num: [1], filas: [
         ["Materiales (resina por tonelada, fleje de acero, carbón, empaque)", "$58.081"], ["Publicidad, comisiones, distribución y garantía", "$30.141"],
         ["Nómina de todas las personas", "$29.310"], ["Planta: arriendo, servicios, mantenimiento y seguros", "$11.487"],
         ["Máquinas y moldes (depreciación)", "$4.825"], ["Energía e insumos de producción", "$4.637"], ["Oficina, ICA y 4 × 1.000", "$3.269"],
-        ["Legales y contables", "$1.149"], ["Gastos de arranque", "$665"], ["Intereses", "$0"], ["Total", "$143.564"]
+        ["Legales y contables", "$1.149"], ["Gastos de arranque", "$677"], ["Intereses", "$0"], ["Total", "$143.576"]
       ], total: true },
       { tipo: "tabla", titulo: "¿Y si algo sale mal? Valor presente (VPN) si cada variable cambia 20 %", cols: ["Variable", "Si baja 20 %", "Si sube 20 %"], num: [1, 2], filas: [
-        ["Precio", "−$1.865 M", "$7.241 M"], ["Ventas", "$610 M", "$4.308 M"], ["Materiales", "$4.351 M", "$1.172 M"],
-        ["Costos fijos de planta", "$3.536 M", "$1.995 M"], ["Dólar", "$3.249 M", "$2.283 M"], ["Mano de obra", "$3.122 M", "$2.410 M"]
-      ], nota: "VPN base: +$2.766 M. En 1.000 futuros simulados (Monte Carlo), el 80,6 % termina con VPN positivo; la TIR del futuro del medio es 28,0 %. Lo que más hay que cuidar es el precio." },
+        ["Precio", "−$1.873 M", "$7.233 M"], ["Ventas", "$603 M", "$4.300 M"], ["Materiales", "$4.343 M", "$1.165 M"],
+        ["Costos fijos de planta", "$3.529 M", "$1.987 M"], ["Dólar", "$3.242 M", "$2.275 M"], ["Mano de obra", "$3.114 M", "$2.403 M"]
+      ], nota: "VPN base: +$2.759 M. En 1.000 futuros simulados (Monte Carlo), el 80,0 % termina con VPN positivo; la TIR del futuro del medio es 28,0 %. Lo que más hay que cuidar es el precio." },
       { tipo: "cifras", titulo: "La fábrica", items: [
         { v: "1.150 <small>m²</small>", t: "bodega arrendada en un parque industrial de la Sabana de Bogotá ($26,8 M al mes con administración).", f: "Hoja «3 Máquinas y planta»" },
         { v: "3.818 → 11.453", t: "productos al mes: año 1 con un turno; desde el año 5 con tres turnos de inyección.", f: "Hoja «6 Capacidad»" },
@@ -291,19 +291,29 @@ window.MODALES = {
     p: "Cada etapa se libera solo si se cumple la meta de la anterior. M = millones de pesos. Todas las cifras salen del plan RECOEVO, escenario realista.",
     b: [
       { tipo: "tabla", titulo: "Las tres etapas", cols: ["Etapa", "En qué se usa", "Meta para pasar a la siguiente", "Valor"], num: [3], filas: [
-        ["1 · Validar, 3 meses (sin fábrica: talleres de Bogotá hacen las piezas y el equipo arma)", "Ajuste del diseño para inyección $25 M · 5 prototipos impresos en 3D $8 M · pruebas de 20.000 pisadas, corte, olor y caída $10 M · muestras y validación de proveedores $5 M · marca, modelo de utilidad y diseño $6,8 M", "Los 5 prototipos rotan entre 10 familias de Tihuaque, en Usme (dos turnos de 6 semanas): 8 de 10 lo usan a diario. Cuchillas y pedal pasan 20.000 pisadas", "$54,8 M"],
+        ["1 · Validar, 4 meses (sin fábrica: 1 mes para que talleres de Bogotá hagan las piezas y el equipo arme los 10 prototipos, y 3 meses de prueba)", "Ajuste del diseño para inyección $25 M · 10 prototipos impresos en 3D, uno por familia, $16 M · pruebas de 20.000 pisadas, corte, olor y caída $10 M · muestras y validación de proveedores $5 M · marca, modelo de utilidad y diseño $6,8 M", "10 familias de Tihuaque, en Usme, usan un prototipo cada una durante 3 meses, todas al mismo tiempo: 8 de 10 lo usan a diario. Cuchillas y pedal pasan 20.000 pisadas", "$62,8 M"],
         ["2 · Preserie, ≈ 4 meses (moldes propios, que tardan 10 a 12 semanas; inyección en un taller contratado)", "10 moldes de inyección, troqueles y clisés $1.012,8 M · preserie de 300 productos $27 M", "300 productos en hogares, conjuntos y alcaldías locales; preventas y cartas de intención de compra", "$1.039,8 M"],
-        ["3 · Fábrica propia, ≈ 6 meses de montaje (las máquinas tardan ≈ 4 meses en llegar)", "Máquinas y equipos $1.672,3 M · bodega, oficina y computadores $462,0 M · resto del arranque $407,2 M · respaldo de caja que vuelve $1.883,9 M", "Abre la fábrica: mes 1 del plan, 16.200 productos en el año 1", "$4.425,4 M"],
-        ["Total", "", "", "$5.520 M"]
-      ], total: true, nota: "Los $55 M de hoy son parte de los $5.520 M, no algo aparte. Hoy pedimos solo la etapa 1 ($55 M por el 10 % de RECOEVO); las etapas 2 y 3 ($5.465 M) se piden en nuevas rondas, solo si se cumple cada meta, y el inversionista de hoy tiene la primera opción." },
+        ["3 · Fábrica propia, ≈ 6 meses de montaje (las máquinas tardan ≈ 4 meses en llegar)", "Máquinas y equipos $1.672,3 M · bodega, oficina y computadores $462,0 M · resto del arranque $408,1 M · respaldo de caja que vuelve $1.885,0 M", "Abre la fábrica: mes 1 del plan, 16.200 productos en el año 1", "$4.427,4 M"],
+        ["Total", "", "", "$5.530 M"]
+      ], total: true, nota: "Durante la prueba, el equipo recoge las bolsas cada semana, las pesa y las lleva a compostar: así medimos los kilos reales de cada hogar. ¿Por qué 3 meses? Un hábito nuevo tarda en promedio 66 días en volverse automático (Lally y otros, University College London, 2010); 3 meses son ≈ 90 días. Los $63 M de hoy son parte de los $5.530 M, no algo aparte: hoy pedimos solo la etapa 1 ($63 M por el 10 % de RECOEVO); las etapas 2 y 3 ($5.467 M) se piden en nuevas rondas, solo si se cumple cada meta, y el inversionista de hoy tiene la primera opción." },
+      { tipo: "tabla", titulo: "¿Cuánto vale RECOEVO hoy?", cols: ["Paso", "Cómo se calcula", "Resultado"], num: [2], filas: [
+        ["1. Lo que vale hoy el plan (VPN)", "Lo que el plan gana por encima de todo el dinero invertido, en pesos de hoy, descontando 23,8 % al año", "$2.759 M"],
+        ["2. Probabilidad de cumplirlo hoy, sin ventas", "Tres pruebas: las familias lo usan, hay preventas y la fábrica vende lo que dice el plan; cada una ≈ 6 de 10: 0,6 × 0,6 × 0,55 ≈ 0,2", "1 de 5 (20 %)"],
+        ["3. RECOEVO hoy, antes de su dinero", "$2.759 M × 20 %", "≈ $552 M"],
+        ["4. Con sus $63 M adentro", "$552 M + $63 M", "≈ $615 M"],
+        ["5. Lo que compran sus $63 M", "$63 M ÷ $615 M = 10,2 %: ofrecemos el 10 %", "10 %"],
+        ["Si la probabilidad fuera otra", "1 de 4 (25 %) → ≈ 8 % · 15 % → ≈ 13 %: el 10 % queda en el medio", ""],
+        ["Si pidiéramos $80 M", "La empresa no valdría más: $80 M comprarían 80 ÷ (552 + 80)", "≈ 13 %"],
+        ["Si el plan se cumple, en el año 10", "Ebitda del año 10 (lo que deja la operación antes de intereses, impuestos y desgaste) $10.224 M × 5, un múltiplo prudente para fábricas en países emergentes = $51.121 M, más $32.747 M de caja y sin deudas", "≈ $83.867 M"]
+      ], nota: "Primero se valora la empresa y después sale el porcentaje, no al revés. Las etapas 2 y 3 se negocian después, a un valor más alto; el inversionista de hoy tiene la primera opción (derecho preferente) para seguir invirtiendo y no diluirse, es decir, no perder porcentaje. Si prefieren no fijar hoy el valor: una nota convertible, es decir, su dinero se vuelve acciones en la siguiente ronda con un descuento (por ejemplo, 20 %)." },
       { tipo: "tabla", titulo: "Lo que nos dijeron los mentores y lo que cambiamos", cols: ["Nos dijeron", "Lo que hicimos"], filas: [
-        ["Los costos no eran coherentes: detallar inyección, mecanizado de cuchillas y trámites legales.", "Cada peso tiene nombre: 10 moldes $1.012,8 M (el del gabinete $308 M, el de la tapa $79,2 M), prensa de 80 t que estampa las 13 cuchillas, horno de temple, y trámites $57,3 M, con marca, modelo de utilidad y diseño ($6,8 M)."],
-        ["Validar el hábito con 10 familias antes de gastar en grande.", "Es la etapa 1: 5 prototipos rotan entre 10 familias de Tihuaque, con pruebas de 20.000 pisadas, corte y olor. Sin esa meta no se compran moldes."],
+        ["Los costos no eran coherentes: detallar inyección, mecanizado de cuchillas y trámites legales.", "Cada peso tiene nombre: 10 moldes $1.012,8 M (el del gabinete $308 M, el de la tapa $79,2 M), prensa de 80 t que estampa las 13 cuchillas, horno de temple, y trámites $61,8 M, con marca, modelo de utilidad y diseño ($6,8 M)."],
+        ["Validar el hábito con 10 familias antes de gastar en grande.", "Es la etapa 1: 10 prototipos, uno por familia, que 10 familias de Tihuaque usan 3 meses, con pruebas de 20.000 pisadas, corte y olor. Sin esa meta no se compran moldes."],
         ["No depender de que el Distrito pague por tonelada (Resolución CRA 720 de 2015).", "Ganamos vendiendo el producto. La CRA 720 no remunera los orgánicos; si llega la tarifa de tratamiento que prepara la CRA, es ganancia extra, no la base del plan."],
         ["No venderle el producto a hogares de bajos ingresos.", "Comodato: la alcaldía local o el conjunto compra el lote y se lo presta gratis al hogar (Código Civil, art. 2200)."],
-        ["¿Las bolsas compostables aguantan el camión compactador? ¿Necesitan flota propia?", "No necesitamos flota: la bolsa cerrada va a la ruta de orgánicos que el Decreto 0772 obliga a pasar al menos una vez por semana. El balde de 10 L sirve con cualquier bolsa."],
+        ["¿Las bolsas compostables aguantan el camión compactador? ¿Necesitan flota propia?", "No necesitamos flota: en la prueba de la etapa 1 el equipo recoge las bolsas cada semana, las pesa y las lleva a compostar; después, la bolsa cerrada va a la ruta de orgánicos que el Decreto 0772 obliga a pasar al menos una vez por semana y que llega de forma progresiva. El balde de 10 L sirve con cualquier bolsa."],
         ["Para vender abono hace falta registro ICA y la NTC 5167.", "No vendemos abono: el hogar entrega la bolsa a la ruta. Si en el futuro vendemos compost, se hace el registro ICA (Resoluciones 150 de 2003 y 68370 de 2020) y se cumple la NTC 5167."],
-        ["Bajar la inversión y el riesgo.", "Sin crédito: la inversión baja de $5.954 M a $5.520 M porque ya no hay cuotas ni intereses que cubrir, y el dinero entra por etapas."]
+        ["Bajar la inversión y el riesgo.", "Sin crédito: la inversión baja de $5.954 M a $5.530 M porque ya no hay cuotas ni intereses que cubrir, y el dinero entra por etapas."]
       ] },
       { tipo: "tabla", titulo: "Marco legal que respalda el plan", cols: ["Norma", "Qué dice", "Qué significa para RECOEVO"], filas: [
         ["Decreto 0772 de 2026 (Ministerio de Vivienda, 16-jul-2026)", "Separar los orgánicos es obligatorio; ruta selectiva de orgánicos al menos una vez por semana; los municipios deben asegurar su tratamiento de forma progresiva.", "Hogares, conjuntos y empresas necesitan una forma fácil de separar: ese es el producto."],
@@ -317,11 +327,11 @@ window.MODALES = {
       ] },
       { tipo: "cifras", titulo: "Dinero sin deuda", items: [
         { v: "$0", t: "de crédito: el plan completo lo ponen socios e inversionistas; no hay intereses ni cuotas.", f: "Plan RECOEVO, escenario realista" },
-        { v: "$55 M", t: "lo que pedimos hoy, por el 10 % de RECOEVO: la etapa 1 ($54,8 M).", f: "Gastos de arranque del plan" },
+        { v: "$63 M", t: "lo que pedimos hoy, por el 10 % de RECOEVO: la etapa 1 ($62,8 M). RECOEVO vale hoy ≈ $552 M; con sus $63 M, ≈ $615 M.", f: "Gastos de arranque del plan" },
         { v: "Fondo Emprender", t: "capital semilla del SENA que se condona si se cumplen las metas; en 2026 abrió 12 convocatorias con más de $282.000 M. El plan lo deja en $0 por prudencia.", f: "Infobae, 17-mar-2026" },
-        { v: "$5.520 M", t: "el plan completo en 3 etapas; antes, con crédito, eran $5.954 M.", f: "Presupuesto de inversión" }
+        { v: "$5.530 M", t: "el plan completo en 3 etapas; antes, con crédito, eran $5.954 M.", f: "Presupuesto de inversión" }
       ] },
-      { tipo: "temas", items: ["Mentores", "Inversión inicial", "Financiación", "Piloto y preserie", "Siguiente paso", "CRA y tarifas", "Decreto 0772", "Permisos"] }
+      { tipo: "temas", items: ["Mentores", "Inversión inicial", "Financiación", "Valor de la empresa", "Piloto y preserie", "Validación y pruebas", "Siguiente paso", "CRA y tarifas", "Decreto 0772", "Permisos"] }
     ]
   },
 
@@ -333,9 +343,9 @@ window.MODALES = {
         { v: "6", t: "metodologías: Design Thinking, investigación de campo, Customer Journey Map, Value Proposition Canvas, Business Model Canvas y Lean Startup.", f: "" },
         { v: "14", t: "informes de investigación con fuentes, y un plan de fábrica y finanzas a 10 años.", f: "" },
         { v: "3D", t: "prototipo interactivo en la web, video, manual de marca, póster y planos para el prototipo físico.", f: "" },
-        { v: "252", t: "preguntas del jurado respondidas, con de dónde sale cada cifra (botón «Preguntas»).", f: "" }
+        { v: "266", t: "preguntas del jurado respondidas, con de dónde sale cada cifra (botón «Preguntas»).", f: "" }
       ] },
-      { tipo: "texto", titulo: "Lo que sigue", html: "<p><b>Etapa 1 · Validar ($54,8 M):</b> ajuste del diseño para inyección, cinco prototipos que rotan entre 10 familias de Tihuaque, pruebas de 20.000 pisadas, corte y olor, y registro de marca, modelo de utilidad y diseño. <b>Etapa 2 · Preserie ($1.039,8 M):</b> moldes y 300 productos para preventas y cartas de intención. <b>Etapa 3 · Fábrica ($4.425,4 M):</b> ≈ 6 meses de montaje; ahí arranca el año 1 de ventas (16.200 productos).</p><p>Lo que les pedimos: <b>$55 M por el 10 % de RECOEVO</b>, para la etapa 1, y la primera opción para invertir en las siguientes.</p>" },
+      { tipo: "texto", titulo: "Lo que sigue", html: "<p><b>Etapa 1 · Validar ($62,8 M, 4 meses):</b> ajuste del diseño para inyección, 10 prototipos, uno por familia, que 10 familias de Tihuaque usan durante 3 meses (el equipo recoge y pesa sus bolsas cada semana), pruebas de 20.000 pisadas, corte y olor, y registro de marca, modelo de utilidad y diseño. <b>Etapa 2 · Preserie ($1.039,8 M):</b> moldes y 300 productos para preventas y cartas de intención. <b>Etapa 3 · Fábrica ($4.427,4 M):</b> ≈ 6 meses de montaje; ahí arranca el año 1 de ventas (16.200 productos).</p><p>Lo que les pedimos: <b>$63 M por el 10 % de RECOEVO</b>, para la etapa 1, y la primera opción para invertir en las siguientes. RECOEVO vale hoy ≈ $552 M; con sus $63 M, ≈ $615 M, y $63 M son el 10 %.</p>" },
       { tipo: "temas", items: ["Equipo", "Por qué este equipo", "Metodologías", "Origen de la idea", "Siguiente paso", "Piloto y preserie", "Cronograma", "Indicadores de éxito", "Visión de largo plazo"] }
     ]
   }

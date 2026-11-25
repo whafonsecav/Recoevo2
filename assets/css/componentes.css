@@ -942,3 +942,10 @@ body.captura .cascada-p .cf i::after { transform: scaleX(1); }
 .kg.si { border: none; background: linear-gradient(180deg, #2bb565, #0E9A48); box-shadow: 0 24px 60px rgba(14, 154, 72, .35); }
 .kg.si b, .kg.si span { color: #fff; }
 .cinco .cal-pie { margin-top: 34px; }
+
+/* pedido · paso 1: cuánto vale RECOEVO hoy y por qué sus $63 M son el 10 % */
+.valor-e { display: flex; align-items: flex-end; gap: 26px; margin-top: 30px; }
+.valor-e .ve small { display: block; margin-bottom: 8px; font-size: 20px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--t3); white-space: nowrap; }
+.valor-e .ve b { display: block; font-size: 56px; font-weight: 700; letter-spacing: -.03em; line-height: 1; color: var(--acento); white-space: nowrap; }
+.valor-e .ve-f { flex: none; width: 22px; height: 22px; margin-bottom: 16px; border-top: 4px solid rgba(var(--rgb-l), .4); border-right: 4px solid rgba(var(--rgb-l), .4); border-radius: 2px; transform: rotate(45deg); }
+.pedido-c .valor-e + .sub { margin-top: 26px; }
